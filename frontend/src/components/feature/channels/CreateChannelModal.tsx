@@ -197,7 +197,11 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                                 pattern: {
                                     // no special characters allowed
                                     // cannot start with a space
-                                    value: /^[a-zA-Z0-9][a-zA-Z0-9-]*$/,
+                                    // value: /^[a-zA-Z0-9][a-zA-Z0-9-]*$/,
+                                    
+                                    // allow Chinese characters, letters, numbers and hyphens
+                                    value: /^[\u4e00-\u9fa5a-zA-Z0-9][\u4e00-\u9fa5a-zA-Z0-9-]*$/,
+
                                     message: __("Channel name can only contain letters, numbers and hyphens.")
                                 }
                             }}
