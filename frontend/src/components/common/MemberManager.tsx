@@ -5,6 +5,7 @@ import { UserAvatar } from "./UserAvatar"
 import { useContext, useEffect, useMemo, useState } from "react"
 import { BiSearch } from "react-icons/bi"
 import { TableVirtuoso } from "react-virtuoso"
+import { __ } from "@/utils/translations"
 
 export type MemberObject = { user: string, is_admin?: 0 | 1, is_member?: 0 | 1 }
 type Props = {
@@ -55,9 +56,9 @@ const MemberManager = ({ currentMembers, onChange }: Props) => {
                     }}
                     fixedHeaderContent={() => (
                         <Table.Row>
-                            <Table.ColumnHeaderCell className="w-[50%]">User</Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell className="w-[25%]">Member</Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell className="w-[25%]">Admin</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell className="w-[50%]">{__("User")}</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell className="w-[25%]">{__("Member")}</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell className="w-[25%]">{__("Admin")}</Table.ColumnHeaderCell>
                         </Table.Row>
                     )}
                     itemContent={(index, user) => {
@@ -82,7 +83,7 @@ const SearchBar = ({ onSearch }: { onSearch: (search: string) => void }) => {
     }, [search])
 
     return (
-        <TextField.Root placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}>
+        <TextField.Root placeholder={__("Search")} value={search} onChange={(e) => setSearch(e.target.value)}>
             <TextField.Slot>
                 <BiSearch />
             </TextField.Slot>

@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom"
 import { Loader } from "@/components/common/Loader"
 import { FileExtensionIcon } from "@/utils/layout/FileExtIcon"
 import { useIsDesktop, useIsMobile } from "@/hooks/useMediaQuery"
+import { __ } from "@/utils/translations"
 
 export type FileInChannel = {
     name: string,
@@ -79,7 +80,7 @@ const ViewFilesContent = () => {
                     <Flex gap='2' className="flex-col sm:flex-row sm:items-center">
                         <TextField.Root className="w-full sm:w-[400px]" onChange={handleChange}
                             type='text'
-                            placeholder='Search for file' autoFocus>
+                            placeholder={__('Search for file')} autoFocus>
                             <TextField.Slot side='left'>
                                 <BiSearch />
                             </TextField.Slot>

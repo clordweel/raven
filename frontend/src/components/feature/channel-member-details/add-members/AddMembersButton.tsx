@@ -7,6 +7,7 @@ import { DIALOG_CONTENT_CLASS } from "@/utils/layout/dialog"
 import clsx from "clsx"
 import { useIsDesktop } from "@/hooks/useMediaQuery"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/layout/Drawer"
+import { __ } from "@/utils/translations"
 
 interface AddMembersButtonProps extends ButtonProps {
     channelData: ChannelListItem,
@@ -26,7 +27,7 @@ export const AddMembersButton = ({ channelData, ...props }: AddMembersButtonProp
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <Dialog.Trigger>
                     <Button variant="ghost" size='1' {...props} className={clsx("text-nowrap", props.className)}>
-                        Add Members
+                        {__("Add Members")}
                     </Button>
                 </Dialog.Trigger>
 
@@ -41,7 +42,7 @@ export const AddMembersButton = ({ channelData, ...props }: AddMembersButtonProp
         return <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
                 <Button variant="ghost" size='1' {...props} className={clsx("text-nowrap", props.className)}>
-                    Add Members
+                    {__("Add Members")}
                 </Button>
             </DrawerTrigger>
             <DrawerContent>

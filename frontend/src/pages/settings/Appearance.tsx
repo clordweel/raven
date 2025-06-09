@@ -74,7 +74,7 @@ const Themes = ({ appearance, setAppearance }: { appearance: string, setAppearan
 
     return (
         <Stack gap='3'>
-            <Heading as='h3' className="not-cal" size='2' weight='bold'>Theme</Heading>
+            <Heading as='h3' className="not-cal" size='2' weight='bold'>{__("Theme")}</Heading>
             <Box maxWidth="910px">
                 <RadioCards.Root value={appearance} defaultValue={appearance} columns={{ initial: '1', sm: '3' }}>
                     <Flex direction="column" align="center" gap='3'>
@@ -82,21 +82,21 @@ const Themes = ({ appearance, setAppearance }: { appearance: string, setAppearan
                             <img src={lightModeImg}
                                 className="w-full h-auto object-cover" />
                         </RadioCards.Item>
-                        <Text weight="medium">Light</Text>
+                        <Text weight="medium">{__("Light")}</Text>
                     </Flex>
                     <Flex direction="column" align="center" gap='3'>
                         <RadioCards.Item value="dark" className="p-0 cursor-pointer" onClick={() => setAppearance("dark")}>
                             <img src={darkModeImg}
                                 className="w-full h-auto object-cover" />
                         </RadioCards.Item>
-                        <Text weight="medium">Dark</Text>
+                        <Text weight="medium">{__("Dark")}</Text>
                     </Flex>
                     <Flex direction="column" align="center" gap='3'>
                         <RadioCards.Item value="inherit" className="p-0 cursor-pointer" onClick={() => setAppearance("inherit")}>
                             <img src={systemModeImg}
                                 className="w-full h-auto object-cover" />
                         </RadioCards.Item>
-                        <Text weight="medium">System</Text>
+                        <Text weight="medium">{__("System")}</Text>
                     </Flex>
                 </RadioCards.Root>
             </Box>
@@ -136,20 +136,20 @@ const ChatLayouts = ({ chatStyle = 'Simple', setChatStyle, appearance }: { chatS
 
     return (
         <Stack gap='3'>
-            <Heading as='h3' className="not-cal" size='2' weight='bold'>Chat Layout</Heading>
+            <Heading as='h3' className="not-cal" size='2' weight='bold'>{__("Chat Layout")}</Heading>
             <Box maxWidth="600px">
                 {chatStyle && <RadioCards.Root value={chatStyle} onValueChange={(value) => setChatStyle(value)} columns={{ initial: '1', sm: '2' }}>
                     <Flex direction="column" align="center" gap='3'>
                         <RadioCards.Item value="Simple" className="p-0 cursor-pointer">
                             <img src={getImageSrc("Simple")} className="w-full h-auto object-cover" />
                         </RadioCards.Item>
-                        <Text weight="medium">Simple</Text>
+                        <Text weight="medium">{__("Simple", null, "Raven Layout")}</Text>
                     </Flex>
                     <Flex direction="column" align="center" gap='3'>
                         <RadioCards.Item value="Left-Right" className="p-0 cursor-pointer">
                             <img src={getImageSrc("Left-Right")} className="w-full h-auto object-cover" />
                         </RadioCards.Item>
-                        <Text weight="medium">Left-Right</Text>
+                        <Text weight="medium">{__("Left-Right", null, "Raven Layout")}</Text>
                     </Flex>
                 </RadioCards.Root>}
             </Box>

@@ -16,6 +16,7 @@ import { Box, Checkbox, Flex, Grid, Select, TextField, Text, ScrollArea, Link } 
 import { Loader } from '@/components/common/Loader'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { dateOption } from './GlobalSearch'
+import { __ } from '@/utils/translations'
 
 interface Props {
     onToggleMyChannels: () => void,
@@ -81,7 +82,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     }}
                         onChange={handleChange}
                         type='text'
-                        placeholder='Search messages'
+                        placeholder={__('Search messages')}
                         value={searchText}
                         autoFocus
                     >

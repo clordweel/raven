@@ -349,11 +349,11 @@ const AddMembersDialog = ({ workspaceID }: { workspaceID: string }) => {
         <Dialog.Trigger>
             <Button size='2' variant='soft' type='button' className="not-cal">
                 <BiPlus fontSize={16} />
-                Add Members</Button>
+                {__("Add Members")}</Button>
         </Dialog.Trigger>
         <Dialog.Content className={clsx('w-full static')}>
-            <Dialog.Title>Add Members</Dialog.Title>
-            <Dialog.Description>Add members to your workspace.</Dialog.Description>
+            <Dialog.Title>{__("Add Members")}</Dialog.Title>
+            <Dialog.Description>{__("Add members to your workspace.")}</Dialog.Description>
             <Suspense fallback={<Loader />}>
                 <AddWorkspaceMembersModalContent workspaceID={workspaceID} onClose={off} />
             </Suspense>

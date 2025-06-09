@@ -4,6 +4,7 @@ import { useState } from "react"
 import { BiSearch } from "react-icons/bi"
 import { GIFSearchResults } from "./GIFSearchResults"
 import { GIFFeaturedResults } from "./GIFFeaturedResults"
+import { __ } from "@/utils/translations"
 
 export const TENOR_SEARCH_API_ENDPOINT_BASE = `https://tenor.googleapis.com/v2/search`
 export const TENOR_FEATURED_API_ENDPOINT_BASE = `https://tenor.googleapis.com/v2/featured`
@@ -36,7 +37,7 @@ const GIFPicker = ({ onSelect }: GIFPickerProps) => {
                         onChange={(e) => setSearchText(e.target.value)}
                         value={searchText}
                         type='text'
-                        placeholder='Search GIFs'>
+                        placeholder={__("Search for GIFs")}>
                         <TextField.Slot side='left'>
                             <BiSearch />
                         </TextField.Slot>

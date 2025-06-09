@@ -19,6 +19,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import { Sort } from "../../sorting/Sort"
+import { __ } from "@/utils/translations"
 
 interface AddUsersResponse {
     failed_users: User[],
@@ -102,12 +103,12 @@ const AddUsers = () => {
                         <TextField.Root onChange={handleChange}
                             className='w-[24rem]'
                             type='text'
-                            placeholder='Search for user'>
+                            placeholder={__("Search for user")}>
                             <TextField.Slot side='left'>
                                 <BiSearch />
                             </TextField.Slot>
                         </TextField.Root>
-                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">Continue typing...</Text>}
+                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">{__("Continue typing...")}</Text>}
                     </Flex>
                     <Flex justify='end' gap='2' align='center'>
                         <Sort

@@ -6,6 +6,7 @@ import { ButtonProps } from '@radix-ui/themes/dist/cjs/components/button'
 import { DIALOG_CONTENT_CLASS } from '@/utils/layout/dialog'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/layout/Drawer'
+import { __ } from '@/utils/translations'
 
 interface EditDescriptionButtonProps extends ButtonProps {
     channelData: ChannelListItem,
@@ -18,7 +19,7 @@ export const EditDescriptionButton = ({ channelData, is_in_box }: EditDescriptio
     const onClose = () => {
         setOpen(false)
     }
-    const button_text = channelData && channelData.channel_description && channelData.channel_description.length > 0 ? 'Edit' : 'Add'
+    const button_text = channelData && channelData.channel_description && channelData.channel_description.length > 0 ? __('Edit') : __('Add')
 
     const isDesktop = useIsDesktop()
 
@@ -27,7 +28,7 @@ export const EditDescriptionButton = ({ channelData, is_in_box }: EditDescriptio
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <Dialog.Trigger>
                     <Button variant='ghost' size='1'>
-                        {button_text} {is_in_box ? '' : 'description'}
+                        {button_text}{is_in_box ? '' : __('description')}
                     </Button>
                 </Dialog.Trigger>
                 <Dialog.Content className={DIALOG_CONTENT_CLASS}>

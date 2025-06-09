@@ -1,0 +1,423 @@
+ Enable this if you want the bot to be able to process files like Excel sheets or data from Insights.|||                    <br>|||                    OpenAI Assistants run code in a sandboxed environment (on OpenAI servers) to do this.
+<p>To disable the user from accessing Raven, go to "Users" and remove the "Raven User" role.</p>
+A channel with this name already exists in this workspace.
+AI
+AI Integration is not enabled
+Allow Bot to Write Documents
+Allow notifications
+An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.||||||We generally recommend altering this or temperature but not both.
+Attach File to Document
+Attendance and Leaves
+Automatically Create a Channel for each Department
+Automatically add system users to Raven
+Availability Status
+Blurhash
+Bot Functions
+Bot Name
+Bot is mandatory
+CRON Expression
+Can be HTML/Markdown/Plain Text. Support Jinja tags
+Can only join via invite?
+Cancel Document
+Channel Created
+Channel Deleted
+Channel Description
+Channel ID
+Channel Member Added
+Channel Member Deleted
+Channel Name
+Channel Type
+Channel Type cannot be triggered on other doctypes
+Channel cannot be triggered on User
+Channel {0} does not exist in Raven.
+Chat Layout
+Chat Style
+Checkbox
+Child Table Name
+Child table {0} is not a valid doctype
+Child table {0} not found in {1}
+Company Workspace Mapping
+Conditions On
+Connection to OpenAI API failed. Please check your Organization ID and API Key for any extra spaces. Error: {0}
+Create Multiple Documents
+Custom Function
+Custom Function Path
+Custom Status
+DM
+Date of the month
+Debug Mode
+Default Value Type
+Delete Document
+Delete Multiple Documents
+Department Channel Type
+Device Information
+Dialog Properties
+Do not ask AI to fill this variable
+Do not attach document with message
+Do not disturb
+Document Type is required.
+Dynamic Instructions
+Dynamic Instructions allow you to embed Jinja tags in your instruction to the bot. Hence the instruction would be different based on the user who is calling the bot or the data in your system. These instructions are computed every time the bot is called. Check this if you want to embed things like Employee ID, Company Name etc in your instructions dynamically
+Emoji Name
+Enable AI Integration
+Enable Code Interpreter
+Enable File Search
+Enable Video Calling via LiveKit
+Enable this if you want the bot to be able to read PDF files and scan them.||||||File search enables the assistant with knowledge from files that you upload. Once a file is uploaded, the assistant automatically decides when to retrieve content based on user requests.
+Environment
+Error in Raven Notification
+Error reacting to message {0}
+Error sending message
+Error while evaluating Raven Notification {0}. Please fix your template.
+Every Day of the week
+FCM Token
+Failed to submit the ticket
+Field {0} does not exist in {1}.
+Field {0} not found in {1}
+File Sources
+File Thumbnail
+File not found
+Frappe Cloud
+Frappe HR
+Frappe School
+Function Definition
+Function Name
+Function Path
+Function Path is required.
+Function name cannot be one of the core functions. Please choose a different name.
+Function not found
+Function path is required for Custom Functions
+Function {0} not found
+Function {0} not found.
+Get Amended Document
+Get Document
+Get List
+Get Multiple Documents
+Get Report Result
+Google Calendar not found for the current user
+Helper Text
+Hide link preview
+If added, this prompt will only be shown when interacting with the bot
+If checked, a channel will be created in Raven for each department and employees will be synced with Raven Users.
+If checked, the params will be passed as a JSON object instead of named parameters
+If checked, this prompt will be available to all users on Raven
+If enabled, stack traces of errors will be sent as messages by the bot 
+If enabled, the message won't have a document preview
+If not set, the integration will use the default project
+If unchecked, any workspace member can create a channel
+Insufficient permissions. Please contact your administrator.
+Invalid Channel Type
+Invalid JSON in params
+Invalid option selected.
+Invalid recipient variable type: {0}
+Invisible
+Is AI Bot?
+Is AI Thread
+Is Admin
+Is Anonymous
+Is Archived
+Is Bot Message
+Is DM Thread
+Is Direct Message
+Is Disabled
+Is Edited
+Is Forwarded
+Is Multi Choice
+Is Reply
+Is Required?
+Is Self Message
+Is Synced
+Is Thread
+Keywords
+Last Mention Viewed On
+Last Message Details
+Last Message Timestamp
+Last Visit
+Left-Right
+Link Document
+Link to the company
+Linked DocType
+Linked Document
+Linked message should be in the same channel
+Linked to the notification that triggered this message
+LiveKit API Key
+LiveKit API Secret
+LiveKit Settings
+LiveKit URL
+Message Content
+Message Deleted
+Message Edited
+Message Field
+Message Reacted On
+Message Reaction cannot be triggered on Channel
+Message Reactions
+Message does not exist in this channel
+Message sent
+New Document
+No channels found
+Notification Name
+Notification for an event on {0} is not allowed.
+Only allow admins to create channels in the workspace
+Only applicable for OpenAI o-series models
+OpenAI API Key
+OpenAI Assistant ID
+OpenAI File ID
+OpenAI Organisation ID
+OpenAI Project ID
+OpenAI Thread ID
+OpenAI Vector Store ID
+Option {0} is not valid for field {1} in {2}
+Options are required for select fields
+PR-.#####.
+Params
+Pass parameters as JSON
+Pinned Channels
+Pinned Messages
+Pinned Messages String
+Please enter the Push Notification API Key
+Please enter the Push Notification API Secret
+Please enter the Push Notification Server URL
+Please map the companies to the workspace before enabling this feature.
+Please provide an instruction for this AI Agent.
+Please select a DocType for this function.
+Poll
+Poll ID
+Poll ID is mandatory for a poll message
+Poll Option
+Poll Options
+Poll Question
+Poll Settings
+Poll Votes
+Prompt
+Push Notification API Key
+Push Notification API Secret
+Push Notification Server URL
+Push Notification Service
+Push notification service is not set to Raven Cloud.
+Push notifications are not supported in the current framework version
+Raven
+Raven AI
+Raven AI Bot Files
+Raven AI File Source
+Raven AI Function
+Raven AI Function Params
+Raven Admin
+Raven Bot
+Raven Bot AI Prompt
+Raven Bot Functions
+Raven Bot Instruction Template
+Raven Channel
+Raven Channel Management
+Raven Channel Member
+Raven Custom Emoji
+Raven Document Notification
+Raven Document Notification Recipients
+Raven HR Company Workspace
+Raven Incoming Webhook
+Raven Integrations
+Raven Mention
+Raven Message
+Raven Message Action
+Raven Message Action Fields
+Raven Message Reaction
+Raven Messaging
+Raven Mobile
+Raven Pinned Channels
+Raven Pinned Messages
+Raven Poll
+Raven Poll Option
+Raven Poll Vote
+Raven Push Token
+Raven Scheduler Event
+Raven Settings
+Raven User
+Raven User cannot be triggered on Channel
+Raven Webhook
+Raven Workspace
+Raven Workspace Member
+Reaction
+Reaction Escaped
+Reasoning Effort
+Replied Message Details
+Replied Message ID
+Required
+Requires Write Permissions
+Scheduler Event ID
+Self Message
+Send Message
+Send a Raven
+Send to
+Server Script is required.
+Server Script must be of type API.
+Server Script {0} is disabled
+Server Script {0} is disabled.
+Show Raven on Desk
+Show if a user is on leave
+Shown on the dialog
+Simple
+Static
+Strict
+Submit Document
+Temperature
+Tenor API Key
+The code interpreter tool is not available for the model {0}, hence it has been disabled.
+The file search tool is not available for the model {0}, hence it has been disabled.
+There was an error while evaluating the condition. Please fix your template.
+This Bot will be used to send the message.
+This message starts a thread
+This method is only meant for developer mode
+This poll is anonymous. You do not have permission to access the votes.
+This poll is closed.
+Thread Bot
+Thumbnail Height
+Thumbnail Width
+Top P
+Total Votes
+Trigger Webhook on Condition
+Update Document
+Update Multiple Documents
+User Added
+User Deleted
+User Status
+User has a role profile set. Please set the role to Raven User manually.
+User is already a member of the workspace
+User is mandatory
+User is not a member of this channel
+User {0} does not exist in Raven.
+VAPID Public Key
+Variable Type
+Video Calling
+Vote
+Votes
+Web
+Webhook Data keys should be unique
+Webhook Headers keys should be unique
+Webhook name already exists
+What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+Workspace Name
+You are already a member of this channel
+You are not a member of this channel
+You are not a member of this workspace.
+You are not an admin of this workspace.
+You can only vote for yourself.
+You can use Jinja variables here to customize the instruction to the bot at run time if dynamic instructions are enabled.
+You cannot change the name of a direct message channel
+You cannot delete the last admin of the workspace. Please assign another user as the admin, or delete the workspace instead.
+You cannot make yourself an admin of a channel. Please ask another admin to do this.
+You do not have a <b>Raven User</b> role. Please contact your administrator to add your user profile as a <b>Raven User</b>.
+You do not have access to Raven.
+You do not have permission to access this channel
+You do not have permission to access this message
+You do not have permission to access this poll
+You do not have permission to react to this message
+You don't have permission to archive/unarchive this channel
+You don't have permission to modify this channel
+You don't have permission to view this channel
+You have already voted for this option.
+You have not voted for any option in this poll.
+You need to provide a default value for required parameters that are not asked by the AI.
+You need to specify a workspace for this channel
+boolean
+float
+high
+integer
+low
+medium
+number
+rt-BaseCard
+rt-CheckboxCardsRoot
+rt-reset
+string
+
+Threads,话题
+Channels,频道
+What is this channel about?,这个频道是关于什么的？
+Create a private channel,创建私有频道
+Create an open channel,
+Create a public channel,创建公开频道
+"Channel Type",频道类型
+"Open:Channel Type",开放
+"Private:Channel Type",私有
+"Public:Channel Type",公开
+"When a channel is set to public, anyone can join the channel and read messages, but only members can post messages.",当频道设置为公开时，任何人都可以加入频道并阅读信息，但只有成员才能发布信息。
+"Channels are where your team communicates. They are best when organized around a topic - #development, for example.",频道是团队交流的地方。频道最好围绕一个主题组织，例如 #开发。
+"You cannot create a new channel since you are not an admin of this workspace. Ask an admin to create a channel or make you an admin.",您无法创建新频道，因为您不是此工作区的管理员。请管理员创建频道或将您设置为管理员。
+"Please add a channel name",请添加频道名称
+"Channel name cannot be more than {0} characters.",频道名称不能超过 {0} 个字符。
+"Channel name cannot be less than {0} characters.",频道名称不能少于 {0} 个字符。
+"Channel name can only contain letters, numbers and hyphens.",频道名称只能包含字母、数字和连字符。
+"e.g. red-wedding-planning, joffrey-memes","例如：XX项目企划、XX计划、..."
+"Great wine and food. What could go wrong?","关于频道内容的简单描述。"
+"Channel description cannot be more than {0} characters.",频道描述不能超过 {0} 个字符。
+"What is this channel about?",这个频道是关于什么的？
+"optional",可选
+"Search",搜索
+"Search for GIFs",搜索 GIF
+"Search or type a command",搜索或输入命令
+"Search for file",搜索文件
+"View Files",查看文件
+"Start a Meeting",开始会议
+"Command Menu",命令菜单
+"No results found.",未找到结果。
+"Commands",命令
+"Settings",设置
+"Members",成员
+"Older Channels",旧频道
+"Toggle Theme",切换主题
+"User",用户
+"Member",成员
+"Admin",管理员
+"Add a search query above to see results.",在上方添加搜索查询以查看结果。
+"Search threads...",搜索话题...
+"Search for user...",搜索用户...
+"Continue typing...",继续输入...
+"Message Actions",消息操作
+"My Account",我的账户
+"Document Notifications",文档通知
+"Document Previews",文档预览
+"Scheduled Messages",定时消息
+"Agents:AI",代理
+"Functions:AI",功能
+"File Sources",文件源
+"Instructions",指令
+"Commands",命令
+"OpenAI Settings",OpenAI 设置
+"Mobile App",移动应用
+"Push Notifications",推送通知
+"Help & Support",帮助与支持
+"Profile:Settings",个人资料
+"Appearance:Settings",外观
+"Preferences:Settings",偏好
+"Configure your preferences.",配置你的偏好
+"Add description",添加描述
+"Edit description",编辑描述
+"Add members to",添加成员到
+"You can only add members from your workspace to this channel.",您只能将工作区中的成员添加到此频道。
+"Add Members",添加成员
+"Channel Settings",频道设置
+"Add members to your workspace.",添加成员到你的工作区。
+"{0} created this channel on {1}. This is the very beginning of the {2} channel.", {0} 于 {1} 创建了此频道。这是 {2} 频道的开端。
+"Availability Status",可用状态
+"Set Availability",设置可用
+"Custom Status",自定义状态
+"Set custom status",设置自定义状态
+"Share what you are up to",分享你正在做的事情
+"Manage your Raven profile",管理你的 Raven 个人资料
+"e.g. Out of Office",例如：外出办公
+"Configure how you want the app to look.",配置应用的外观。
+"Chat Layout",聊天布局
+"Simple:Raven Layout",简单
+"Left-Right:Raven Layout",左右
+"When writing a message, press {0} to:",当写消息时，按 {0} 键：
+"Enter:Key",回车键
+"Pressing Enter will immediately send your message. Use Shift+Enter to add a new line.",按回车键将立即发送您的消息。使用 Shift+Enter 添加新行。
+"Pressing Enter will add a new line. Use Ctrl/Cmd+Enter to send your message.",按回车键将添加新行。使用 Ctrl/Cmd+Enter 发送您的消息。
+"Set Favourite Emojis for Reactions",设置最爱表情符号以供反应使用
+"Click on any button to set your favorite emoji for quick reactions.",点击任何按钮以设置您最喜欢的表情符号以供快速反应使用。
+"These emojis will be available as quick reactions in chat messages.",这些表情符号将在聊天消息中作为快速反应可用。
+"Log Out",登出
+"Available:User Status",可用
+"Away:User Status",离开
+"Do not disturb:User Status",请勿打扰
+"Invisible:User Status",不可见
+"Available:User Status",可用

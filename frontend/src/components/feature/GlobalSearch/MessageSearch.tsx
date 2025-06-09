@@ -14,6 +14,7 @@ import { UserAvatar } from '@/components/common/UserAvatar'
 import { dateOption } from './GlobalSearch'
 import { Loader } from '@/components/common/Loader'
 import { Message } from '../../../../../types/Messaging/Message'
+import { __ } from '@/utils/translations'
 
 interface Props {
     onToggleMyChannels: () => void,
@@ -90,7 +91,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                 <TextField.Root
                     onChange={handleChange}
                     type='text'
-                    placeholder='Search messages'
+                    placeholder={__('Search messages')}
                     value={searchText}
                     autoFocus>
                     <TextField.Slot side='left'>
@@ -202,7 +203,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                         )
                     })}
                 </Flex> : !showResults && <Box className='text-center' py='8'>
-                    <Text size='2' className='text-gray-11'>Add a search query above to see results.</Text>
+                    <Text size='2' className='text-gray-11'>{__("Add a search query above to see results.")}</Text>
                 </Box>}
             </ScrollArea>
         </Box>

@@ -8,6 +8,7 @@ import SettingsContentContainer from "@/components/layout/Settings/SettingsConte
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
 import { RavenMessageAction } from "@/types/RavenIntegrations/RavenMessageAction"
+import { __ } from "@/utils/translations"
 import { Button } from "@radix-ui/themes"
 import { useFrappeGetDoc, useFrappeUpdateDoc, SWRResponse } from "frappe-react-sdk"
 import { useEffect } from "react"
@@ -75,13 +76,13 @@ const ViewMessageActionContent = ({ data, mutate }: { data: RavenMessageAction, 
                     title={data.action_name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Message Action" docname={data.name} label={"Message Action"} />
+                        <CommonSettingsMenu doctype="Raven Message Action" docname={data.name} label={__("Message Actions")} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Message Actions', href: '../' }, { label: data.action_name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __("Message Actions"), href: '../' }, { label: data.action_name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 <MessageActionForm />

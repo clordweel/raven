@@ -7,6 +7,7 @@ import { Label } from "../Form";
 import { Text, TextField, VisuallyHidden } from "@radix-ui/themes";
 import { useIsDesktop } from "@/hooks/useMediaQuery";
 import clsx from "clsx";
+import { __ } from "@/utils/translations";
 
 export interface LinkFieldProps {
     doctype: string;
@@ -72,7 +73,7 @@ const LinkField = ({ doctype, filters, hideLabel = false, label, placeholder, va
                 </Label>
             }
             <TextField.Root
-                placeholder={placeholder ?? `Search ${doctype}`}
+                placeholder={placeholder ?? __("Search {0}", `${doctype}`)}
                 className='w-full'
                 disabled={disabled}
                 autoFocus={isDesktop && autofocus}

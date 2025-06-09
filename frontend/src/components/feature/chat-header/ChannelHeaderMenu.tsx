@@ -13,6 +13,7 @@ import ViewChannelDetailsModal from '../channels/ViewChannelDetailsModal'
 import { SlSettings } from 'react-icons/sl'
 import { TbUsersPlus } from 'react-icons/tb'
 import CreateMeetingDialog from '../integrations/meetings/CreateMeetingDialog'
+import { __ } from '@/utils/translations'
 
 type Props = {
     channelData: ChannelListItem,
@@ -53,19 +54,19 @@ const ChannelHeaderMenu = ({ channelData }: Props) => {
                 <DropdownMenu.Item onClick={onMeetingModalOpen}>
                     <Flex gap='2' align='center'>
                         <BiVideoPlus size={ICON_SIZE} />
-                        Start a Meeting
+                        {__("Start a Meeting")}
                     </Flex>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onClick={onGlobalSearchModalOpen}>
                     <Flex gap='2' align='center'>
                         <BiSearch size={ICON_SIZE} />
-                        Search
+                        {__("Search")}
                     </Flex>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onClick={onFileOpen}>
                     <Flex gap='2' align='center'>
                         <BiFile size={ICON_SIZE} />
-                        View Files
+                        {__("View Files")}
                     </Flex>
                 </DropdownMenu.Item>
                 {/* <DropdownMenu.Item>
@@ -80,7 +81,7 @@ const ChannelHeaderMenu = ({ channelData }: Props) => {
                         <DropdownMenu.Item onClick={onAddMembersOpen}>
                             <Flex gap='2' align='center'>
                                 <TbUsersPlus size={ICON_SIZE} />
-                                Add Members
+                                {__("Add Members")}
                             </Flex>
                         </DropdownMenu.Item>
                     }
@@ -88,7 +89,7 @@ const ChannelHeaderMenu = ({ channelData }: Props) => {
                     <DropdownMenu.Item onClick={onChannelDetailsOpen}>
                         <Flex gap='2' align='center'>
                             <SlSettings size={ICON_SIZE} />
-                            Channel Settings
+                            {__("Channel Settings")}
                         </Flex>
                     </DropdownMenu.Item>
                 </>

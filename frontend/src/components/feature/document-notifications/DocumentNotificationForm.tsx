@@ -16,6 +16,7 @@ import { FiInfo, FiTrash2 } from 'react-icons/fi'
 import clsx from 'clsx'
 import { DocField } from '@/types/Core/DocField'
 import LinkField from '@/components/common/LinkField/LinkField'
+import { __ } from '@/utils/translations'
 
 const ICON_PROPS = {
     size: 18,
@@ -233,9 +234,9 @@ const DoctypeVariables = ({ doctype, withoutJinja }: { doctype: string, withoutJ
         </Text>
         <Box>
             <VisuallyHidden>
-                <Label htmlFor='search'>Search</Label>
+                <Label htmlFor='search'>{__("Search")}</Label>
             </VisuallyHidden>
-            <TextField.Root placeholder='Search' id='search' value={search} onChange={(e) => setSearch(e.target.value)}>
+            <TextField.Root placeholder={__("Search")} id='search' value={search} onChange={(e) => setSearch(e.target.value)}>
                 <TextField.Slot>
                     <BiSearch />
                 </TextField.Slot>

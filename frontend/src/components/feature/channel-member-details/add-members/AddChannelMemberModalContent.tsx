@@ -10,6 +10,7 @@ import { ErrorText } from '@/components/common/Form'
 import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
 import { useCurrentChannelData } from '@/hooks/useCurrentChannelData'
+import { __ } from '@/utils/translations'
 const AddMembersDropdown = lazy(() => import('../../selectDropdowns/AddMembersDropdown'))
 
 interface AddChannelMemberForm {
@@ -63,7 +64,7 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Dialog.Title>
-              <Text as='span'>Add members to <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{channel?.channelData.channel_name}</Text>
+              <Text as='span'>{__("Add members to")} <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{channel?.channelData.channel_name}</Text>
             </Dialog.Title>
             <Dialog.Description size='2'>
               New members will be able to see all of <strong>{channel?.channelData.channel_name}</strong>'s history, including any files that have been shared in the channel.
@@ -72,7 +73,7 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
             <Flex gap='2' pt='2' direction='column' width='100%'>
               <ErrorBanner error={error} />
               <Text size='2'>
-                You can only add members from your workspace to this channel.
+                {__("You can only add members from your workspace to this channel.")}
               </Text>
               <Box width='100%'>
                 <Flex direction='column' gap='2'>

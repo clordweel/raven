@@ -13,6 +13,7 @@ import { Badge, Flex } from '@radix-ui/themes'
 import { Loader } from '@/components/common/Loader'
 import { toast } from 'sonner'
 import { getErrorMessage } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 
 const UserList = () => {
 
@@ -23,7 +24,7 @@ const UserList = () => {
     const usersWithoutChannels = users.filter((user) => !dm_channels.find((channel) => channel.peer_user_id === user.name))
 
     return (
-        <Command.Group heading="Members">
+        <Command.Group heading={(__("Members"))}>
             {dm_channels.map((channel) => <DMChannelItem key={channel.name} channelID={channel.name} channelName={channel.channel_name} peer_user_id={channel.peer_user_id} />)}
             {usersWithoutChannels.map((user) => <UserWithoutDMItem key={user.name} userID={user.name} />)}
         </Command.Group>

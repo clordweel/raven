@@ -164,7 +164,7 @@ const UserProfileForm = ({ myProfile }: { myProfile: RavenUser }) => {
                                             <Flex direction={'column'} gap='1'>
                                                 <TextField.Root
                                                     id="custom_status"
-                                                    placeholder='e.g. Out of Office'
+                                                    placeholder={__('e.g. Out of Office')}
                                                     maxLength={140}
                                                     {...register('custom_status', {
                                                         maxLength: {

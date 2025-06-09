@@ -3,6 +3,7 @@ import { Command } from 'cmdk'
 import { useSetAtom } from 'jotai'
 import { BiMoon, BiSun } from 'react-icons/bi'
 import { commandMenuOpenAtom } from './CommandMenu'
+import { __ } from '@/utils/translations'
 
 const ToggleThemeCommand = () => {
 
@@ -18,7 +19,7 @@ const ToggleThemeCommand = () => {
     return (
         <Command.Item onSelect={onSelect}>
             {appearance === 'light' ? <BiMoon size={16} /> : <BiSun size={16} />}
-            Toggle Theme
+            {__("Toggle Theme")}
         </Command.Item>
     )
 }

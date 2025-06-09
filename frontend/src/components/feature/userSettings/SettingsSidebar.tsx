@@ -13,43 +13,43 @@ export const SettingsSidebar = () => {
     return (
         <Box className="h-[calc(100vh-57px)] overflow-y-auto fixed w-64 border-r pt-2 border-gray-4 dark:border-gray-4">
             <Flex direction="column" gap='2' className='px-4'>
-                <SettingsGroup title="My Account" icon={LuCircleUserRound}>
-                    <SettingsSidebarItem title="Profile" to='profile' />
-                    <SettingsSidebarItem title="Appearance" to='appearance' />
-                    <SettingsSidebarItem title="Preferences" to='preferences' />
+                <SettingsGroup title={__("My Account")} icon={LuCircleUserRound}>
+                    <SettingsSidebarItem title={__("Profile", null, "Settings")} to='profile' />
+                    <SettingsSidebarItem title={__("Appearance", null, "Settings")} to='appearance' />
+                    <SettingsSidebarItem title={__("Preferences", null, "Settings")} to='preferences' />
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title="Workspace" icon={BiBuildings}>
-                    <SettingsSidebarItem title="Workspaces" to='workspaces' />
-                    <SettingsSidebarItem title="Users" to='users' />
-                    <SettingsSidebarItem title="Emojis" to='emojis' />
+                <SettingsGroup title={__("Workspace")} icon={BiBuildings}>
+                    <SettingsSidebarItem title={__("Workspaces")} to='workspaces' />
+                    <SettingsSidebarItem title={__("Users")} to='users' />
+                    <SettingsSidebarItem title={__("Emojis")} to='emojis' />
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title='Integrations' icon={BsBoxes}>
+                <SettingsGroup title={__("Integrations")} icon={BsBoxes}>
                     {/* <SettingsSidebarItem title="ERPNext" to='erpnext' /> */}
-                    <SettingsSidebarItem title="HR" to='hr' />
-                    <SettingsSidebarItem title='Document Notifications' to='document-notifications' />
-                    <SettingsSidebarItem title="Document Previews" to='document-previews' />
-                    <SettingsSidebarItem title="Message Actions" to='message-actions' />
-                    <SettingsSidebarItem title="Scheduled Messages" to='scheduled-messages' />
-                    <SettingsSidebarItem title="Webhooks" to='webhooks' />
+                    <SettingsSidebarItem title={__("HR")} to='hr' />
+                    <SettingsSidebarItem title={__("Document Notifications")} to='document-notifications' />
+                    <SettingsSidebarItem title={__("Document Previews")} to='document-previews' />
+                    <SettingsSidebarItem title={__("Message Actions")} to='message-actions' />
+                    <SettingsSidebarItem title={__("Scheduled Messages")} to='scheduled-messages' />
+                    <SettingsSidebarItem title={__("Webhooks")} to='webhooks' />
                     {/* <SettingsSidebarItem title="Frappe LMS" to='frappe-lms' /> */}
                     {/* <SettingsSidebarItem title="Frappe CRM" to='frappe-crm' /> */}
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title="AI" icon={BiBot}>
-                    <SettingsSidebarItem title="Agents" to='bots' />
-                    <SettingsSidebarItem title="Functions" to='functions' />
-                    <SettingsSidebarItem title="File Sources" to='file-sources' />
-                    <SettingsSidebarItem title="Instructions" to="instructions" />
-                    <SettingsSidebarItem title="Commands" to='commands' />
-                    <SettingsSidebarItem title="OpenAI Settings" to='openai-settings' />
+                <SettingsGroup title={__("AI")} icon={BiBot}>
+                    <SettingsSidebarItem title={__("Agents", null, "AI")} to='bots' />
+                    <SettingsSidebarItem title={__("Functions", null, "AI")} to='functions' />
+                    <SettingsSidebarItem title={__("File Sources")} to='file-sources' />
+                    <SettingsSidebarItem title={__("Instructions")} to="instructions" />
+                    <SettingsSidebarItem title={__("Commands")} to='commands' />
+                    <SettingsSidebarItem title={__("OpenAI Settings")} to='openai-settings' />
                 </SettingsGroup>
                 <SettingsSeparator />
                 <div className='flex flex-col gap-1 -mx-1'>
-                    <SettingsSidebarItem title="Mobile App" to='mobile-app' standalone icon={BiMobileAlt} />
-                    <SettingsSidebarItem title="Push Notifications" to='push-notifications' standalone icon={BiNotification} />
-                    <SettingsSidebarItem title="Help & Support" to='help' standalone icon={FiLifeBuoy} />
+                    <SettingsSidebarItem title={__("Mobile App")} to='mobile-app' standalone icon={BiMobileAlt} />
+                    <SettingsSidebarItem title={__("Push Notifications")} to='push-notifications' standalone icon={BiNotification} />
+                    <SettingsSidebarItem title={__("Help & Support")} to='help' standalone icon={FiLifeBuoy} />
                 </div>
             </Flex>
         </Box>

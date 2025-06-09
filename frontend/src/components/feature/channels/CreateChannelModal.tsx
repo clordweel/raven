@@ -176,7 +176,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                     {!canCreateChannel?.message && <CustomCallout
                         iconChildren={<BiInfoCircle size='18' />}
                         rootProps={{ color: 'yellow', variant: 'surface' }}
-                        textChildren={<Text>You cannot create a new channel since you are not an admin of this workspace. Ask an admin to create a channel or make you an admin.</Text>}
+                        textChildren={<Text>{__("You cannot create a new channel since you are not an admin of this workspace. Ask an admin to create a channel or make you an admin.")}</Text>}
                     />}
                     <ErrorBanner error={channelCreationError} />
                     <Box>
@@ -206,7 +206,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                                     maxLength={50}
                                     required
                                     autoFocus={isDesktop}
-                                    placeholder='e.g. red-wedding-planning, joffrey-memes'
+                                    placeholder={__("e.g. red-wedding-planning, joffrey-memes")}
                                     color={error ? 'red' : undefined}
                                     {...field}
                                     aria-invalid={error ? 'true' : 'false'}
@@ -228,7 +228,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                         <TextArea
                             maxLength={140}
                             id='channel_description'
-                            placeholder='Great wine and food. What could go wrong?'
+                            placeholder={__("Great wine and food. What could go wrong?")}
                             {...register('channel_description', {
                                 maxLength: {
                                     value: 140,
@@ -237,11 +237,11 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                             })}
                             aria-invalid={errors.channel_description ? 'true' : 'false'}
                         />
-                        <HelperText>What is this channel about?</HelperText>
+                        <HelperText>{__("What is this channel about?")}</HelperText>
                         {errors?.channel_description && <ErrorText>{errors.channel_description?.message}</ErrorText>}
                     </Box>
                     <Flex gap='2' direction='column'>
-                        <Label htmlFor='channel_type'>Channel Type</Label>
+                        <Label htmlFor='channel_type'>{__("Channel Type")}</Label>
                         <Controller
                             name='type'
                             control={control}
@@ -255,17 +255,17 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                                     <Flex gap="4">
                                         <Text as="label" size="2">
                                             <Flex gap="2">
-                                                <RadioGroup.Item value="Public" /> {__("Public")}
+                                                <RadioGroup.Item value="Public" /> {__("Public", null, "Channel Type")}
                                             </Flex>
                                         </Text>
                                         <Text as="label" size="2">
                                             <Flex gap="2">
-                                                <RadioGroup.Item value="Private" /> {__("Private")}
+                                                <RadioGroup.Item value="Private" /> {__("Private", null, "Channel Type")}
                                             </Flex>
                                         </Text>
                                         <Text as="label" size="2">
                                             <Flex gap="2">
-                                                <RadioGroup.Item value="Open" /> {__("Open")}
+                                                <RadioGroup.Item value="Open" /> {__("Open", null, "Channel Type")}
                                             </Flex>
                                         </Text>
                                     </Flex>

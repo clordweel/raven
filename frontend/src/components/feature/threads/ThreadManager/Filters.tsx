@@ -5,11 +5,12 @@ import { ChannelIcon } from "@/utils/layout/channelIcon"
 import { Select, Text, TextField } from "@radix-ui/themes"
 import { BiFilter, BiSearch } from "react-icons/bi"
 import { toast } from "sonner"
+import { __ } from "@/utils/translations"
 
 export const SearchFilter = ({ search, setSearch }: { search: string, setSearch: (search: string) => void }) => {
     return (
         <div>
-            <TextField.Root placeholder="Search threads..." value={search} onChange={(e) => setSearch(e.target.value)} className='sm:min-w-64'>
+            <TextField.Root placeholder={__("Search threads...")} value={search} onChange={(e) => setSearch(e.target.value)} className='sm:min-w-64'>
                 <TextField.Slot>
                     <BiSearch size={16} />
                 </TextField.Slot>

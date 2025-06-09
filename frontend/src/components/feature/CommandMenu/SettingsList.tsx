@@ -6,6 +6,7 @@ import { commandMenuOpenAtom } from './CommandMenu'
 import { PiOpenAiLogo } from 'react-icons/pi'
 import { LuSquareFunction } from 'react-icons/lu'
 import { AiOutlineApi } from 'react-icons/ai'
+import { __ } from '@/utils/translations'
 
 type Props = {}
 
@@ -22,7 +23,7 @@ const SettingsList = (props: Props) => {
         setOpen(false)
     }
     return (
-        <Command.Group heading='Settings'>
+        <Command.Group heading={__("Settings")}>
             <Command.Item value='profile' onSelect={onSelect}>
                 <BiUserCircle size={ICON_SIZE} />
                 Profile
@@ -49,7 +50,7 @@ const SettingsList = (props: Props) => {
 
             <Command.Item value='message-actions' onSelect={onSelect}>
                 <BiBoltCircle size={ICON_SIZE} />
-                Message Actions
+                {__("Message Actions")}
             </Command.Item>
 
             <Command.Item value='scheduled-messages' keywords={['scheduled messages']} onSelect={onSelect}>

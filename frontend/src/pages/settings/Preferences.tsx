@@ -22,32 +22,32 @@ const Preferences = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title={__('Preferences')}
+                    title={__('Preferences', null, "Settings")}
                     description={__('Configure your preferences.')}
                 />
 
                 <Stack gap='6' pt='2'>
                     <Stack className="max-w-[480px]">
                         <Box>
-                            <Label htmlFor='EnterKeyBehaviour' isRequired>When writing a message, press <strong>Enter</strong> to:</Label>
+                            <Label htmlFor='EnterKeyBehaviour' isRequired>{__("When writing a message, press {0} to:", [<strong>{__("Enter", null, "Key")}</strong>])}</Label>
                             <Select.Root value={enterKeyBehaviour} name="EnterKeyBehaviour" onValueChange={(value) => setEnterKeyBehaviour(value as "new-line" | "send-message")}>
                                 <Select.Trigger className='w-full' autoFocus />
                                 <Select.Content>
-                                    <Select.Item value='send-message'>Send Message</Select.Item>
-                                    <Select.Item value='new-line'>Start a new line</Select.Item>
+                                    <Select.Item value='send-message'>{__("Send Message")}</Select.Item>
+                                    <Select.Item value='new-line'>{__("Start a new line")}</Select.Item>
                                 </Select.Content>
                             </Select.Root>
                         </Box>
                         <HelperText>
                             {enterKeyBehaviour === 'send-message'
-                                ? 'Pressing Enter will immediately send your message. Use Shift+Enter to add a new line.'
-                                : 'Pressing Enter will add a new line. Use Ctrl/Cmd+Enter to send your message.'
+                                ? __('Pressing Enter will immediately send your message. Use Shift+Enter to add a new line.')
+                                : __('Pressing Enter will add a new line. Use Ctrl/Cmd+Enter to send your message.')
                             }
                         </HelperText>
                     </Stack>
 
                     <Stack className="max-w-[480px]">
-                        <Label htmlFor='QuickEmojis'>Set Favourite Emojis for Reactions</Label>
+                        <Label htmlFor='QuickEmojis'>{__("Set Favourite Emojis for Reactions")}</Label>
                         <HStack gap='2'>
                             {quickEmojis.map((emoji, index) => (
                                 <Popover.Root key={index}>
@@ -77,7 +77,7 @@ const Preferences = () => {
                             ))}
                         </HStack>
                         <HelperText>
-                            Click on any button to set your favorite emoji for quick reactions. These emojis will be available as quick reactions in chat messages.
+                            {__("Click on any button to set your favorite emoji for quick reactions.") + " " + __("These emojis will be available as quick reactions in chat messages.")}
                         </HelperText>
                     </Stack>
                 </Stack>

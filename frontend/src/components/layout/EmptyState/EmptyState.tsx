@@ -14,6 +14,7 @@ import { useGetUser } from "@/hooks/useGetUser"
 import useFetchChannelMembers from "@/hooks/fetchers/useFetchChannelMembers"
 import { useIsUserActive } from "@/hooks/useIsUserActive"
 import { replaceCurrentUserFromDMChannelName } from "@/utils/operations"
+import { __ } from "@/utils/translations"
 
 export const EmptyStateForSearch = () => {
     return (
@@ -55,7 +56,12 @@ const EmptyStateForChannel = ({ channelData }: EmptyStateForChannelProps) => {
                     <ChannelIcon type={channelData?.type} />
                     <Heading size='4'>{channelData?.channel_name}</Heading>
                 </Flex>
-                <Text size='2'>{users[channelData.owner]?.full_name} created this channel on <DateMonthYear date={channelData?.creation} />. This is the very beginning of the <strong>{channelData?.channel_name}</strong> channel.</Text>
+                {/* <Text size='2'>{users[channelData.owner]?.full_name} created this channel on <DateMonthYear date={channelData?.creation} />. This is the very beginning of the <strong>{channelData?.channel_name}</strong> channel.</Text> */}
+                <Text size='2'>{__("{0} created this channel on {1}. This is the very beginning of the {2} channel.", [
+                    users[channelData.owner]?.full_name,
+                    <DateMonthYear date={channelData?.creation} />,
+                    <strong>{channelData?.channel_name}</strong>
+                ])}</Text>
                 {channelData?.channel_description && <Text size={'1'} color='gray'>{channelData?.channel_description}</Text>}
             </Flex>
             {channelData?.is_archived == 0 && isAdmin && <Flex gap='4' className={'z-1'}>

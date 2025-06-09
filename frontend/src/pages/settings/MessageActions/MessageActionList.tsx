@@ -7,6 +7,7 @@ import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { HStack } from '@/components/layout/Stack'
 import { RavenMessageAction } from '@/types/RavenIntegrations/RavenMessageAction'
 import { hasRavenAdminRole, isSystemManager } from '@/utils/roles'
+import { __ } from '@/utils/translations'
 import { Badge, Button, Strong, Table } from '@radix-ui/themes'
 import { useFrappeGetDocList } from 'frappe-react-sdk'
 import { BiBoltCircle } from 'react-icons/bi'
@@ -30,10 +31,10 @@ const MessageActionList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Message Actions'
+                    title={__("Message Actions")}
                     description='Use these to add custom actions - like creating an issue/task from a message.'
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__("Create")}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}

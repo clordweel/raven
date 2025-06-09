@@ -5,6 +5,7 @@ import { DIALOG_CONTENT_CLASS } from "@/utils/layout/dialog"
 import { useBoolean } from "@/hooks/useBoolean"
 import { useIsDesktop } from "@/hooks/useMediaQuery"
 import { Drawer, DrawerContent } from "@/components/layout/Drawer"
+import { __ } from "@/utils/translations"
 
 interface GlobalSearchModalProps {
     isOpen: boolean,
@@ -59,7 +60,7 @@ const GlobalSearchContent = (props: GlobalSearchModalProps) => {
 
     const { tabIndex, input, fromFilter, withFilter, inFilter, onClose } = props
 
-    return <><Dialog.Title>Search Results</Dialog.Title>
+    return <><Dialog.Title>{__('Search Results')}</Dialog.Title>
         <Flex direction='column' gap='2'>
             <Tabs.Root defaultValue={tabIndex.toString()}>
                 <Tabs.List>

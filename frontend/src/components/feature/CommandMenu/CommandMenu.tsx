@@ -11,6 +11,7 @@ import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { Drawer, DrawerContent } from '@/components/layout/Drawer'
 import SettingsList from './SettingsList'
 import ToggleThemeCommand from './ToggleThemeCommand'
+import { __ } from '@/utils/translations'
 
 export const commandMenuOpenAtom = atom(false)
 
@@ -38,9 +39,9 @@ const CommandMenu = () => {
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <Dialog.Content className={clsx(DIALOG_CONTENT_CLASS, 'p-4 rounded-md')}>
                     <VisuallyHidden>
-                        <Dialog.Title>Command Menu</Dialog.Title>
+                        <Dialog.Title>{__("Command Menu")}</Dialog.Title>
                         <Dialog.Description>
-                            Search or type a command
+                            {__('Search or type a command')}
                         </Dialog.Description>
                     </VisuallyHidden>
                     <CommandList />
@@ -74,13 +75,13 @@ export const CommandList = () => {
     return <Command label="Global Command Menu" className='command-menu' filter={customFilter}>
         <Command.Input
             autoFocus={isDesktop}
-            placeholder='Search or type a command' />
+            placeholder={__('Search or type a command')} />
         <Command.List>
-            <Command.Empty>No results found.</Command.Empty>
+            <Command.Empty>{__("No results found.")}</Command.Empty>
             <ChannelList />
             <UserList />
             <SettingsList />
-            <Command.Group heading="Commands">
+            <Command.Group heading={__("Commands")}>
                 <ToggleThemeCommand />
             </Command.Group>
 

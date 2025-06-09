@@ -61,14 +61,14 @@ export const SetUserAvailabilityMenu = () => {
 export const getStatusText = (status: AvailabilityStatus) => {
     switch (status) {
         case 'Available':
-            return <><BiSolidCircle color={'green'} fontSize={'0.7rem'} /> {__("Available")}</>
+            return <><BiSolidCircle color={'green'} fontSize={'0.7rem'} /> {__("Available", null, "User Status")}</>
         case 'Away':
-            return <><MdWatchLater color={'#FFAA33'} fontSize={'0.8rem'} /> {__("Away")}</>
+            return <><MdWatchLater color={'#FFAA33'} fontSize={'0.8rem'} /> {__("Away", null, "User Status")}</>
         case 'Do not disturb':
-            return <><FaCircleMinus color={'#D22B2B'} fontSize={'0.7rem'} /> {__("Do not disturb")}</>
+            return <><FaCircleMinus color={'#D22B2B'} fontSize={'0.7rem'} /> {__("Do not disturb", null, "User Status")}</>
         case 'Invisible':
-            return <><FaCircleDot className={'text-gray-400'} fontSize={'0.7rem'} /> {__("Invisible")}</>
+            return <><FaCircleDot className={'text-gray-400'} fontSize={'0.7rem'} /> {__("Invisible", null, "User Status")}</>
         default:
-            return <><BiSolidCircle color={'green'} fontSize={'0.7rem'} /> {__("Available")}</>
+            return <><BiSolidCircle color={'green'} fontSize={'0.7rem'} /> {__("Available", null, "User Status")}</>
     }
 }
