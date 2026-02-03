@@ -71,4 +71,4 @@ python3 scripts/sync_translations_from_pot.py --export-template -o raven/transla
 
 1. 在 Frappe/ERPNext 中启用语言「简体中文」（若未启用，在 Language 列表中添加并启用）。
 2. 用户资料或系统设置中将默认语言设为「简体中文」（或 `zh`）。
-3. 清除缓存或重新加载页面后，Raven 界面会从 `raven/translations/zh.csv` 加载对应译文。**推荐**：在 bench 目录下执行 `bench --site <站点名> clear-cache`（或 `bench --site all clear-cache`）以刷新翻译缓存。
+3. 清除缓存或重新加载页面后，Raven 界面会从 `raven/translations/zh.csv` 加载对应译文。**推荐**：在 bench 目录下执行 `bench --site <站点名> clear-cache`（或 `bench --site all clear-cache`）。若仍不生效，再执行 `bench --site all execute frappe.translate.clear_cache` 显式清除翻译缓存（Raven 已通过 `clear_cache` 钩子自动调用，一般只需 `clear-cache`）。**用户需将界面语言设为「简体中文」**，并做一次**强制刷新**（Ctrl+Shift+R 或 Cmd+Shift+R）以加载最新 boot 与译文。
