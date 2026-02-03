@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem, DMChannelListItem } from "@/utils/channel/ChannelListProvider"
 import { useCurrentChannelData } from "@/hooks/useCurrentChannelData"
 import { useContext, useMemo } from "react"
@@ -19,8 +20,8 @@ export const EmptyStateForSearch = () => {
     return (
         <Flex justify="center" align="center" className={'w-full h-64'}>
             <Flex direction='column' gap='1' className="text-center">
-                <Text weight="bold" size='5'>Nothing turned up</Text>
-                <Text as='span' size='2'>You may want to try using different keywords, checking for typos or adjusting your filters.</Text>
+                <Text weight="bold" size='5'>{__('Nothing turned up')}</Text>
+                <Text as='span' size='2'>{__('You may want to try using different keywords, checking for typos or adjusting your filters.')}</Text>
                 <Text as='span' size='2'>Not the results that you expected? File an issue on <Link href="https://github.com/The-Commit-Company/Raven" target="_blank" rel="noreferrer">
                     <Text color='blue' size='2'>GitHub</Text>
                 </Link>.
@@ -107,7 +108,7 @@ const EmptyStateForDM = ({ channelData }: EmptyStateForDMProps) => {
                     {channelData?.is_self_message == 1 ?
                         <Flex direction='column' gap='0'>
                             <Text size='2'><strong>This space is all yours.</strong> Draft messages, list your to-dos, or keep links and files handy. </Text>
-                            <Text size='2'>And if you ever feel like talking to yourself, don't worry, we won't judge - just remember to bring your own banter to the table.</Text>
+                            <Text size='2'>{__('And if you ever feel like talking to yourself, don\'t worry, we won\'t judge - just remember to bring your own banter to the table.')}</Text>
                         </Flex>
                         :
                         <Flex gap='2' align='center'>
@@ -130,7 +131,7 @@ export const EmptyStateForSavedMessages = () => {
             <Flex direction='column' gap='2'>
                 <Text size='3'><strong>Your saved messages will appear here</strong></Text>
                 <Flex direction='column' gap='1'>
-                    <Text size='2' as='span'>Saved messages are a convenient way to keep track of important information or messages you want to refer back to later.</Text>
+                    <Text size='2' as='span'>{__('Saved messages are a convenient way to keep track of important information or messages you want to refer back to later.')}</Text>
                     <Text size='2' as='span'>
                         You can save messages by simply clicking on the bookmark icon <BiBookmark className={'-mb-0.5'} /> in message actions.
                     </Text>
@@ -146,7 +147,7 @@ export const EmptyStateForThreads = () => {
             <Flex direction='column' gap='2'>
                 <Text size='3'><strong>No threads to show</strong></Text>
                 <Flex direction='column' gap='1'>
-                    <Text as='span' size='2'>Threads are a way to keep conversations organized and focused. You can create a thread by replying to a message.</Text>
+                    <Text as='span' size='2'>{__('Threads are a way to keep conversations organized and focused. You can create a thread by replying to a message.')}</Text>
                     <Text as='span' size='2'>You can also start a thread by clicking on the <strong>Create Thread</strong> button on any message.</Text>
                 </Flex>
             </Flex>

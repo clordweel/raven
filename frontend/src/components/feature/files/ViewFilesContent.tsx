@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { useDebounce } from "@/hooks/useDebounce"
 import { usePagination } from "@/hooks/usePagination"
 import { useFrappeGetCall } from "frappe-react-sdk"
@@ -133,7 +134,7 @@ const ViewFilesContent = () => {
                                 </Select.Group>
                             </Select.Content>
                         </Select.Root>
-                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">Continue typing...</Text>}
+                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">{__('Continue typing...')}</Text>}
                     </Flex>
                     <Flex justify='end' gap='2' align='center'>
                         <PageLengthSelector
@@ -156,8 +157,8 @@ const ViewFilesContent = () => {
 
                 {data && data.message.length === 0 && (debouncedText.length >= 2 || debouncedText.length == 0) &&
                     <Flex align='center' justify='center' direction='column' gap='2' className="min-h-[32rem]">
-                        <Heading size='3'>Nothing to see here</Heading>
-                        <Text size='2' align='center'>No files found in this channel</Text>
+                        <Heading size='3'>{__('Nothing to see here')}</Heading>
+                        <Text size='2' align='center'>{__('No files found in this channel')}</Text>
                     </Flex>}
 
                 {data && data.message.length !== 0 && <FilesTable data={data.message} />}

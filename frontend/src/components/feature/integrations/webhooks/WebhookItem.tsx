@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Loader } from "@/components/common/Loader"
 import { ErrorBanner } from "@/components/layout/AlertBanner/ErrorBanner"
 import { RavenWebhook } from "@/types/RavenIntegrations/RavenWebhook"
@@ -94,18 +95,18 @@ const DeleteWebhookAlertContent = ({ webhhookID, onClose, mutate }: { webhhookID
             </AlertDialog.Title>
             <Flex direction={'column'} gap='2'>
                 <ErrorBanner error={error} />
-                <Text size='2'>Are you sure you want to delete this webhook?</Text>
+                <Text size='2'>{__('Are you sure you want to delete this webhook?')}</Text>
             </Flex>
             <Flex gap="3" mt="4" justify="end">
                 <AlertDialog.Cancel>
                     <Button variant="soft" color="gray" onClick={onClose}>
-                        Cancel
+                        {__('Cancel')}
                     </Button>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action>
                     <Button variant="solid" color="red" onClick={onDelete} disabled={loading}>
                         {loading && <Loader className="text-white" />}
-                        {loading ? "Deleting" : `Delete`}
+                        {loading ? __('Deleting') : __('Delete')}
                     </Button>
                 </AlertDialog.Action>
             </Flex>

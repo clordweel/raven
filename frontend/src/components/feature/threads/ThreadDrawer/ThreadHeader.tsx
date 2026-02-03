@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { useNavigate, useParams } from "react-router-dom"
 import { DropdownMenu, Flex, Heading, IconButton } from "@radix-ui/themes"
 import { BiBell, BiBellOff, BiDotsVerticalRounded, BiExit, BiTrash } from "react-icons/bi"
@@ -52,8 +53,8 @@ export const ThreadHeader = () => {
                             className='mr-1 text-gray-11'
                             variant="ghost"
                             color="gray"
-                            aria-label="Close thread"
-                            title="Close thread"
+                            aria-label={__('Close thread')}
+                            title={__('Close thread')}
                             onClick={() => navigate('../', { replace: true })}>
                             <AiOutlineClose size='16' />
                         </IconButton>

@@ -75,7 +75,7 @@ const CompanyWorkspaceMapping = (props: Props) => {
                             <IconButton
                                 aria-label="Remove"
                                 size='2' color='red' variant='ghost'
-                                title="Remove"
+                                title={__('Remove')}
                                 disabled={disabled}
                                 type='button'
                                 onClick={() => remove(index)}>
