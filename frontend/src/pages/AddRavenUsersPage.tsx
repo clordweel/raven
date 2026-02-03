@@ -17,6 +17,7 @@ import { Loader } from '@/components/common/Loader'
 import { toast } from 'sonner'
 import { User } from '@/types/Core/User'
 import { UsersTable } from '@/components/feature/userSettings/Users/UsersTable'
+import { __ } from '@/utils/translations'
 
 const AddRavenUsersPage = () => {
 
@@ -45,17 +46,17 @@ const RavenUsersAlert = () => {
                 </Box>
                 <Flex direction='column' align='center' gap='2'>
                     <Heading as='h2' className='not-cal' size='4'>
-                        You do not have access to <Text className='cal-sans'>Raven</Text>.
+                        {__('You do not have access to')} <Text className='cal-sans'>Raven</Text>.
                     </Heading>
                     <Text as='p' size='2' align='center' className='leading-6'>
-                        Please contact your Administrator or System Manager to give you the <Strong>"Raven User"</Strong> role.
+                        {__('Please contact your Administrator or System Manager to give you the')} <Strong>{__('Raven User')}</Strong> {__('role.')}
                     </Text>
                     <Flex gap='3' direction='column' py='1' pt='3'>
                         <Button asChild>
-                            <Link className='text-white' href={'/app/raven-user'}>View Raven Users</Link>
+                            <Link className='text-white' href={'/app/raven-user'}>{__('View Raven Users')}</Link>
                         </Button>
                         <Button variant='outline' onClick={() => window.location.reload()}>
-                            Refresh Page
+                            {__('Refresh Page')}
                         </Button>
                     </Flex>
                 </Flex>
@@ -106,9 +107,9 @@ const AddRavenUsersCard = () => {
     return <Box className={clsx(BOX_STYLE, 'bg-accent-a2')}>
         <Card className={clsx(CARD_STYLE, 'max-w-xl min-w-[720px]')}>
             <Flex gap='2' direction='column'>
-                <Heading as='h1'>Add users to Raven</Heading>
+                <Heading as='h1'>{__('Add users to Raven')}</Heading>
                 <Text as='p' size='2' className='leading-6'>
-                    Users you add will be given the <Strong>"Raven User"</Strong> role.
+                    {__('Users you add will be given the')} <Strong>{__('Raven User')}</Strong> {__('role.')}
                 </Text>
             </Flex>
 
@@ -121,13 +122,13 @@ const AddRavenUsersCard = () => {
                             onChange={handleChange}
                             value={searchText}
                             type='text'
-                            placeholder='Search for user'
+                            placeholder={__('Search for user')}
                         >
                             <TextField.Slot side='left'>
                                 <BiSearch />
                             </TextField.Slot>
                         </TextField.Root>
-                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">Continue typing...</Text>}
+                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">{__('Continue typing...')}</Text>}
                     </Flex>
                     <Flex justify='end' gap='2' align='center'>
                         <Sort

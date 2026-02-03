@@ -29,15 +29,15 @@ export const SidebarFooter = () => {
 
     return <Stack className='mx-auto py-0' align='center' gap='2'>
         <Box>
-            <Tooltip content="Workspace Explorer" side='right'>
-                <IconButton aria-label='Workspace Explorer' size='3' color='gray' variant='ghost' onClick={() => navigate('/workspace-explorer')}>
+            <Tooltip content={__("Workspace Explorer")} side='right'>
+                <IconButton aria-label={__('Workspace Explorer')} size='3' color='gray' variant='ghost' onClick={() => navigate('/workspace-explorer')}>
                     <LuNavigation size='18' />
                 </IconButton>
             </Tooltip>
         </Box>
         <Box>
-            <Tooltip content="Settings" side='right'>
-                <IconButton aria-label='Settings' size='3' color='gray' variant='ghost' onClick={() => navigate('/settings/profile')}>
+            <Tooltip content={__("Settings")} side='right'>
+                <IconButton aria-label={__('Settings')} size='3' color='gray' variant='ghost' onClick={() => navigate('/settings/profile')}>
                     <LuSettings size='18' />
                 </IconButton>
             </Tooltip>
@@ -45,9 +45,9 @@ export const SidebarFooter = () => {
         <Separator size='4' className={`bg-gray-4 dark:bg-gray-6`} />
         <Box className='pb-4 sm:pb-0 pt-2'>
             <DropdownMenu.Root>
-                <Tooltip content="Options" side='right'>
+                <Tooltip content={__("Options")} side='right'>
                     <DropdownMenu.Trigger>
-                        <IconButton aria-label='Options' color='gray' variant='ghost' className='p-0 bg-transparent hover:bg-transparent'>
+                        <IconButton aria-label={__('Options')} color='gray' variant='ghost' className='p-0 bg-transparent hover:bg-transparent'>
                             <UserAvatar
                                 src={myProfile?.user_image}
                                 alt={myProfile?.full_name}

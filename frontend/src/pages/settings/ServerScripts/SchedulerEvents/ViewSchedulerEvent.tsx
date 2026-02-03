@@ -16,6 +16,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { BiDotsVerticalRounded } from "react-icons/bi"
 import { useParams } from "react-router-dom"
 import { toast } from "sonner"
+import { __ } from "@/utils/translations"
 
 const ViewSchedulerEvent = () => {
 
@@ -122,25 +123,25 @@ const ViewSchedulerEventPage = ({ data, onUpdate }: { data: RavenSchedulerEvent,
                 <SettingsContentContainer>
                     <SettingsPageHeader
                         title={data.event_name}
-                        headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : badges}
+                        headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : badges}
                         actions={<HStack>
                             <DropdownMenu.Root>
                                 <DropdownMenu.Trigger>
-                                    <IconButton aria-label='Options' variant="surface" color="gray">
+                                    <IconButton aria-label={__('Options')} variant="surface" color="gray">
                                         <BiDotsVerticalRounded />
                                     </IconButton>
                                 </DropdownMenu.Trigger>
                                 <DropdownMenu.Content className="min-w-32">
-                                    <DropdownMenu.Item onClick={onStatusToggle}>{data.disabled ? "Enable" : "Disable"}</DropdownMenu.Item>
+                                    <DropdownMenu.Item onClick={onStatusToggle}>{data.disabled ? __("Enable") : __("Disable")}</DropdownMenu.Item>
                                     <DropdownMenu.Separator />
                                     <DropdownMenu.Item color="red" onClick={() => setIsOpen(true)}>
-                                        Delete
+                                        {__("Delete")}
                                     </DropdownMenu.Item>
                                 </DropdownMenu.Content>
                             </DropdownMenu.Root>
                             <Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Saving" : "Save"}
+                                {loading ? __("Saving") : __("Save")}
                             </Button>
                         </HStack>
 

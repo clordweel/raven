@@ -13,6 +13,7 @@ import { useFrappeGetDocList } from 'frappe-react-sdk'
 import { BiBot, BiSolidCheckCircle, BiSolidXCircle } from 'react-icons/bi'
 import { RiSparkling2Fill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
+import { __ } from '@/utils/translations'
 
 type Props = {}
 
@@ -34,10 +35,10 @@ const BotList = (props: Props) => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Agents'
-                    description='Use agents to send reminders, run AI assistants, and more.'
-                    actions={<Button asChild disabled={!isRavenAdmin} title={!isRavenAdmin ? "You don't have permissions to create agents." : "Create a new agents."}>
-                        <Link to='create'>Create</Link>
+                    title={__('Agents')}
+                    description={__('Use agents to send reminders, run AI assistants, and more.')}
+                    actions={<Button asChild disabled={!isRavenAdmin} title={!isRavenAdmin ? __("You don't have permissions to create agents.") : __("Create a new agent.")}>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -48,10 +49,10 @@ const BotList = (props: Props) => {
                     <EmptyStateIcon>
                         <BiBot />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Get started with agents</EmptyStateTitle>
-                    <EmptyStateDescription>Create agents to run automations on Raven.<br />Send reminders, document notifications and run AI assistants.</EmptyStateDescription>
+                    <EmptyStateTitle>{__('Get started with agents')}</EmptyStateTitle>
+                    <EmptyStateDescription>{__('Create agents to run automations on Raven.')}<br />{__('Send reminders, document notifications and run AI assistants.')}</EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first agent
+                        {__('Create your first agent')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -64,8 +65,8 @@ const BotTable = ({ bots }: { bots: RavenBot[] }) => {
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Description')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>

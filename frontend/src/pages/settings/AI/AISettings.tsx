@@ -13,6 +13,7 @@ import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-fo
 import { toast } from 'sonner'
 import { BiInfoCircle, BiCheckCircle, BiXCircle } from 'react-icons/bi'
 import { Stack } from '@/components/layout/Stack'
+import { __ } from '@/utils/translations'
 
 const AISettings = () => {
 
@@ -75,11 +76,11 @@ const AISettings = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='AI Settings'
-                            description='Configure AI providers to use AI features in Raven.'
+                            title={__('AI Settings')}
+                            description={__('Configure AI providers to use AI features in Raven.')}
                             actions={<Button type='submit' disabled={updatingDoc || !isRavenAdmin}>
                                 {updatingDoc && <Loader className="text-white" />}
-                                {updatingDoc ? "Saving" : "Save"}
+                                {updatingDoc ? __("Saving") : __("Save")}
                             </Button>}
                         />
 

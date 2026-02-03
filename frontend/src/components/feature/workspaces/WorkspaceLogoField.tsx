@@ -50,9 +50,9 @@ export const UploadImage = ({ open, setOpen, uploadImage, workspaceID }: { open:
 
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
-            <Tooltip content="Upload Image" side="right">
+            <Tooltip content={__("Upload Image")} side="right">
                 <Dialog.Trigger>
-                    <IconButton type='button' aria-label="upload image" size={'1'}
+                    <IconButton type='button' aria-label={__("upload image")} size={'1'}
                         className={'absolute -right-2 -bottom-1 rounded-md shadow-md'}>
                         <FiCamera size={'12'} />
                     </IconButton>
@@ -69,23 +69,23 @@ export const DeleteImage = ({ onDelete }: { onDelete: () => void }) => {
 
     return (
         <AlertDialog.Root>
-            <Tooltip content="Remove Image" side="right">
+            <Tooltip content={__("Remove Image")} side="right">
                 <AlertDialog.Trigger>
-                    <IconButton type='button' aria-label="remove image" size={'1'}
+                    <IconButton type='button' aria-label={__("remove image")} size={'1'}
                         className={'absolute -right-2 bottom-6 rounded-md bg-white dark:bg-slate-4 shadow-md'}>
                         <BiSolidTrash size={'12'} color="tomato" />
                     </IconButton>
                 </AlertDialog.Trigger>
             </Tooltip>
             <AlertDialog.Content className={DIALOG_CONTENT_CLASS} maxWidth="450px">
-                <AlertDialog.Title>Remove logo</AlertDialog.Title>
-                <AlertDialog.Description size='2'>Are you sure you want to remove the logo?</AlertDialog.Description>
+                <AlertDialog.Title>{__("Remove logo")}</AlertDialog.Title>
+                <AlertDialog.Description size='2'>{__("Are you sure you want to remove the logo?")}</AlertDialog.Description>
                 <HStack gap='2' justify="end" mt='4'>
                     <AlertDialog.Cancel>
-                        <Button variant="soft" color="gray">Cancel</Button>
+                        <Button variant="soft" color="gray">{__("Cancel")}</Button>
                     </AlertDialog.Cancel>
                     <AlertDialog.Action>
-                        <Button variant="solid" color="red" onClick={onDelete}>Delete</Button>
+                        <Button variant="solid" color="red" onClick={onDelete}>{__("Delete")}</Button>
                     </AlertDialog.Action>
                 </HStack>
             </AlertDialog.Content>

@@ -83,7 +83,7 @@ const PushNotifications = () => {
                             description={__("Configure the push notification service here.")}
                             actions={<Button type='submit' disabled={updatingDoc || !isRavenAdmin}>
                                 {updatingDoc && <Loader className="text-white" />}
-                                {updatingDoc ? "Saving" : "Save"}
+                                {updatingDoc ? __("Saving") : __("Save")}
                             </Button>}
                         />
                         {!isRavenAdmin && <CustomCallout
@@ -93,15 +93,15 @@ const PushNotifications = () => {
                         </CustomCallout>}
                         <ErrorBanner error={error} />
 
-                        <Text size='2'>To send push notifications, you have two options:
+                        <Text size='2'>{__('To send push notifications, you have two options:')}
                             <br />
                             <br />
                             <ol className='list-decimal list-inside'>
                                 <li>
-                                    <Strong>Raven Cloud</Strong> - this is recommended. If you are self hosting, this is the only option.
+                                    <Strong>{__('Raven Cloud')}</Strong> - {__('this is recommended. If you are self hosting, this is the only option.')}
                                 </li>
                                 <li>
-                                    <Strong>Frappe Cloud</Strong> - if you are using Frappe Cloud, you can use this option.
+                                    <Strong>{__('Frappe Cloud')}</Strong> - {__('if you are using Frappe Cloud, you can use this option.')}
                                 </li>
                             </ol>
                         </Text>
@@ -113,7 +113,7 @@ const PushNotifications = () => {
                                 defaultValue={ravenSettings?.push_notification_service}
                                 name='push_notification_service'
                                 rules={{
-                                    required: "Please select a push notification service",
+                                    required: __("Please select a push notification service"),
                                     onChange: (e) => {
                                         setValue('push_notification_server_url', 'https://cloud.ravenchat.ai')
                                     }
@@ -136,7 +136,7 @@ const PushNotifications = () => {
                                     </Select.Root>
                                 )}
                             />
-                            <HelperText>We recommend using Raven Cloud for push notifications.</HelperText>
+                            <HelperText>{__('We recommend using Raven Cloud for push notifications.')}</HelperText>
                         </Box>
 
                         {isRavenCloud ?
@@ -145,7 +145,7 @@ const PushNotifications = () => {
                                     To get started with Raven Cloud, you need to first <Link href="https://cloud.ravenchat.ai" target='_blank'>create an account <FiExternalLink /></Link> and get your API Key and API Secret.
                                 </Text>
                                 <Box>
-                                    <Label htmlFor='push_notification_server_url' isRequired>Push Notification Server URL</Label>
+                                    <Label htmlFor='push_notification_server_url' isRequired>{__('Push Notification Server URL')}</Label>
                                     <TextField.Root
                                         autoFocus
                                         maxLength={140}
@@ -153,9 +153,9 @@ const PushNotifications = () => {
                                         id='push_notification_server_url'
                                         autoComplete='off'
                                         required
-                                        placeholder='https://push.raven.chat'
+                                        placeholder={__('https://push.raven.chat')}
                                         {...register('push_notification_server_url', {
-                                            required: isRavenCloud ? "Please add your Push Notification Server URL" : false,
+                                            required: isRavenCloud ? __("Please add your Push Notification Server URL") : false,
                                             maxLength: {
                                                 value: 300,
                                                 message: "URL cannot be more than 300 characters."
@@ -172,13 +172,13 @@ const PushNotifications = () => {
                                 </Box>
 
                                 <Box>
-                                    <Label htmlFor='push_notification_api_key'>Push Notification API Key</Label>
+                                    <Label htmlFor='push_notification_api_key'>{__('Push Notification API Key')}</Label>
                                     <TextField.Root
                                         maxLength={140}
                                         className={'w-48 sm:w-96'}
                                         id='push_notification_api_key'
                                         autoComplete='off'
-                                        placeholder='Your API Key'
+                                        placeholder={__('Your API Key')}
                                         {...register('push_notification_api_key', {
                                             maxLength: {
                                                 value: 140,

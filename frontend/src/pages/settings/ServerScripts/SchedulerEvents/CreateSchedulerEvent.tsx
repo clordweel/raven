@@ -10,6 +10,7 @@ import { useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
+import { __ } from "@/utils/translations"
 
 const CreateSchedulerEvent = () => {
 
@@ -52,7 +53,7 @@ const CreateSchedulerEvent = () => {
                 if (doc) {
                     navigate(`../${doc?.name}`)
                 }
-                toast.success("Scheduled Message created")
+                toast.success(__("Scheduled Message created"))
             })
     }
 
@@ -75,13 +76,13 @@ const CreateSchedulerEvent = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create a Scheduled Message'
+                            title={__('Create a Scheduled Message')}
                             // description='Bots can be used to send reminders, run AI assistants, and more.'
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Scheduled Message', href: '../' }, { label: 'New Scheduled Message', href: '' }]}
+                            breadcrumbs={[{ label: __('Scheduled Message'), href: '../' }, { label: __('New Scheduled Message'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <SchedulerEventsForm />

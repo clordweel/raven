@@ -13,6 +13,7 @@ import { Button, Table, Text, Link } from '@radix-ui/themes'
 import { useFrappeGetDocList, useSWRConfig } from 'frappe-react-sdk'
 import { useState } from 'react'
 import { LuSmilePlus } from 'react-icons/lu'
+import { __ } from '@/utils/translations'
 
 const CustomEmojiList = () => {
 
@@ -47,10 +48,10 @@ const CustomEmojiList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Emojis'
-                    description={<>Add custom emojis to use for your reactions. PNG, SVG and GIFs supported. <br />Need help finding one? Download from <Link href='https://emoji.gg' target='_blank'>Emoji.gg</Link>.</>}
+                    title={__('Emojis')}
+                    description={<>{__('Add custom emojis to use for your reactions. PNG, SVG and GIFs supported.')} <br />{__('Need help finding one? Download from')} <Link href='https://emoji.gg' target='_blank'>Emoji.gg</Link>.</>}
                     actions={<Button onClick={() => setOpen(true)}>
-                        Upload
+                        {__('Upload')}
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -60,14 +61,14 @@ const CustomEmojiList = () => {
                     <EmptyStateIcon>
                         <LuSmilePlus />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Emojis</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Emojis')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Personalize your chats with custom emojis.
+                        {__('Personalize your chats with custom emojis.')}
                         <br />
-                        Upload your own or download from <Link href='https://emoji.gg' target='_blank'>Emoji.gg</Link>.
+                        {__('Upload your own or download from')} <Link href='https://emoji.gg' target='_blank'>Emoji.gg</Link>.
                     </EmptyStateDescription>
                     <Button className='not-cal' onClick={() => setOpen(true)}>
-                        Upload
+                        {__('Upload')}
                     </Button>
                 </EmptyState>}
                 <AddCustomEmojiDialog open={open} onClose={onAddEmoji} />
@@ -81,10 +82,10 @@ const CustomEmojisTable = ({ emojis, onDelete }: { emojis: RavenCustomEmoji[], o
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Keywords</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Uploaded By</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Added</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Keywords')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Uploaded By')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Added')}</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>

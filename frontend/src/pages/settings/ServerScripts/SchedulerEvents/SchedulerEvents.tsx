@@ -12,6 +12,7 @@ import ServerScriptNotEnabledCallout from "@/components/feature/settings/schedul
 import { isSystemManager } from "@/utils/roles"
 import { EmptyState, EmptyStateDescription, EmptyStateIcon, EmptyStateLinkAction, EmptyStateTitle } from "@/components/layout/EmptyState/EmptyListViewState"
 import { LuCalendarClock } from "react-icons/lu"
+import { __ } from "@/utils/translations"
 
 const SchedulerEvents = () => {
 
@@ -35,10 +36,10 @@ const SchedulerEvents = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Scheduled Messages'
-                    description='You can create a scheduled message & a bot will send it to you at the specified time.'
+                    title={__('Scheduled Messages')}
+                    description={__('You can create a scheduled message & a bot will send it to you at the specified time.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -49,12 +50,12 @@ const SchedulerEvents = () => {
                     <EmptyStateIcon>
                         <LuCalendarClock />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Reminders</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Reminders')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Schedule messages to be sent to you at a specific date and time.<br />These support the CRON syntax.
+                        {__('Schedule messages to be sent to you at a specific date and time.')}<br />{__('These support the CRON syntax.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Schedule a reminder
+                        {__('Schedule a reminder')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>

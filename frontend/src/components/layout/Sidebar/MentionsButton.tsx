@@ -166,11 +166,11 @@ const MentionsList = () => {
             <div ref={observerTarget} className="h-4">
                 {isReachingEnd && <div className='p-4'>
                     <Text as='span' size='2' color='gray' className='sm:max-w-[400px] max-w-[320px] text-center'>
-                        You've reached the end of your mentions.
+                        {__("You've reached the end of your mentions.")}
                     </Text>
                 </div>}
             </div>
-            {isLoadingMore && <div className="p-4"><BeatLoader text='Loading more mentions...' /></div>}
+            {isLoadingMore && <div className="p-4"><BeatLoader text={__('Loading more mentions...')} /></div>}
 
         </ul>
     )

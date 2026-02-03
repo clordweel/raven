@@ -8,6 +8,7 @@ import { Box, Button, Dialog, Text, TextField } from "@radix-ui/themes"
 import { FrappeConfig, FrappeContext, useFrappePostCall } from "frappe-react-sdk"
 import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
+import { __ } from "@/utils/translations"
 
 const AddUserDialog = () => {
 
@@ -16,11 +17,11 @@ const AddUserDialog = () => {
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger>
-                <Button>Add User</Button>
+                <Button>{__('Add User')}</Button>
             </Dialog.Trigger>
             <Dialog.Content width={'480px'} className={DIALOG_CONTENT_CLASS}>
-                <Dialog.Title mb={'1'}>Add User</Dialog.Title>
-                <Dialog.Description size={'2'}>Invite a new user to Raven.</Dialog.Description>
+                <Dialog.Title mb={'1'}>{__('Add User')}</Dialog.Title>
+                <Dialog.Description size={'2'}>{__('Invite a new user to Raven.')}</Dialog.Description>
                 <UserForm onClose={() => setOpen(false)} />
             </Dialog.Content>
         </Dialog.Root>
@@ -94,15 +95,15 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
             {error && <ErrorBanner error={error} />}
             <Stack>
                 <Box>
-                    <Label htmlFor='email' isRequired>Email</Label>
+                    <Label htmlFor='email' isRequired>{__('Email')}</Label>
                     <TextField.Root
                         id='email'
                         {...register('email', {
-                            required: 'Email is required',
+                            required: __('Email is required'),
                             onBlur: onEmailBlur
                         })}
                         autoFocus
-                        placeholder="email@example.com"
+                        placeholder={__("email@example.com")}
                         aria-invalid={errors.email ? 'true' : 'false'}
                     >
                         {fetching && <TextField.Slot side="right">
@@ -111,17 +112,17 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
                     </TextField.Root>
                 </Box>
                 {errors.email && <ErrorText>{errors.email?.message}</ErrorText>}
-                {ravenUserExists && <ErrorText>This user is already on Raven.</ErrorText>}
+                {ravenUserExists && <ErrorText>{__('This user is already on Raven.')}</ErrorText>}
             </Stack>
             {!userExists && <>
                 <Stack>
                     <Box>
-                        <Label htmlFor='first_name' isRequired>First Name</Label>
+                        <Label htmlFor='first_name' isRequired>{__('First Name')}</Label>
                         <TextField.Root
                             id='first_name'
                             {...register('first_name', {
                                 // Not required if user exists in Frappe
-                                required: userExists ? false : 'First Name is required',
+                                required: userExists ? false : __('First Name is required'),
                                 maxLength: {
                                     value: 140,
                                     message: 'First name must be less than 140 characters',
@@ -134,12 +135,12 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
 
                 <Stack>
                     <Box>
-                        <Label htmlFor='last_name' isRequired>Last Name</Label>
+                        <Label htmlFor='last_name' isRequired>{__('Last Name')}</Label>
                         <TextField.Root
                             id='last_name'
                             {...register('last_name', {
                                 // Not required if user exists in Frappe
-                                required: userExists ? false : 'Last Name is required',
+                                required: userExists ? false : __('Last Name is required'),
                                 maxLength: {
                                     value: 140,
                                     message: 'Last name must be less than 140 characters',
@@ -151,15 +152,15 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
                 </Stack>
             </>}
             <Text size={'2'} color='gray'>
-                {userExists ? 'This user already exists in Frappe. Add them to Raven?' : 'An invite will be sent on their email.'}
+                {userExists ? __('This user already exists in Frappe. Add them to Raven?') : __('An invite will be sent on their email.')}
             </Text>
             <HStack justify={'end'} pt='4'>
                 <Dialog.Close>
-                    <Button color='gray' variant={'soft'} disabled={loading}>Cancel</Button>
+                    <Button color='gray' variant={'soft'} disabled={loading}>{__('Cancel')}</Button>
                 </Dialog.Close>
                 <Button disabled={ravenUserExists || loading} onClick={handleSubmit(onSubmit)}>
                     {loading ? <Loader className="text-white" /> : null}
-                    {userExists ? 'Add' : 'Send Invite'}
+                    {userExists ? __('Add') : __('Send Invite')}
                 </Button>
             </HStack>
         </Stack>

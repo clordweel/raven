@@ -10,6 +10,7 @@ import { useFrappeCreateDoc } from 'frappe-react-sdk'
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { __ } from '@/utils/translations'
 
 const CreateMessageAction = () => {
 
@@ -52,12 +53,12 @@ const CreateMessageAction = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create a Message Action'
+                            title={__('Create a Message Action')}
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Message Action', href: '../' }, { label: 'New Message Action', href: '' }]}
+                            breadcrumbs={[{ label: __('Message Action'), href: '../' }, { label: __('New Message Action'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <MessageActionForm />

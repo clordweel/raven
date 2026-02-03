@@ -11,6 +11,7 @@ import SettingsContentContainer from '@/components/layout/Settings/SettingsConte
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { Loader } from '@/components/common/Loader'
 import { useEffect } from 'react'
+import { __ } from '@/utils/translations'
 
 const CreateWebhook = () => {
 
@@ -29,7 +30,7 @@ const CreateWebhook = () => {
             .then((doc) => {
                 reset()
                 methods.reset()
-                toast.success("Webhook created")
+                toast.success(__("Webhook created"))
                 return doc
             }).then((doc) => {
                 navigate(`../${doc.name}`)
@@ -55,12 +56,12 @@ const CreateWebhook = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create a Webhook'
+                            title={__('Create a Webhook')}
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Webhooks', href: '../' }, { label: 'New Webhook', href: '' }]}
+                            breadcrumbs={[{ label: __('Webhooks'), href: '../' }, { label: __('New Webhook'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <WebhookForm />

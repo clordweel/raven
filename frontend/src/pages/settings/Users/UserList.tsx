@@ -9,6 +9,7 @@ import { UserFields, UserListContext } from '@/utils/users/UserListProvider'
 import { Badge, Table, Text } from '@radix-ui/themes'
 import { useContext } from 'react'
 import { TableVirtuoso } from 'react-virtuoso'
+import { __ } from '@/utils/translations'
 
 const UserList = () => {
     const canAddRavenUsers = isSystemManager()
@@ -17,8 +18,8 @@ const UserList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Users'
-                    description='Manage users added to Raven.'
+                    title={__('Users')}
+                    description={__('Manage users added to Raven.')}
                     actions={canAddRavenUsers ? <AddUserDialog /> : null}
                 />
                 <UserTable />
@@ -44,9 +45,9 @@ const UserTable = () => {
         }}
         fixedHeaderContent={() => (
             <Table.Row>
-                <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>{__('Email')}</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>{__('Status')}</Table.ColumnHeaderCell>
             </Table.Row>
         )}
         itemContent={(index, user) => {
@@ -61,7 +62,7 @@ const UserRow = ({ user }: { user: UserFields }) => {
             <HStack align='center'>
                 <UserAvatar src={user.user_image} alt={user.full_name} />
                 <Text weight='medium'>{user.full_name}</Text>
-                {user.enabled ? null : <Badge color='red'>Disabled</Badge>}
+                {user.enabled ? null : <Badge color='red'>{__('Disabled')}</Badge>}
             </HStack>
         </Table.Cell>
         <Table.Cell>{user.name}</Table.Cell>

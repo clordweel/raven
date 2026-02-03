@@ -11,6 +11,7 @@ import { Badge, Button, Checkbox, Table, Text } from '@radix-ui/themes'
 import { useFrappeGetDocList } from 'frappe-react-sdk'
 import { LuBellDot } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
+import { __ } from '@/utils/translations'
 
 const DocumentNotificationList = () => {
 
@@ -30,10 +31,10 @@ const DocumentNotificationList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Document Notifications'
-                    description='Configure alerts to be sent to users or channels when documents are updated in the system.'
+                    title={__('Document Notifications')}
+                    description={__('Configure alerts to be sent to users or channels when documents are updated in the system.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={4} />}
@@ -43,12 +44,12 @@ const DocumentNotificationList = () => {
                     <EmptyStateIcon>
                         <LuBellDot />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Stay in the Loop</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Stay in the Loop')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Send messages to channels or users based on document activity in your ERP system. Keep your team informed about important changes in real-time with rich document previews.
+                        {__('Send messages to channels or users based on document activity in your ERP system. Keep your team informed about important changes in real-time with rich document previews.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first notification
+                        {__('Create your first notification')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -81,10 +82,10 @@ const DocumentNotificationTable = ({ notifications }: { notifications: RavenDocu
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Document Type</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Send Alert On</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Enabled</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Document Type')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Send Alert On')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Enabled')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>

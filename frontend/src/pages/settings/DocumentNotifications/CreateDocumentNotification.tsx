@@ -10,6 +10,7 @@ import { useFrappeCreateDoc } from 'frappe-react-sdk'
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { __ } from '@/utils/translations'
 
 const CreateDocumentNotification = () => {
 
@@ -51,12 +52,12 @@ const CreateDocumentNotification = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create a Document Notification'
+                            title={__('Create a Document Notification')}
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Document Notification', href: '../' }, { label: 'New Document Notification', href: '' }]}
+                            breadcrumbs={[{ label: __('Document Notification'), href: '../' }, { label: __('New Document Notification'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <DocumentNotificationForm />

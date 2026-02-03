@@ -16,6 +16,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { LuDock, LuUsers } from "react-icons/lu"
 import { useParams } from "react-router-dom"
 import { toast } from "sonner"
+import { __ } from "@/utils/translations"
 
 const ICON_PROPS = {
     size: 18,
@@ -55,7 +56,7 @@ const ViewWorkspaceContent = ({ data, mutate }: { data: RavenWorkspace, mutate: 
     const onSubmit = (data: RavenWorkspace) => {
         updateDoc("Raven Workspace", data.name, data)
             .then((doc) => {
-                toast.success("Saved")
+                toast.success(__("Saved"))
                 methods.reset(doc)
                 globalMutate("workspaces_list")
                 globalMutate("channel_list")
@@ -70,21 +71,21 @@ const ViewWorkspaceContent = ({ data, mutate }: { data: RavenWorkspace, mutate: 
             <SettingsContentContainer>
                 <SettingsPageHeader
                     title={data.workspace_name}
-                    headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
+                    headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : undefined}
                     actions={<HStack>
                         <WorkspaceActionMenu workspaceID={data.name} workspaceName={data.workspace_name} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Workspaces', href: '../' }, { label: data.workspace_name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __('Workspaces'), href: '../' }, { label: data.workspace_name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 {data && <Tabs.Root defaultValue='details'>
                     <Tabs.List>
-                        <Tabs.Trigger value='details'><LuDock {...ICON_PROPS} /> Details</Tabs.Trigger>
-                        <Tabs.Trigger value='members'><LuUsers {...ICON_PROPS} /> Members</Tabs.Trigger>
+                        <Tabs.Trigger value='details'><LuDock {...ICON_PROPS} /> {__('Details')}</Tabs.Trigger>
+                        <Tabs.Trigger value='members'><LuUsers {...ICON_PROPS} /> {__('Members')}</Tabs.Trigger>
                     </Tabs.List>
                     <Box pt='4'>
                         <Tabs.Content value='details'>

@@ -11,6 +11,7 @@ import { Flex, Button } from "@radix-ui/themes"
 import { useFrappeDocTypeEventListener, useFrappeGetDocList } from "frappe-react-sdk"
 import { LuWebhook } from "react-icons/lu"
 import { Link } from "react-router-dom"
+import { __ } from "@/utils/translations"
 
 const WebhookList = () => {
 
@@ -30,10 +31,10 @@ const WebhookList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Webhooks'
-                    description='Fire webhooks on specific events like when a message is sent or channel is created.'
+                    title={__('Webhooks')}
+                    description={__('Fire webhooks on specific events like when a message is sent or channel is created.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -47,12 +48,12 @@ const WebhookList = () => {
                     <EmptyStateIcon>
                         <LuWebhook />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Webhooks</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Webhooks')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Webhooks allow you to receive HTTP requests whenever a specific event occurs - like when a message is sent or a channel is created.
+                        {__('Webhooks allow you to receive HTTP requests whenever a specific event occurs - like when a message is sent or a channel is created.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first webhook
+                        {__('Create your first webhook')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>

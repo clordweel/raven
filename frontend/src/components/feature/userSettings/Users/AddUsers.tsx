@@ -19,6 +19,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import { Sort } from "../../sorting/Sort"
+import { __ } from "@/utils/translations"
 
 interface AddUsersResponse {
     failed_users: User[],
@@ -90,11 +91,11 @@ const AddUsers = () => {
 
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title="Add users to Raven"
-                    description={<>Only System managers have the ability to add users; users you add will be given the <Strong>"Raven User"</Strong> role.</>}
+                    title={__("Add users to Raven")}
+                    description={<>{__('Only System managers have the ability to add users; users you add will be given the')} <Strong>{__('Raven User')}</Strong> {__('role.')}</>}
                     actions={<Button type='button' disabled={loading || !canAddRavenUsers} onClick={handleAddUsers}>
                         {loading && <Loader />}
-                        {loading ? "Adding" : "Add"}
+                        {loading ? __("Adding") : __("Add")}
                     </Button>}
                 />
                 <Flex justify='between' gap='2'>
@@ -102,12 +103,12 @@ const AddUsers = () => {
                         <TextField.Root onChange={handleChange}
                             className='w-[24rem]'
                             type='text'
-                            placeholder='Search for user'>
+                            placeholder={__('Search for user')}>
                             <TextField.Slot side='left'>
                                 <BiSearch />
                             </TextField.Slot>
                         </TextField.Root>
-                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">Continue typing...</Text>}
+                        {debouncedText.length > 0 && debouncedText.length < 2 && <Text size='1' color="gray">{__('Continue typing...')}</Text>}
                     </Flex>
                     <Flex justify='end' gap='2' align='center'>
                         <Sort

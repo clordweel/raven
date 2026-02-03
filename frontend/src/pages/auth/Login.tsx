@@ -14,7 +14,8 @@ import { DateSeparator } from "@/components/layout/Divider/DateSeparator";
 import { FcGoogle } from "react-icons/fc";
 import { useTheme } from "@/ThemeProvider";
 import { Stack } from "@/components/layout/Stack";
-import { ErrorCallout } from "@/components/common/Callouts/ErrorCallouts";
+import { ErrorCallout } from "@/components/common/Callouts/ErrorCallouts"
+import { __ } from "@/utils/translations"
 
 export const SocialProviderIcons = {
     "github": <BiLogoGithub size="24" />,
@@ -98,16 +99,16 @@ export const Component = () => {
                                             size='3'
                                             color="gray"
                                             variant={appearance === 'dark' ? "soft" : undefined}
-                                            placeholder="jane@example.com"
+                                            placeholder={__("jane@example.com")}
                                             tabIndex={0} />
                                         {errors?.email && <ErrorText>{errors?.email.message}</ErrorText>}
                                     </Flex>
 
                                     <Flex direction='column' gap='2'>
-                                        <Label htmlFor='password' isRequired size='3'>Password</Label>
+                                        <Label htmlFor='password' isRequired size='3'>{__('Password')}</Label>
                                         <TextField.Root  {...register("password",
                                             {
-                                                required: "Password is required.",
+                                                required: __("Password is required."),
                                             })}
                                             name="password"
                                             type={isPasswordOpen ? "text" : "password"}

@@ -11,6 +11,7 @@ import { Badge, Button, Strong, Table } from '@radix-ui/themes'
 import { useFrappeGetDocList } from 'frappe-react-sdk'
 import { BiBoltCircle } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import { __ } from '@/utils/translations'
 
 const MessageActionList = () => {
 
@@ -30,10 +31,10 @@ const MessageActionList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Message Actions'
-                    description='Use these to add custom actions - like creating an issue/task from a message.'
+                    title={__('Message Actions')}
+                    description={__('Use these to add custom actions - like creating an issue/task from a message.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -43,14 +44,14 @@ const MessageActionList = () => {
                     <EmptyStateIcon>
                         <BiBoltCircle />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Actions</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Actions')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Add actions that allow you to create documents or make API calls from the contents of a message - like creating a support ticket or project issue from a message sent in a channel.
+                        {__('Add actions that allow you to create documents or make API calls from the contents of a message - like creating a support ticket or project issue from a message sent in a channel.')}
                         <br /><br />
-                        Access them by right clicking any message and selecting <Strong>Actions</Strong>.
+                        {__('Access them by right clicking any message and selecting')} <Strong>{__('Actions')}</Strong>.
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first action
+                        {__('Create your first action')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -63,8 +64,8 @@ const MessageActionsTable = ({ actions }: { actions: RavenMessageAction[] }) => 
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -76,13 +77,13 @@ const MessageActionsTable = ({ actions }: { actions: RavenMessageAction[] }) => 
                                     {action.action_name}
                                 </Link>
 
-                                {!action.enabled && <Badge color='gray' size='2'>Disabled</Badge>}
+                                {!action.enabled && <Badge color='gray' size='2'>{__('Disabled')}</Badge>}
                             </HStack>
                         </Table.Cell>
                         <Table.Cell maxWidth={"250px"}>
                             <Badge color={
                                 action.action === "Create Document" ? "blue" : "purple"
-                            } size='2'>{action.action}</Badge>
+                            } size='2'>{action.action === 'Create Document' ? __('Create Document') : action.action}</Badge>
                         </Table.Cell>
                     </Table.Row>
                 ))}

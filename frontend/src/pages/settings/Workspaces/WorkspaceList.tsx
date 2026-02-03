@@ -14,6 +14,7 @@ import { DIALOG_CONTENT_CLASS } from '@/utils/layout/dialog'
 import AddWorkspaceForm from '@/components/feature/workspaces/AddWorkspaceForm'
 import { Link, useNavigate } from 'react-router-dom'
 import { ChannelIcon } from '@/utils/layout/channelIcon'
+import { __ } from '@/utils/translations'
 
 const WorkspaceList = () => {
 
@@ -23,8 +24,8 @@ const WorkspaceList = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Workspaces'
-                    description='Workspaces allow you to organize your channels and teams.'
+                    title={__('Workspaces')}
+                    description={__('Workspaces allow you to organize your channels and teams.')}
                     actions={<AddWorkspaceButton />}
                 />
                 {isLoading && !error && <TableLoader columns={4} />}
@@ -40,10 +41,10 @@ const MyWorkspacesTable = ({ workspaces }: { workspaces: WorkspaceFields[] }) =>
         <Table.Root variant="surface" className='rounded-sm'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Membership</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Membership')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Description')}</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
@@ -68,7 +69,7 @@ const MyWorkspacesTable = ({ workspaces }: { workspaces: WorkspaceFields[] }) =>
                         </Table.Cell>
                         <Table.Cell>
                             <HStack>
-                                {workspace.is_admin ? <Badge color='orange'>Admin</Badge> : workspace.workspace_member_name ? <Badge color='blue'>Member</Badge> : <Badge color='gray'>Not a member</Badge>}
+                                {workspace.is_admin ? <Badge color='orange'>{__('Admin')}</Badge> : workspace.workspace_member_name ? <Badge color='blue'>{__('Member')}</Badge> : <Badge color='gray'>{__('Not a member')}</Badge>}
                             </HStack>
                         </Table.Cell>
                         <Table.Cell maxWidth={"250px"}>
@@ -102,11 +103,11 @@ const AddWorkspaceButton = () => {
 
     return <Dialog.Root open={isOpen} onOpenChange={setValue}>
         <Dialog.Trigger>
-            <Button disabled={!isRavenAdmin}>Create</Button>
+            <Button disabled={!isRavenAdmin}>{__('Create')}</Button>
         </Dialog.Trigger>
         <Dialog.Content className={DIALOG_CONTENT_CLASS}>
-            <Dialog.Title>Create Workspace</Dialog.Title>
-            <Dialog.Description size='2'>Workspaces allow you to organize your channels and teams.</Dialog.Description>
+            <Dialog.Title>{__('Create Workspace')}</Dialog.Title>
+            <Dialog.Description size='2'>{__('Workspaces allow you to organize your channels and teams.')}</Dialog.Description>
             <Stack>
                 <AddWorkspaceForm onClose={onClose} />
             </Stack>

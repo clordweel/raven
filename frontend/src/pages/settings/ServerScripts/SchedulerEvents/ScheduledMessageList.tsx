@@ -7,6 +7,7 @@ import { useState } from "react"
 import { BiTrash } from "react-icons/bi"
 import { AiOutlineEdit } from "react-icons/ai"
 import { Link, useNavigate } from "react-router-dom"
+import { __ } from "@/utils/translations"
 
 export const List = ({ data }: { data: RavenSchedulerEvent[] }) => {
 
@@ -33,19 +34,19 @@ const ScheduledMessageItem = ({ item }: { item: RavenSchedulerEvent }) => {
                 <Flex direction='column' gap='1'>
                     <Flex direction={'row'} gap={'2'}>
                         <Text size={'2'} weight={'bold'}>{item.name}</Text>
-                        <Badge color={item.disabled ? 'gray' : 'green'}>{item.disabled ? 'Disabled' : 'Enabled'}</Badge>
+                        <Badge color={item.disabled ? 'gray' : 'green'}>{item.disabled ? __('Disabled') : __('Enabled')}</Badge>
                     </Flex>
                     <Text size='1' style={{
                         fontStyle: 'italic',
                         color: 'gray'
-                    }}>Created by {item.owner} on <DateMonthYear date={item.creation} /></Text>
+                    }}>{__('Created by')} {item.owner} {__('on')} <DateMonthYear date={item.creation} /></Text>
                 </Flex>
                 <Flex direction={'row'} gap={'2'} align={'center'}>
                     <IconButton
                         variant="ghost"
                         color="gray"
-                        aria-label="Click to edit webhook"
-                        title='Edit webhook'
+                        aria-label={__('Click to edit')}
+                        title={__('Edit')}
                         asChild
                         style={{
                             // @ts-ignore
@@ -62,8 +63,8 @@ const ScheduledMessageItem = ({ item }: { item: RavenSchedulerEvent }) => {
                             <IconButton
                                 variant="ghost"
                                 color="red"
-                                aria-label="Click to delete webhook"
-                                title='Delete webhook'
+                                aria-label={__('Click to delete')}
+                                title={__('Delete')}
                                 onClick={() => { }}
                                 style={{
                                     // @ts-ignore
