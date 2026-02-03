@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useFrappePostCall, useSWRConfig } from 'frappe-react-sdk'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
@@ -50,7 +51,7 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
         members: data.add_members.map((member) => member.name)
       })
         .then(() => {
-          toast.success("Members added")
+          toast.success(__("Members added"))
           mutate(["channel_members", channelID])
           onClose()
         })
@@ -63,16 +64,16 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Dialog.Title>
-              <Text as='span'>Add members to <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{channel?.channelData.channel_name}</Text>
+              <Text as='span'>{__('Add members to')} <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{channel?.channelData.channel_name}</Text>
             </Dialog.Title>
             <Dialog.Description size='2'>
-              New members will be able to see all of <strong>{channel?.channelData.channel_name}</strong>'s history, including any files that have been shared in the channel.
+              {__('New members will be able to see all of')} <strong>{channel?.channelData.channel_name}</strong> {__("'s history, including any files that have been shared in the channel.")}
             </Dialog.Description>
 
             <Flex gap='2' pt='2' direction='column' width='100%'>
               <ErrorBanner error={error} />
               <Text size='2'>
-                You can only add members from your workspace to this channel.
+                {__('You can only add members from your workspace to this channel.')}
               </Text>
               <Box width='100%'>
                 <Flex direction='column' gap='2'>
@@ -86,7 +87,7 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
                             if (value && value.length > 0) {
                               return true
                             }
-                            return 'Please select at least one member'
+                            return __('Please select at least one member')
                           }
                         }}
                         render={({ field: { onChange, value } }) => (
@@ -107,11 +108,11 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
 
             <Flex gap="3" mt="6" justify="end" align='center'>
               <Dialog.Close disabled={loading}>
-                <Button variant="soft" color="gray">Cancel</Button>
+                <Button variant="soft" color="gray">{__('Cancel')}</Button>
               </Dialog.Close>
               <Button type='submit' disabled={loading}>
                 {loading && <Loader className="text-white" />}
-                {loading ? "Saving" : "Save"}
+                {loading ? __("Saving") : __("Save")}
               </Button>
             </Flex>
 

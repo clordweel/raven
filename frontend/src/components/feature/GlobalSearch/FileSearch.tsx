@@ -97,13 +97,13 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                         <Select.Trigger placeholder={__('File Type')} className='min-w-[20%]' />
                         <Select.Content className="z-50">
                             <Select.Group>
-                                <Select.Label>File Type</Select.Label>
+                                <Select.Label>{__('File Type')}</Select.Label>
                                 <Select.Item value='any'>
                                     <Flex align='center' gap='1'>
                                         <Box width='16px'>
                                             🤷🏻‍♀️
                                         </Box>
-                                        Any
+                                        {__('Any')}
                                     </Flex>
                                 </Select.Item>
                                 <Select.Item value='pdf'>
@@ -115,25 +115,25 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                                 <Select.Item value='doc'>
                                     <Flex align='center' gap='1'>
                                         <FileExtensionIcon ext={'doc'} />
-                                        Documents (.doc)
+                                        {__('Documents (.doc)')}
                                     </Flex>
                                 </Select.Item>
                                 <Select.Item value='ppt'>
                                     <Flex align='center' gap='1'>
                                         <FileExtensionIcon ext={'ppt'} />
-                                        Presentations (.ppt)
+                                        {__('Presentations (.ppt)')}
                                     </Flex>
                                 </Select.Item>
                                 <Select.Item value='xls'>
                                     <Flex align='center' gap='1'>
                                         <FileExtensionIcon ext={'xls'} />
-                                        Spreadsheets (.xls)
+                                        {__('Spreadsheets (.xls)')}
                                     </Flex>
                                 </Select.Item>
                                 <Select.Item value='image'>
                                     <Flex align='center' gap='1'>
                                         <FileExtensionIcon ext='jpg' />
-                                        Images
+                                        {__('Images')}
                                     </Flex>
                                 </Select.Item>
                             </Select.Group>
@@ -150,9 +150,9 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     <Select.Root value={userFilter} onValueChange={setUserFilter}>
                         <Select.Trigger placeholder={__('From')} id='from-filter' />
                         <Select.Content className="z-50">
-                            <Select.Item value='any'>From anyone</Select.Item>
+                            <Select.Item value='any'>{__('From anyone')}</Select.Item>
                             <Select.Group>
-                                <Select.Label>Message from</Select.Label>
+                                <Select.Label>{__('Message from')}</Select.Label>
                                 {Object.values(users).map((option) => <Select.Item
                                     key={option.name}
                                     textValue={option.full_name}
@@ -169,9 +169,9 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     <Select.Root value={channelFilter} onValueChange={setChannelFilter}>
                         <Select.Trigger placeholder={__('Channel / DM')} />
                         <Select.Content className="z-50">
-                            <Select.Item value='any'>Any channel</Select.Item>
+                            <Select.Item value='any'>{__('Any channel')}</Select.Item>
                             <Select.Group>
-                                <Select.Label>Channels</Select.Label>
+                                <Select.Label>{__('Channels')}</Select.Label>
                                 {channels.map(option => <Select.Item key={option.name} value={option.name}>
                                     <Flex gap="2" align='center' className='overflow-hidden'>
                                         <ChannelIcon type={option.type} />
@@ -183,7 +183,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                             </Select.Group>
                             <Select.Separator />
                             <Select.Group>
-                                <Select.Label>Direct Messages</Select.Label>
+                                <Select.Label>{__('Direct Messages')}</Select.Label>
                                 {dm_channels.map(option => <Select.Item
                                     key={option.name}
                                     value={option.name}
@@ -203,9 +203,9 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                         <Select.Trigger placeholder={__('Date')} />
                         <Select.Content className="z-50">
                             <Select.Group>
-                                <Select.Label>Date</Select.Label>
-                                <Select.Item value='any'>Any time</Select.Item>
-                                {dateOption.map((option) => <Select.Item key={option.value} value={option.value}>{option.label}</Select.Item>)}
+                                <Select.Label>{__('Date')}</Select.Label>
+                                <Select.Item value='any'>{__('Any time')}</Select.Item>
+                                {dateOption.map((option) => <Select.Item key={option.value} value={option.value}>{__(option.label)}</Select.Item>)}
                             </Select.Group>
 
                         </Select.Content>
@@ -213,13 +213,13 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
 
                     <Text as="label" size="2">
                         <Flex gap="2">
-                            <Checkbox checked={isOnlyInMyChannels} onCheckedChange={onToggleMyChannels} /> Only in my channels
+                            <Checkbox checked={isOnlyInMyChannels} onCheckedChange={onToggleMyChannels} /> {__('Only in my channels')}
                         </Flex>
                     </Text>
 
                     <Text as="label" size="2">
                         <Flex gap="2">
-                            <Checkbox checked={isSaved} onCheckedChange={onToggleSaved} /> Saved
+                            <Checkbox checked={isSaved} onCheckedChange={onToggleSaved} /> {__('Saved')}
                         </Flex>
                     </Text>
                 </Grid>
@@ -235,7 +235,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                                 <Flex gap='3' key={f.name} align='center'>
                                     <Flex align='center' justify='center' className='w-[10%] sm:w-[5%]'>
                                         {f.message_type === 'File' && <FileExtensionIcon ext={getFileExtension(f.file)} size='24' />}
-                                        {f.message_type === 'Image' && <img src={f.file} alt='File preview' className='rounded-md object-cover' style={{
+                                        {f.message_type === 'Image' && <img src={f.file} alt={__('File preview')} className='rounded-md object-cover' style={{
                                             width: '36px',
                                             height: '36px',
                                         }}
@@ -243,7 +243,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                                     </Flex>
                                     <Flex direction='column' className='w-[94%]'>
                                         {f.file && <Link weight='medium' size='1' href={f.file} target='_blank'>{getFileName(f.file)}</Link>}
-                                        {users && <Text size='1' color='gray'>Shared by {Object.values(users).find((user: UserFields) => user.name === f.owner)?.full_name} on <DateMonthYear date={f.creation} /></Text>}
+                                        {users && <Text size='1' color='gray'>{__('Shared by')} {Object.values(users).find((user: UserFields) => user.name === f.owner)?.full_name} {__('on')} <DateMonthYear date={f.creation} /></Text>}
                                     </Flex>
                                 </Flex>
                             )

@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { useChannelList } from '@/utils/channel/ChannelListProvider'
 import { Command } from 'cmdk'
 import ChannelItem from './ChannelItem'
@@ -19,7 +20,7 @@ const ChannelList = () => {
     }, [channels])
 
     return (
-        <Command.Group heading="Channels">
+        <Command.Group heading={__('Channels')}>
             {sortedChannels.map((channel) => (
                 <ChannelItem key={channel.name} channel={channel} />
             ))}

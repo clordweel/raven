@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { useGetUser } from '@/hooks/useGetUser'
 import { useChannelList } from '@/utils/channel/ChannelListProvider'
@@ -23,7 +24,7 @@ const UserList = () => {
     const usersWithoutChannels = users.filter((user) => !dm_channels.find((channel) => channel.peer_user_id === user.name))
 
     return (
-        <Command.Group heading="Members">
+        <Command.Group heading={__('Members')}>
             {dm_channels.map((channel) => <DMChannelItem key={channel.name} channelID={channel.name} channelName={channel.channel_name} peer_user_id={channel.peer_user_id} />)}
             {usersWithoutChannels.map((user) => <UserWithoutDMItem key={user.name} userID={user.name} />)}
         </Command.Group>
@@ -51,7 +52,7 @@ const UserWithoutDMItem = ({ userID }: { userID: string }) => {
 
             setOpen(false)
         }).catch(err => {
-            toast.error('Could not create a DM channel', {
+            toast.error(__('Could not create a DM channel'), {
                 description: getErrorMessage(err)
             })
         })
@@ -70,7 +71,7 @@ const UserWithoutDMItem = ({ userID }: { userID: string }) => {
                 {user?.full_name}
             </Flex>
             {loading ? <Loader /> : null}
-            {!user?.enabled ? <Badge color='gray' variant='soft'>Disabled</Badge> : null}
+            {!user?.enabled ? <Badge color='gray' variant='soft'>{__('Disabled')}</Badge> : null}
         </Flex>
     </Command.Item>
 }

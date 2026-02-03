@@ -161,8 +161,8 @@ function MultipleUserComboBox({ selectedUsers, setSelectedUsers, getFilteredUser
                             <span
                                 className="cursor-pointer h-full flex items-center px-4 text-gray-9 hover:text-red-9"
                                 role='button'
-                                aria-label='Remove user'
-                                title='Remove user'
+                                aria-label={__('Remove user')}
+                                title={__('Remove user')}
                                 onClick={e => {
                                     e.stopPropagation()
                                     removeSelectedItem(selectedItemForRender)

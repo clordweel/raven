@@ -1,5 +1,6 @@
 import { AddChannelMembersModalContent } from "./AddChannelMemberModalContent"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
+import { __ } from "@/utils/translations"
 import { useState } from "react"
 import { Button, Dialog } from "@radix-ui/themes"
 import { ButtonProps } from "@radix-ui/themes/dist/cjs/components/button"
@@ -26,7 +27,7 @@ export const AddMembersButton = ({ channelData, ...props }: AddMembersButtonProp
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <Dialog.Trigger>
                     <Button variant="ghost" size='1' {...props} className={clsx("text-nowrap", props.className)}>
-                        Add Members
+                        {__('Add Members')}
                     </Button>
                 </Dialog.Trigger>
 
@@ -41,7 +42,7 @@ export const AddMembersButton = ({ channelData, ...props }: AddMembersButtonProp
         return <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
                 <Button variant="ghost" size='1' {...props} className={clsx("text-nowrap", props.className)}>
-                    Add Members
+                    {__('Add Members')}
                 </Button>
             </DrawerTrigger>
             <DrawerContent>

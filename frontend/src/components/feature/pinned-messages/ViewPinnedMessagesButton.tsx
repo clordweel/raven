@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Button, Dialog } from '@radix-ui/themes'
 import { RiPushpinLine } from 'react-icons/ri'
 import { useState } from 'react'
@@ -26,8 +27,8 @@ export const ViewPinnedMessagesButton = ({ pinnedMessagesString }: ViewPinnedMes
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger>
-                <Button size='1' variant='soft' color='gray' aria-label="View pinned messages"
-                    title='View pinned messages'>
+                <Button size='1' variant='soft' color='gray' aria-label={__('View pinned messages')}
+                    title={__('View pinned messages')}>
                     <RiPushpinLine size='14' />{pinnedMessages}
                 </Button>
             </Dialog.Trigger>

@@ -66,10 +66,10 @@ const ViewFilesContent = () => {
     return (
         <div>
             <Flex justify='between' gap='2'>
-                <Dialog.Title>Files shared in this channel</Dialog.Title>
+                <Dialog.Title>{__('Files shared in this channel')}</Dialog.Title>
                 {isDesktop &&
                     <Dialog.Close>
-                        <IconButton size='1' color='gray' variant="soft" aria-label="close dialog">
+                        <IconButton size='1' color='gray' variant="soft" aria-label={__('Close dialog')}>
                             <IoMdClose />
                         </IconButton>
                     </Dialog.Close>
@@ -92,7 +92,7 @@ const ViewFilesContent = () => {
                             <Select.Trigger placeholder={__('File Type')} className="w-full sm:w-[200px]" />
                             <Select.Content className="z-50">
                                 <Select.Group>
-                                    <Select.Label>File Type</Select.Label>
+                                    <Select.Label>{__('File Type')}</Select.Label>
                                     <Select.Item value='any'>
                                         <Flex align='center' gap='1'>
                                             <Box width='16px'>

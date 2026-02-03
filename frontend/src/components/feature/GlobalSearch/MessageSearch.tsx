@@ -111,9 +111,9 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                     <Select.Root value={userFilter} onValueChange={setUserFilter}>
                         <Select.Trigger placeholder={__('From')} id='from-filter' />
                         <Select.Content className="z-50">
-                            <Select.Item value='any'>From anyone</Select.Item>
+                            <Select.Item value='any'>{__('From anyone')}</Select.Item>
                             <Select.Group>
-                                <Select.Label>Message from</Select.Label>
+                                <Select.Label>{__('Message from')}</Select.Label>
                                 {Object.values(users).map((option) => <Select.Item
                                     key={option.name}
                                     textValue={option.full_name}
@@ -130,9 +130,9 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                     <Select.Root value={channelFilter} onValueChange={setChannelFilter}>
                         <Select.Trigger placeholder={__('Channel / DM')} />
                         <Select.Content className="z-50">
-                            <Select.Item value='any'>Any channel</Select.Item>
+                            <Select.Item value='any'>{__('Any channel')}</Select.Item>
                             <Select.Group>
-                                <Select.Label>Channels</Select.Label>
+                                <Select.Label>{__('Channels')}</Select.Label>
                                 {channels.map(option => <Select.Item key={option.name} value={option.name}>
                                     <Flex gap="2" align='center' className='overflow-hidden'>
                                         <ChannelIcon type={option.type} />
@@ -144,7 +144,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                             </Select.Group>
                             <Select.Separator />
                             <Select.Group>
-                                <Select.Label>Direct Messages</Select.Label>
+                                <Select.Label>{__('Direct Messages')}</Select.Label>
                                 {dm_channels.map(option => <Select.Item
                                     key={option.name}
                                     value={option.name}
@@ -164,9 +164,9 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                         <Select.Trigger placeholder={__('Date')} />
                         <Select.Content className="z-50">
                             <Select.Group>
-                                <Select.Label>Date</Select.Label>
-                                <Select.Item value='any'>Any time</Select.Item>
-                                {dateOption.map((option) => <Select.Item key={option.value} value={option.value}>{option.label}</Select.Item>)}
+                                <Select.Label>{__('Date')}</Select.Label>
+                                <Select.Item value='any'>{__('Any time')}</Select.Item>
+                                {dateOption.map((option) => <Select.Item key={option.value} value={option.value}>{__(option.label)}</Select.Item>)}
                             </Select.Group>
 
                         </Select.Content>
@@ -174,13 +174,13 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
 
                     <Text as="label" size="2">
                         <Flex gap="2">
-                            <Checkbox checked={isOnlyInMyChannels} onCheckedChange={onToggleMyChannels} /> Only in my channels
+                            <Checkbox checked={isOnlyInMyChannels} onCheckedChange={onToggleMyChannels} /> {__('Only in my channels')}
                         </Flex>
                     </Text>
 
                     <Text as="label" size="2">
                         <Flex gap="2">
-                            <Checkbox checked={isSaved} onCheckedChange={onToggleSaved} /> Saved
+                            <Checkbox checked={isSaved} onCheckedChange={onToggleSaved} /> {__('Saved')}
                         </Flex>
                     </Text>
                 </Grid>

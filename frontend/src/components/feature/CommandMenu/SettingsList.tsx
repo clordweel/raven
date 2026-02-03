@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Command } from 'cmdk'
 import { useSetAtom } from 'jotai'
 import { BiBoltCircle, BiBot, BiFile, BiGroup, BiMessageSquareDots, BiTime, BiUserCircle } from 'react-icons/bi'
@@ -22,14 +23,14 @@ const SettingsList = (props: Props) => {
         setOpen(false)
     }
     return (
-        <Command.Group heading='Settings'>
+        <Command.Group heading={__('Settings')}>
             <Command.Item value='profile' onSelect={onSelect}>
                 <BiUserCircle size={ICON_SIZE} />
-                Profile
+                {__('Profile')}
             </Command.Item>
             <Command.Item value='users' onSelect={onSelect}>
                 <BiGroup size={ICON_SIZE} />
-                Users
+                {__('Users')}
             </Command.Item>
             <Command.Item value='hr' keywords={['hr', 'human resources', 'Frappe HR']} onSelect={onSelect}>
                 <svg fill="none" viewBox="0 0 32 32" width={18} height={18} xmlns="http://www.w3.org/2000/svg">
@@ -44,52 +45,52 @@ const SettingsList = (props: Props) => {
                         </clipPath>
                     </defs>
                 </svg>
-                HR
+                {__('HR')}
             </Command.Item>
 
             <Command.Item value='message-actions' onSelect={onSelect}>
                 <BiBoltCircle size={ICON_SIZE} />
-                Message Actions
+                {__('Message Actions')}
             </Command.Item>
 
             <Command.Item value='scheduled-messages' keywords={['scheduled messages']} onSelect={onSelect}>
                 <BiTime size={ICON_SIZE} />
-                Scheduled Messages
+                {__('Scheduled Messages')}
             </Command.Item>
 
             <Command.Item value='webhooks' onSelect={onSelect}>
                 <AiOutlineApi size={ICON_SIZE} />
-                Webhooks
+                {__('Webhooks')}
             </Command.Item>
 
             <Command.Item value='bots' onSelect={onSelect}>
                 <BiBot size={ICON_SIZE} />
-                Bots
+                {__('Bots')}
             </Command.Item>
 
             <Command.Item value='functions' onSelect={onSelect}>
                 <LuSquareFunction size={ICON_SIZE} />
-                Functions
+                {__('Functions')}
             </Command.Item>
 
             <Command.Item value='instructions' onSelect={onSelect}>
                 <BiFile size={ICON_SIZE} />
-                Instructions
+                {__('Instructions')}
             </Command.Item>
 
             <Command.Item value='document-processors' onSelect={onSelect}>
                 <BiFile size={ICON_SIZE} />
-                Document Processors
+                {__('Document Processors')}
             </Command.Item>
 
             <Command.Item value='commands' onSelect={onSelect}>
                 <BiMessageSquareDots size={ICON_SIZE} />
-                Commands
+                {__('Commands')}
             </Command.Item>
 
             <Command.Item value='ai-settings' onSelect={onSelect}>
                 <PiMagicWand size={ICON_SIZE} />
-                AI Settings
+                {__('AI Settings')}
             </Command.Item>
         </Command.Group>
     )

@@ -37,7 +37,7 @@ export const RenameChannelModalContent = ({ channelID, channelName, type, onClos
         return updateDoc("Raven Channel", channelID ?? null, {
             channel_name: data.channel_name
         }).then(() => {
-            toast.success("Channel name updated")
+            toast.success(__("Channel name updated"))
             onClose()
         })
     }
@@ -51,30 +51,30 @@ export const RenameChannelModalContent = ({ channelID, channelName, type, onClos
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Dialog.Title>Rename this channel</Dialog.Title>
+                <Dialog.Title>{__('Rename this channel')}</Dialog.Title>
 
                 <Flex gap='2' direction='column' width='100%'>
                     <ErrorBanner error={error} />
                     <Box width='100%'>
-                        <Label htmlFor='channel_name' isRequired>Name</Label>
+                        <Label htmlFor='channel_name' isRequired>{__('Name')}</Label>
                         <Controller
                             name='channel_name'
                             control={control}
                             rules={{
-                                required: "Please add a channel name",
+                                required: __("Please add a channel name"),
                                 maxLength: {
                                     value: 50,
-                                    message: "Channel name cannot be more than 50 characters."
+                                    message: __("Channel name cannot be more than 50 characters.")
                                 },
                                 minLength: {
                                     value: 3,
-                                    message: "Channel name cannot be less than 3 characters."
+                                    message: __("Channel name cannot be less than 3 characters.")
                                 },
                                 pattern: {
                                     // no special characters allowed
                                     // cannot start with a space
                                     value: /^[a-zA-Z0-9][a-zA-Z0-9-]*$/,
-                                    message: "Channel name can only contain letters, numbers and hyphens."
+                                    message: __("Channel name can only contain letters, numbers and hyphens.")
                                 }
                             }}
                             render={({ field, fieldState: { error } }) => (
@@ -101,11 +101,11 @@ export const RenameChannelModalContent = ({ channelID, channelName, type, onClos
 
                 <Flex gap="3" mt="6" justify="end" align='center'>
                     <Dialog.Close disabled={updatingDoc}>
-                        <Button variant="soft" color="gray">Cancel</Button>
+                        <Button variant="soft" color="gray">{__('Cancel')}</Button>
                     </Dialog.Close>
                     <Button type='submit' disabled={updatingDoc}>
                         {updatingDoc && <Loader className="text-white" />}
-                        {updatingDoc ? "Saving" : "Save"}
+                        {updatingDoc ? __("Saving") : __("Save")}
                     </Button>
                 </Flex>
             </form>

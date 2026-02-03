@@ -1,6 +1,5 @@
-import { __ } from '@/utils/translations'
-import { useNavigate, useParams } from "react-router-dom"
 import { __ } from "@/utils/translations"
+import { useNavigate, useParams } from "react-router-dom"
 import { DropdownMenu, Flex, Heading, IconButton } from "@radix-ui/themes"
 import { BiBell, BiBellOff, BiDotsVerticalRounded, BiExit, BiTrash } from "react-icons/bi"
 import { useFrappeDeleteDoc, useFrappePostCall, useSWRConfig } from "frappe-react-sdk"
@@ -34,7 +33,7 @@ export const ThreadHeader = () => {
         <header className='dark:bg-gray-2 bg-white fixed top-0 px-3 sm:w-[calc((100vw-var(--sidebar-width)-var(--space-8))/2)] w-screen' style={{ zIndex: 999 }}>
             <Flex direction={'column'} gap='2' className='pt-3'>
                 <Flex justify={'between'} align={'center'}>
-                    <Heading size='4' className='pl-1'>Thread</Heading>
+                    <Heading size='4' className='pl-1'>{__('Thread')}</Heading>
                     <Flex gap='2' justify={'between'} align={'center'} className="px-4 sm:px-0">
                         {channelMember &&
                             <DropdownMenu.Root>
@@ -83,8 +82,8 @@ const DeleteThreadButton = () => {
             })
 
         toast.promise(promise, {
-            success: 'You have deleted the thread',
-            error: (e) => `Could not delete thread - ${getErrorMessage(e)}`
+            success: __('You have deleted the thread'),
+            error: (e) => `${__('Could not delete thread')} - ${getErrorMessage(e)}`
         })
     }
 
@@ -92,7 +91,7 @@ const DeleteThreadButton = () => {
         <DropdownMenu.Item color="red" onClick={onDeleteThread}>
             <Flex gap='2' align='center'>
                 <BiTrash size={'16'} />
-                Delete Thread
+                {__('Delete Thread')}
             </Flex>
         </DropdownMenu.Item>
     )
@@ -117,8 +116,8 @@ const LeaveThreadButton = () => {
         })
 
         toast.promise(promise, {
-            success: 'You have left the thread',
-            error: (e) => `Could not leave thread - ${getErrorMessage(e)}`
+            success: __('You have left the thread'),
+            error: (e) => `${__('Could not leave thread')} - ${getErrorMessage(e)}`
         })
     }
 
@@ -126,7 +125,7 @@ const LeaveThreadButton = () => {
         <DropdownMenu.Item onClick={onLeaveThread} color="red">
             <Flex gap='2' align='center'>
                 <BiExit size={'16'} />
-                Leave Thread
+                {__('Leave Thread')}
             </Flex>
         </DropdownMenu.Item>
     )
@@ -168,8 +167,8 @@ const ToggleNotificationButton = ({ channelMember }: { channelMember: Member }) 
                 })
 
             toast.promise(promise, {
-                success: 'Notification settings updated',
-                error: 'Failed to update notification settings'
+                success: __('Notification settings updated'),
+                error: __('Failed to update notification settings')
             })
         }
     }
@@ -180,7 +179,7 @@ const ToggleNotificationButton = ({ channelMember }: { channelMember: Member }) 
         <DropdownMenu.Item onClick={onToggle}>
             <Flex gap='2' align='center'>
                 {channelMember.allow_notifications ? <BiBellOff size={'16'} /> : <BiBell size={'16'} />}
-                {channelMember.allow_notifications ? 'Disable' : 'Enable'} Notifications
+                {channelMember.allow_notifications ? __('Disable') : __('Enable')} {__('Notifications')}
             </Flex>
         </DropdownMenu.Item>
     )

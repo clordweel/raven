@@ -22,10 +22,10 @@ const AddCustomEmojiDialog = ({ open, onClose }: Props) => {
     return (
         <Dialog.Root open={open} onOpenChange={onClose}>
             <Dialog.Content>
-                <Dialog.Title>Add Emoji</Dialog.Title>
+                <Dialog.Title>{__('Add Emoji')}</Dialog.Title>
                 <VisuallyHidden>
                     <Dialog.Description size='2'>
-                        Add a custom emoji to your chat.
+                        {__('Add a custom emoji to your chat.')}
                     </Dialog.Description>
                 </VisuallyHidden>
                 <AddEmojiForm onClose={onClose} />
@@ -56,7 +56,7 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
 
         const exists = await checkIfEmojiNameExists(data.emoji_name)
         if (exists) {
-            setError('emoji_name', { message: `Emoji ${data.emoji_name} already exists.` }, { shouldFocus: true })
+            setError('emoji_name', { message: __('Emoji {0} already exists.', [data.emoji_name]) }, { shouldFocus: true })
             return
         }
 
@@ -102,8 +102,8 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
             <ErrorBanner error={error} />
             <ErrorBanner error={uploadError} />
             <Stack gap='0'>
-                <Label htmlFor='emoji_image'>Emoji</Label>
-                <HelperText>An image of 128px by 128px works best.</HelperText>
+                <Label htmlFor='emoji_image'>{__('Emoji')}</Label>
+                <HelperText>{__('An image of 128px by 128px works best.')}</HelperText>
                 <FileUploadBox
                     file={image}
                     onFileChange={onImageChange}
@@ -114,18 +114,18 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
             </Stack>
             <Stack>
                 <Box>
-                    <Label htmlFor='emoji_name' isRequired>Emoji Name</Label>
+                    <Label htmlFor='emoji_name' isRequired>{__('Emoji Name')}</Label>
                     <TextField.Root
                         id='emoji_name'
                         {...register('emoji_name', {
-                            required: 'Name is required',
+                            required: __('Name is required'),
                             maxLength: {
                                 value: 20,
-                                message: 'Name must be less than 20 characters'
+                                message: __('Name must be less than 20 characters')
                             },
                             validate: async (value) => {
                                 const exists = await checkIfEmojiNameExists(value)
-                                return exists ? 'Emoji name already exists' : true
+                                return exists ? __('Emoji name already exists') : true
                             }
                         })}
                         placeholder={__("e.g. jawdrop")}
@@ -137,7 +137,7 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
 
             <Stack>
                 <Box>
-                    <Label htmlFor='keywords'>Keywords</Label>
+                    <Label htmlFor='keywords'>{__('Keywords')}</Label>
                     <TextField.Root
                         id='keywords'
                         {...register('keywords')}

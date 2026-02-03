@@ -1,5 +1,6 @@
 import { RenameChannelModalContent } from '@/components/feature/channel-details/rename-channel/ChannelRenameModal'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
+import { __ } from '@/utils/translations'
 import { Dialog, IconButton } from '@radix-ui/themes'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { IconButtonProps } from '@radix-ui/themes/dist/cjs/components/icon-button'
@@ -34,8 +35,8 @@ export const EditChannelNameButton = ({ channelID, channel_name, channelType, bu
                         variant="ghost"
                         color="gray"
                         className={clsx(buttonVisible ? '' : 'invisible group-hover:visible')}
-                        aria-label="Click to edit channel name"
-                        title='Edit channel name'
+                        aria-label={__('Click to edit channel name')}
+                        title={__('Edit channel name')}
                         {...props}>
                         <AiOutlineEdit size='14' />
                     </IconButton>
@@ -56,8 +57,8 @@ export const EditChannelNameButton = ({ channelID, channel_name, channelType, bu
                     variant="ghost"
                     color="gray"
                     className={clsx(buttonVisible ? '' : 'invisible group-hover:visible')}
-                    aria-label="Click to edit channel name"
-                    title='Edit channel name'
+                    aria-label={__('Click to edit channel name')}
+                    title={__('Edit channel name')}
                     {...props}>
                     <AiOutlineEdit size='14' />
                 </IconButton>

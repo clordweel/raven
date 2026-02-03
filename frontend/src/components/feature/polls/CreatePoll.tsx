@@ -91,10 +91,10 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
             ...data,
             "channel_id": channelID
         }).then(() => {
-            toast.success("Poll created")
+            toast.success(__("Poll created"))
             onClose()
         }).catch((err) => {
-            toast.error("There was an error.", {
+            toast.error(__("There was an error."), {
                 description: getErrorMessage(err)
             })
         })
@@ -107,24 +107,24 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                 <ErrorBanner error={error} />
 
                 <Box>
-                    <Label htmlFor='question' isRequired>Question</Label>
+                    <Label htmlFor='question' isRequired>{__('Question')}</Label>
                     <TextArea {...register("question", {
-                        required: 'Question is required'
+                        required: __('Question is required')
                     })} placeholder={__("Ask a question to gather responses")} required />
                     {errors?.question && <ErrorText>{errors.question?.message}</ErrorText>}
                 </Box>
 
                 <Box>
-                    <Label htmlFor='options' isRequired>Options</Label>
+                    <Label htmlFor='options' isRequired>{__('Options')}</Label>
                     <Flex direction={'column'} gap='2'>
                         {fields && fields.map((field, index) => (
                             <Flex key={field.id} gap='2' align={'start'}>
                                 <div className={'w-full'}>
                                     <TextField.Root placeholder={__("Option {0}", [index + 1])} {...register(`options.${index}.option`, {
-                                        required: 'Option is required',
+                                        required: __('Option is required'),
                                         minLength: {
                                             value: 1,
-                                            message: 'Option cannot be empty'
+                                            message: __('Option cannot be empty')
                                         }
                                     })}>
                                     </TextField.Root>
@@ -134,7 +134,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                     mt='2'
                                     disabled={fields.length === 2}
                                     color="red"
-                                    aria-label="delete"
+                                    aria-label={__('Delete')}
                                     variant={'ghost'}
                                     size={'1'}
                                     title={__('Remove Option')}
@@ -161,7 +161,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                 </Box>
 
                 <Box>
-                    <Label>Settings</Label>
+                    <Label>{__('Settings')}</Label>
                     <Flex direction={'column'} gap='2'>
                         <Text as='label' size='2'>
                             <Flex gap="2" align='center'>
@@ -174,7 +174,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                             onCheckedChange={(v) => onChange(v ? 1 : 0)} />
                                     )}
                                 />
-                                Allow users to select multiple options
+                                {__('Allow users to select multiple options')}
                             </Flex>
                         </Text>
 
@@ -189,7 +189,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                             onCheckedChange={(v) => onChange(v ? 1 : 0)} />
                                     )}
                                 />
-                                Make this poll anonymous
+                                {__('Make this poll anonymous')}
                             </Flex>
                         </Text>
 
@@ -204,7 +204,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                         }
                                     }}
                                 />
-                                Set poll end date and time
+                                {__('Set poll end date and time')}
                             </Flex>
                         </Text>
 
@@ -216,20 +216,20 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                         name="end_date"
                         control={control}
                         rules={{
-                            required: hasEndDate ? 'End date is required when poll end date is enabled' : false,
+                            required: hasEndDate ? __('End date is required when poll end date is enabled') : false,
                             validate: (value) => {
                                 if (!hasEndDate) return true; // Not required if checkbox is unchecked
-                                if (!value) return 'End date is required when poll end date is enabled';
+                                if (!value) return __('End date is required when poll end date is enabled');
                                 const selectedDate = new Date(value);
                                 const now = new Date();
-                                return selectedDate > now || 'End date must be in the future';
+                                return selectedDate > now || __('End date must be in the future');
                             }
                         }}
                         render={({ field: { value, onChange }, fieldState: { error } }) => (
                             <DateTimePicker
                                 value={value}
                                 onChange={onChange}
-                                label="Poll end date and time"
+                                label={__('Poll end date and time')}
                                 error={error?.message}
                                 minDate={new Date()}
                                 required={hasEndDate}
@@ -240,9 +240,9 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
 
                 <Flex gap="3" mt="4" justify="end">
                     <Dialog.Close>
-                        <Button variant="soft" color="gray" onClick={onClose}>Cancel</Button>
+                        <Button variant="soft" color="gray" onClick={onClose}>{__('Cancel')}</Button>
                     </Dialog.Close>
-                    <Button type="submit">Create</Button>
+                    <Button type="submit">{__('Create')}</Button>
                 </Flex>
 
             </Flex>

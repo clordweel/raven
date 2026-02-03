@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Dialog, Flex, IconButton, Text, VisuallyHidden } from '@radix-ui/themes'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -41,15 +42,15 @@ export const PinnedMessageModalContent = ({ onClose }: { onClose: () => void }) 
         <>
             <Dialog.Title>
                 <Flex justify={'between'} align={'center'}>
-                    <Text>Pinned Messages</Text>
-                    <IconButton variant='ghost' color='gray' aria-label='Close' onClick={onClose}>
+                    <Text>{__('Pinned Messages')}</Text>
+                    <IconButton variant='ghost' color='gray' aria-label={__('Close')} onClick={onClose}>
                         <IoClose size='20' />
                     </IconButton>
                 </Flex>
             </Dialog.Title>
             <VisuallyHidden>
                 <Dialog.Description>
-                    Pinned Messages
+                    {__('Pinned Messages')}
                 </Dialog.Description>
             </VisuallyHidden>
             <ErrorBanner error={error} />

@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { BiTrash } from 'react-icons/bi'
 import { useGetFilePreviewUrl } from '../../../hooks/useGetFilePreviewUrl'
 import { FileExtensionIcon } from '../../../utils/layout/FileExtIcon'
@@ -24,7 +25,7 @@ export const FileListItem = ({ file, removeFile, uploadProgress }: FileListItemP
     return (
         <Flex width='100%' justify={'start'} gap='2' className='border rounded-md border-slate-8 dark:bg-slate-5 bg-slate-2' px='1' py='1'>
             <Flex align='center' justify='center' className='w-12 h-12'>
-                {previewURL ? <img src={previewURL} alt='File preview' className='w-10 h-10 aspect-square object-cover rounded-md' /> : <FileExtensionIcon ext={getFileExtension(file.name)} className='h-10' />}
+                {previewURL ? <img src={previewURL} alt={__('File preview')} className='w-10 h-10 aspect-square object-cover rounded-md' /> : <FileExtensionIcon ext={getFileExtension(file.name)} className='h-10' />}
             </Flex>
             <Flex justify="between" className='w-48' align='center'>
                 <Flex direction='column' width='100%' pr='2' className='overflow-hidden whitespace-nowrap'>
@@ -48,9 +49,9 @@ export const FileListItem = ({ file, removeFile, uploadProgress }: FileListItemP
                             size="1"
                             mx='1'
                             color='red'
-                            title='Remove File'
+                            title={__('Remove File')}
                             variant="ghost"
-                            aria-label="Remove File">
+                            aria-label={__('Remove File')}>
                             <BiTrash />
                         </IconButton>
                     }

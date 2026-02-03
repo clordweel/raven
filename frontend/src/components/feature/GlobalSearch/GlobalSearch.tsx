@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { FileSearch } from "./FileSearch"
 import { MessageSearch } from "./MessageSearch"
 import { Dialog, Flex, Tabs, Box } from "@radix-ui/themes"
@@ -59,12 +60,12 @@ const GlobalSearchContent = (props: GlobalSearchModalProps) => {
 
     const { tabIndex, input, fromFilter, withFilter, inFilter, onClose } = props
 
-    return <><Dialog.Title>Search Results</Dialog.Title>
+    return <><Dialog.Title>{__('Search Results')}</Dialog.Title>
         <Flex direction='column' gap='2'>
             <Tabs.Root defaultValue={tabIndex.toString()}>
                 <Tabs.List>
-                    <Tabs.Trigger value="0">Messages</Tabs.Trigger>
-                    <Tabs.Trigger value="1">Files</Tabs.Trigger>
+                    <Tabs.Trigger value="0">{__('Messages')}</Tabs.Trigger>
+                    <Tabs.Trigger value="1">{__('Files')}</Tabs.Trigger>
                 </Tabs.List>
                 <Box pt="3" pb="2">
                     <Tabs.Content value="0">

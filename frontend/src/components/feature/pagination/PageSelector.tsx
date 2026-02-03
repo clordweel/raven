@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Flex, Text, IconButton } from '@radix-ui/themes'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
@@ -22,7 +23,7 @@ export const PageSelector = ({ start, rowsPerPage, totalRows, gotoPreviousPage, 
     return (
         <Flex gap='2'>
             <IconButton
-                aria-label="go to previous page"
+                aria-label={__('Go to previous page')}
                 size='1'
                 color='gray'
                 variant='ghost'
@@ -33,11 +34,11 @@ export const PageSelector = ({ start, rowsPerPage, totalRows, gotoPreviousPage, 
             </IconButton>
 
             <Text size='1' weight='light' as='span'>
-                {start} - {end} of {totalRows}
+                {start} - {end} {__('of')} {totalRows}
             </Text>
 
             <IconButton
-                aria-label="go to next page"
+                aria-label={__('Go to next page')}
                 size='1'
                 variant='ghost'
                 color='gray'

@@ -28,19 +28,19 @@ export const WebhookItem = ({ webhook, mutate }: { webhook: RavenWebhook, mutate
                 <Flex direction='column' gap='1'>
                     <Flex direction={'row'} gap={'2'}>
                         <Text size={'2'} weight={'bold'}>{webhook.name}</Text>
-                        <Badge color={webhook.enabled ? 'green' : 'red'}>{webhook.enabled ? 'Enabled' : 'Disabled'}</Badge>
+                        <Badge color={webhook.enabled ? 'green' : 'red'}>{webhook.enabled ? __('Enabled') : __('Disabled')}</Badge>
                     </Flex>
                     <Text size='1' style={{
                         fontStyle: 'italic',
                         color: 'gray'
-                    }}>Created by {webhook.owner} on <DateMonthYear date={webhook.creation} /></Text>
+                    }}>{__('Created by')} {webhook.owner} {__('on')} <DateMonthYear date={webhook.creation} /></Text>
                 </Flex>
                 <Flex direction={'row'} gap={'2'} align={'center'}>
                     <IconButton
                         variant="ghost"
                         color="gray"
-                        aria-label="Click to edit webhook"
-                        title='Edit webhook'
+                        aria-label={__('Click to edit webhook')}
+                        title={__('Edit webhook')}
                         onClick={() => navigate(`./${webhook.name}`)}
                         style={{
                             // @ts-ignore
@@ -55,8 +55,8 @@ export const WebhookItem = ({ webhook, mutate }: { webhook: RavenWebhook, mutate
                             <IconButton
                                 variant="ghost"
                                 color="red"
-                                aria-label="Click to delete webhook"
-                                title='Delete webhook'
+                                aria-label={__('Click to delete webhook')}
+                                title={__('Delete webhook')}
                                 onClick={() => { }}
                                 style={{
                                     // @ts-ignore
@@ -84,7 +84,7 @@ const DeleteWebhookAlertContent = ({ webhhookID, onClose, mutate }: { webhhookID
         deleteDoc('Raven Webhook', webhhookID).then(() => {
             mutate()
             onClose()
-            toast.error('Webhook deleted.')
+            toast.error(__('Webhook deleted.'))
         })
     }
 
