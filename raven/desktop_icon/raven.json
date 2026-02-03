@@ -1,0 +1,20 @@
+{
+ "app": "raven",
+ "creation": "2026-01-30 16:04:55.288330",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "App",
+ "idx": 0,
+ "label": "Raven",
+ "link": "/raven",
+ "link_type": "External",
+ "logo_url": "/assets/raven/raven-logo.png",
+ "modified": "2026-01-30 16:04:55.288330",
+ "modified_by": "Administrator",
+ "name": "Raven",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [],
+ "standard": 1
+}
