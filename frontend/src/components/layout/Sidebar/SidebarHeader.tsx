@@ -58,7 +58,7 @@ const CommandMenuButton = () => {
 
     return <Button
         onClick={() => setOpen(true)}
-        aria-label='Open command menu'
+        aria-label={__('Open command menu')}
         title={__("Open command menu")}
         className='bg-gray-3 hover:bg-gray-4 p-2 rounded-md flex justify-between items-center min-w-48 text-gray-11 sm:hover:text-gray-12'
         color='gray'
@@ -76,10 +76,10 @@ const SearchButton = () => {
     const setOpen = useSetAtom(commandMenuOpenAtom)
 
     return (
-        <Tooltip content="Search">
+        <Tooltip content={__('Search')}>
             <IconButton
                 size={{ initial: '2', md: '1' }}
-                aria-label='Open command menu'
+                aria-label={__('Open command menu')}
                 title={__("Open command menu")}
                 color='gray'
                 className='text-gray-11 sm:hover:text-gray-12 p-2'
@@ -108,7 +108,7 @@ const ColorModeToggleButton = () => {
     return <Flex align='center' justify='center' pr='1'>
         <IconButton
             size={{ initial: '2', md: '1' }}
-            aria-label='Toggle theme'
+            aria-label={__('Toggle theme')}
             title={__("Toggle theme")}
             color='gray'
             className='text-gray-11 sm:hover:text-gray-12 p-2'

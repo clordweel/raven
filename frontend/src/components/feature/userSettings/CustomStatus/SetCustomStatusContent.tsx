@@ -56,7 +56,7 @@ const SetCustomStatusContent = ({ onClose }: { onClose: VoidFunction }) => {
                                 <TextField.Root
                                     id="custom_status"
                                     autoFocus
-                                    placeholder='e.g. Out of Office'
+                                    placeholder={__('e.g. Out of Office')}
                                     maxLength={140}
                                     {...register('custom_status', {
                                         maxLength: {

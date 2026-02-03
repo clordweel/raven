@@ -101,7 +101,7 @@ const MemberRow = ({ users, member, isAdmin, workspaceID }: { users: Record<stri
                 <Text as='span'>
                     {user?.full_name ?? member.user}
                 </Text>
-                {member.is_admin ? <Tooltip content='Admin'>
+                {member.is_admin ? <Tooltip content={__('Admin')}>
                     <Text as='span' className='h-full flex items-center'>
                         <BiSolidCrown fontSize={18} color='#FFC53D' />
                     </Text>

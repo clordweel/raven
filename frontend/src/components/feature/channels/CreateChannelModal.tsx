@@ -206,7 +206,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                                     maxLength={50}
                                     required
                                     autoFocus={isDesktop}
-                                    placeholder='e.g. red-wedding-planning, joffrey-memes'
+                                    placeholder={__('e.g. red-wedding-planning, joffrey-memes')}
                                     color={error ? 'red' : undefined}
                                     {...field}
                                     aria-invalid={error ? 'true' : 'false'}
@@ -227,7 +227,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                         <Label htmlFor='channel_description'>{__("Description")} <Text as='span' weight='light'>({__("optional")})</Text></Label>
                         <TextArea
                             id='channel_description'
-                            placeholder='Great wine and food. What could go wrong?'
+                            placeholder={__('e.g. Great wine and food. What could go wrong?')}
                             {...register('channel_description')}
                             aria-invalid={errors.channel_description ? 'true' : 'false'}
                         />

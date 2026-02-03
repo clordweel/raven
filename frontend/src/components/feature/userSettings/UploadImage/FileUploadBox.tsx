@@ -195,9 +195,9 @@ const FileItem = ({ file, removeFile, uploadProgress }: FileItemProps) => {
                         onClick={removeFile}
                         size="1"
                         color='red'
-                        title='Remove File'
+                        title={__('Remove File')}
                         variant="ghost"
-                        aria-label="Remove File">
+                        aria-label={__('Remove File')}>
                         <BiTrash />
                     </IconButton>
                 }

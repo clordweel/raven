@@ -38,7 +38,7 @@ const MentionsButton = () => {
             <Popover.Trigger>
                 <IconButton
                     size={{ initial: '2', md: '2' }}
-                    aria-label='View mentions'
+                    aria-label={__('View mentions')}
                     title={__("View mentions")}
                     color='gray'
                     variant='ghost'

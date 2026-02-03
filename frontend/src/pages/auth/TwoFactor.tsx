@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations";
 import { Box, Button, Flex, Text, TextField, Link as LinkButton } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { AuthResponse, FrappeError, OTPCredentials, useFrappeAuth } from "frappe-react-sdk";
@@ -71,7 +72,7 @@ export const TwoFactor = ({ loginWithTwoFAResponse, setError, setIsTwoFactorEnab
                             variant={appearance === 'dark' ? "soft" : undefined}
                             color="gray"
                             required
-                            placeholder="Verification Code"
+                            placeholder={__('Verification Code')}
                             autoFocus
                             tabIndex={0} />
                         {errors?.otp && <ErrorText>{errors?.otp.message}</ErrorText>}

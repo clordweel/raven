@@ -117,14 +117,14 @@ export const Component = () => {
                                             id="password"
                                             size='3'
                                             variant={appearance === 'dark' ? "soft" : undefined}
-                                            placeholder="***********"
+                                            placeholder={__('***********')}
                                             color="gray" >
                                             <TextField.Slot side='right'>
                                                 <IconButton
                                                     type='button'
                                                     size='1'
                                                     variant='ghost'
-                                                    aria-label={isPasswordOpen ? "Mask password" : "Reveal password"}
+                                                    aria-label={isPasswordOpen ? __("Mask password") : __("Reveal password")}
                                                     onClick={onClickReveal}
                                                     tabIndex={-1}>
                                                     {isPasswordOpen ? <BiHide /> : <BiShow />}

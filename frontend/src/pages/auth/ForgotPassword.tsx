@@ -9,6 +9,7 @@ import {
     TextField,
     Link as LinkButton,
 } from "@radix-ui/themes";
+import { __ } from "@/utils/translations";
 import { ErrorText, Label } from "@/components/common/Form";
 import { Loader } from "@/components/common/Loader";
 import { CalloutObject } from "@/components/common/Callouts/CustomCallout";
@@ -75,7 +76,7 @@ export const Component = () => {
                                 name="user"
                                 type="email"
                                 size='3'
-                                placeholder="jane@example.com"
+                                placeholder={__('jane@example.com')}
                                 color="gray"
                                 variant={appearance === 'dark' ? "soft" : undefined}
                                 tabIndex={0}

@@ -1,5 +1,5 @@
 import { IconButton, Tooltip } from "@radix-ui/themes"
-
+import { __ } from "@/utils/translations"
 import { useChannelList } from "@/utils/channel/ChannelListProvider"
 import { ChannelIcon } from "@/utils/layout/channelIcon"
 import { Select, Text, TextField } from "@radix-ui/themes"
@@ -9,7 +9,7 @@ import { toast } from "sonner"
 export const SearchFilter = ({ search, setSearch }: { search: string, setSearch: (search: string) => void }) => {
     return (
         <div>
-            <TextField.Root placeholder="Search threads..." value={search} onChange={(e) => setSearch(e.target.value)} className='sm:min-w-64'>
+            <TextField.Root placeholder={__('Search threads...')} value={search} onChange={(e) => setSearch(e.target.value)} className='sm:min-w-64'>
                 <TextField.Slot>
                     <BiSearch size={16} />
                 </TextField.Slot>
@@ -25,9 +25,9 @@ export const ChannelFilter = ({ channel, setChannel }: { channel: string, setCha
     return (
         <div>
             <Select.Root value={channel} onValueChange={setChannel}>
-                <Select.Trigger placeholder='Channel / DM' className='sm:min-w-48' />
+                <Select.Trigger placeholder={__('Channel / DM')} className='sm:min-w-48' />
                 <Select.Content className="z-50">
-                    <Select.Item value='all'>Any Channel</Select.Item>
+                    <Select.Item value='all'>{__('Any Channel')}</Select.Item>
                     {channels.map(channel => <Select.Item key={channel.name} value={channel.name}>
                         <div className='gap-1 items-center flex overflow-hidden'>
                             <ChannelIcon type={channel.type} />
@@ -49,22 +49,22 @@ export const UnreadFilter = ({ onlyShowUnread, setOnlyShowUnread }: { onlyShowUn
         setOnlyShowUnread(!onlyShowUnread)
 
         if (currentValue) {
-            toast.info('Viewing all threads', {
+            toast.info(__('Viewing all threads'), {
                 position: 'bottom-center',
                 duration: 800
             })
         } else {
-            toast.info('Viewing only unread threads', {
+            toast.info(__('Viewing only unread threads'), {
                 position: 'bottom-center',
                 duration: 800
             })
         }
     }
 
-    const text = onlyShowUnread ? 'Showing only unread threads' : 'Showing all threads'
+    const text = onlyShowUnread ? __('Showing only unread threads') : __('Showing all threads')
 
     return (
-        <Tooltip content={"Filter unread threads"}>
+        <Tooltip content={__('Filter unread threads')}>
             <IconButton
                 variant={onlyShowUnread ? 'solid' : 'soft'}
                 aria-label={text}

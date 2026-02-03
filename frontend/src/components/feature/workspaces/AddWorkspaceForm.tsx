@@ -85,7 +85,7 @@ const AddWorkspaceForm = ({ onClose }: { onClose: (workspaceID?: string) => void
                                     required: 'Name is required',
                                 })}
                                 autoFocus={isDesktop}
-                                placeholder="e.g. My Workspace"
+                                placeholder={__('e.g. My Workspace')}
                                 aria-invalid={errors.workspace_name ? 'true' : 'false'}
                             />
                         </Box>
@@ -100,7 +100,7 @@ const AddWorkspaceForm = ({ onClose }: { onClose: (workspaceID?: string) => void
                                 {...register('description')}
                                 rows={2}
                                 resize='vertical'
-                                placeholder="What is this workspace for?"
+                                placeholder={__('What is this workspace for?')}
                                 aria-invalid={errors.description ? 'true' : 'false'}
                             />
                         </Box>

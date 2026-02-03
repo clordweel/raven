@@ -24,7 +24,7 @@ const WorkspaceEditForm = () => {
                                 {...register('description')}
                                 rows={2}
                                 resize='vertical'
-                                placeholder="What is this workspace for?"
+                                placeholder={__('What is this workspace for?')}
                                 aria-invalid={errors.description ? 'true' : 'false'}
                             />
                         </Box>

@@ -10,6 +10,7 @@ import html from 'highlight.js/lib/languages/xml'
 import json from 'highlight.js/lib/languages/json'
 import StarterKit from '@tiptap/starter-kit'
 import '@/components/feature/chat/ChatInput/tiptap.styles.css'
+import { __ } from '@/utils/translations'
 import { IconButton, Tooltip } from '@radix-ui/themes'
 import { BiClipboard, BiCopy } from 'react-icons/bi'
 import { toast } from 'sonner'
@@ -77,7 +78,7 @@ const CodeBlock = ({ code }: Props) => {
     return (
         <div className='relative'>
             <EditorContent editor={editor} />
-            <Tooltip content={copied ? 'Copied' : 'Copy'}>
+            <Tooltip content={copied ? __('Copied') : __('Copy')}>
                 <IconButton
                     variant='ghost'
                     size='2'

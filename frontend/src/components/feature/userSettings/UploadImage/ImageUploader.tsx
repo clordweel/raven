@@ -63,9 +63,9 @@ export const UploadImage = ({ open, setOpen, uploadImage, userID }: { open: bool
 
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
-            <Tooltip content="Upload Image" side="right">
+            <Tooltip content={__('Upload Image')} side="right">
                 <Dialog.Trigger>
-                    <IconButton type='button' aria-label="upload image" size={'1'}
+                    <IconButton type='button' aria-label={__('upload image')} size={'1'}
                         className={'absolute -right-2 -bottom-1 rounded-md shadow-md'}>
                         <FiCamera size={'12'} />
                     </IconButton>
@@ -86,9 +86,9 @@ export const DeleteImage = ({ open, setOpen }: { open: boolean, setOpen: (open: 
 
     return (
         <AlertDialog.Root open={open} onOpenChange={setOpen}>
-            <Tooltip content="Remove Image" side="right">
+            <Tooltip content={__('Remove Image')} side="right">
                 <AlertDialog.Trigger>
-                    <IconButton type='button' aria-label="remove image" size={'1'}
+                    <IconButton type='button' aria-label={__('remove image')} size={'1'}
                         className={'absolute -right-2 bottom-6 rounded-md bg-white dark:bg-slate-4 shadow-md'}>
                         <BiSolidTrash size={'12'} color="tomato" />
                     </IconButton>

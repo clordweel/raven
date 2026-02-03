@@ -106,7 +106,7 @@ const UserProfileForm = ({ myProfile }: { myProfile: RavenUser }) => {
                                                 maxLength={140}
                                                 className={'w-48 sm:w-96'}
                                                 id='full_name'
-                                                placeholder='Full Name'
+                                                placeholder={__('Full Name')}
                                                 {...register('full_name', {
                                                     maxLength: {
                                                         value: 140,
@@ -164,7 +164,7 @@ const UserProfileForm = ({ myProfile }: { myProfile: RavenUser }) => {
                                             <Flex direction={'column'} gap='1'>
                                                 <TextField.Root
                                                     id="custom_status"
-                                                    placeholder='e.g. Out of Office'
+                                                    placeholder={__('e.g. Out of Office')}
                                                     maxLength={140}
                                                     {...register('custom_status', {
                                                         maxLength: {

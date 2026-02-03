@@ -10,6 +10,7 @@ import {
     Text,
     Link as LinkButton,
 } from "@radix-ui/themes";
+import { __ } from "@/utils/translations";
 import { ErrorText, Label } from "@/components/common/Form";
 import { Loader } from "@/components/common/Loader";
 import { isEmailValid } from "@/utils/validations";
@@ -78,7 +79,7 @@ export const Component = () => {
                                 required
                                 size='3'
                                 color="gray"
-                                placeholder="Jane Doe"
+                                placeholder={__('Jane Doe')}
                                 variant={appearance === 'dark' ? "soft" : undefined}
                                 tabIndex={0}
                             />
@@ -104,7 +105,7 @@ export const Component = () => {
                                 color="gray"
                                 variant={appearance === 'dark' ? "soft" : undefined}
                                 required
-                                placeholder="jane@example.com"
+                                placeholder={__('jane@example.com')}
                                 tabIndex={0}
                             />
                             {errors?.email && (

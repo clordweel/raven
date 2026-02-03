@@ -4,6 +4,7 @@ import { BiDotsHorizontal } from "react-icons/bi"
 import clsx from "clsx"
 import { Link } from "react-router-dom"
 import { LuChevronRight } from "react-icons/lu"
+import { __ } from "@/utils/translations"
 import { Tooltip } from "@radix-ui/themes"
 import { toast } from "sonner"
 
@@ -80,7 +81,7 @@ const BreadcrumbPage = React.forwardRef<
     }
 
     if (copyToClipboard && value) {
-        return <Tooltip content={"Click to copy"}>
+        return <Tooltip content={__('Click to copy')}>
             <span
                 ref={ref}
                 role={copyToClipboard ? "button" : "link"}
