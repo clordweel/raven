@@ -1,5 +1,6 @@
 import { useFrappeUpdateDoc } from "frappe-react-sdk"
 import { useEffect } from "react"
+import { __ } from "@/utils/translations"
 import { ErrorBanner } from "../../../../layout/AlertBanner/ErrorBanner"
 import { IconButton, Dialog, Flex, Text, VisuallyHidden } from "@radix-ui/themes"
 import { BiX } from "react-icons/bi"
@@ -24,16 +25,16 @@ export const EditMessageModal = ({ onClose, message }: EditMessageModalProps) =>
         return updateDoc('Raven Message', message.name,
             { text: html, json }).then((d) => {
                 onClose(true)
-                toast.info("Message updated")
+                toast.info(__("Message updated"))
             })
     }
 
     return (
         <>
             <Flex justify={'between'}>
-                <Dialog.Title>Edit Message</Dialog.Title>
+                <Dialog.Title>{__('Edit Message')}</Dialog.Title>
                 <VisuallyHidden>
-                    <Dialog.Description>Type in the new message text</Dialog.Description>
+                    <Dialog.Description>{__('Type in the new message text')}</Dialog.Description>
                 </VisuallyHidden>
                 <Dialog.Close disabled={updatingDoc} className="invisible sm:visible">
                     <IconButton size='1' variant="soft" color="gray">
@@ -46,7 +47,7 @@ export const EditMessageModal = ({ onClose, message }: EditMessageModalProps) =>
                 <ErrorBanner error={error} />
                 <Tiptap onMessageSend={onSubmit} isEdit disableSessionStorage messageSending={updatingDoc} defaultText={message.text} />
                 <Flex justify='end' className="hidden sm:block">
-                    <Text size='1' color='gray'>Press <b>Enter</b> to save</Text>
+                    <Text size='1' color='gray'>{__('Press')} <b>Enter</b> {__('to save')}</Text>
                 </Flex>
             </Flex>
         </>

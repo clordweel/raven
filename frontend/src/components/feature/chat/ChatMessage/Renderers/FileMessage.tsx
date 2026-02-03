@@ -1,6 +1,7 @@
 import { FileMessage } from "../../../../../../../types/Messaging/Message"
 import { getFileExtension, getFileName, isVideoFile } from "../../../../../utils/operations"
 import { UserFields } from "@/utils/users/UserListProvider"
+import { __ } from '@/utils/translations'
 import { Box, BoxProps, Button, Dialog, Flex, IconButton, Link, Text } from "@radix-ui/themes"
 import { BiDownload, BiLink, BiShow } from "react-icons/bi"
 import { DIALOG_CONTENT_CLASS } from "@/utils/layout/dialog"
@@ -36,7 +37,7 @@ export const FileMessageBlock = memo(({ message, user, ...props }: FileMessageBl
             navigator.clipboard.writeText(window.location.origin + fileURL)
         }
 
-        toast.success('Link copied')
+        toast.success(__('Link copied'))
     }
 
     const isDesktop = useIsDesktop()
@@ -48,7 +49,7 @@ export const FileMessageBlock = memo(({ message, user, ...props }: FileMessageBl
                 href={message.file}
                 size='1'
                 download
-                title="Download"
+                title={__("Download")}
                 color='gray'
                 target='_blank'>{fileName}</Link>
             <video src={message.file} controls className="rounded-md shadow-md max-h-96 max-w-[620px]" preload="metadata">
@@ -74,7 +75,7 @@ export const FileMessageBlock = memo(({ message, user, ...props }: FileMessageBl
                             md: '1',
                             sm: '2',
                         }}
-                        title="Copy link"
+                        title={__("Copy link")}
                         color='gray'
                         onClick={copyLink}
                         variant="soft"
@@ -87,7 +88,7 @@ export const FileMessageBlock = memo(({ message, user, ...props }: FileMessageBl
                             sm: '2',
                         }}
                         asChild
-                        title="Download"
+                        title={__("Download")}
                         color='gray'
                         variant="soft"
                     >
@@ -121,7 +122,7 @@ const PDFPreviewButton = ({ message, user }: {
                     }}
                     color='gray'
                     variant="soft"
-                    title='Preview'
+                    title={__('Preview')}
                 >
                     <BiShow className="text-lg sm:text-base" />
                 </IconButton>
@@ -150,11 +151,11 @@ const PDFPreviewContent = ({ fileName, user, message }: { fileName: string, user
             <Button variant='soft' color='gray' asChild>
                 <Link className='no-underline' href={message.file} download>
                     <BiDownload size='18' />
-                    Download
+                    {__('Download')}
                 </Link>
             </Button>
             <Dialog.Close>
-                <Button color='gray' variant='soft'>Close</Button>
+                <Button color='gray' variant='soft'>{__('Close')}</Button>
             </Dialog.Close>
         </Flex></>
 

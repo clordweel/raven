@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
 import { ChannelIcon } from '@/utils/layout/channelIcon'
 import { Flex, Theme, Text } from '@radix-ui/themes'
@@ -93,7 +94,7 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         align='center'
         ref={ref}
         title={item.channel_name}
-        aria-label={`Mention channel ${item.channel_name}`}
+        aria-label={__("Mention channel {0}", [item.channel_name])}
         className={clsx('px-3 py-2 gap-2 rounded-md',
             index === itemsLength - 1 ? 'rounded-b-md' : 'rounded-b-none',
             index === 0 ? 'rounded-t-md' : 'rounded-t-none',

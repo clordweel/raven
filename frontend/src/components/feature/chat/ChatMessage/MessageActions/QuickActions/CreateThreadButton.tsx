@@ -1,5 +1,6 @@
 import { useFrappePostCall } from 'frappe-react-sdk'
 import { toast } from 'sonner'
+import { __ } from '@/utils/translations'
 import { QuickActionButton } from './QuickActionButton'
 import { BiMessageDetail } from 'react-icons/bi'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -13,10 +14,10 @@ const useCreateThread = (messageID: string) => {
     const { call } = useFrappePostCall('raven.api.threads.create_thread')
     const handleCreateThread = () => {
         call({ 'message_id': messageID }).then((res) => {
-            toast.success('Thread created')
+            toast.success(__('Thread created'))
             navigate(`/${workspaceID}/${res.message.channel_id}/thread/${res.message.thread_id}`)
         }).catch(() => {
-            toast.error('Failed to create thread')
+            toast.error(__('Failed to create thread'))
         })
     }
 
@@ -29,8 +30,8 @@ export const CreateThreadActionButton = ({ messageID }: { messageID: string }) =
 
     return (
         <QuickActionButton
-            tooltip='Create a thread'
-            aria-label='Create a thread'
+            tooltip={__('Create a thread')}
+            aria-label={__('Create a thread')}
             onClick={handleCreateThread}>
             <BiMessageDetail size='16' />
         </QuickActionButton>
@@ -44,7 +45,7 @@ export const CreateThreadContextItem = ({ messageID }: { messageID: string }) =>
     return <ContextMenu.Item onSelect={handleCreateThread}>
         <Flex gap='2' align='center' width='100%'>
             <BiMessageDetail size='18' />
-            Create Thread
+            {__('Create Thread')}
 
         </Flex>
     </ContextMenu.Item>

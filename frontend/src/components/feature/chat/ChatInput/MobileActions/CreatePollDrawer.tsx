@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Loader } from '@/components/common/Loader'
 import { Drawer, DrawerContent } from '@/components/layout/Drawer'
 import { Dialog } from '@radix-ui/themes'
@@ -24,10 +25,10 @@ const CreatePollDrawer = ({
             <DrawerContent>
                 <div className='pb-16 min-h-64 px-1 overflow-auto'>
                     <Dialog.Title>
-                        Create Poll
+                        {__('Create Poll')}
                     </Dialog.Title>
                     <Dialog.Description size='2'>
-                        Create a quick poll to get everyone's thoughts on a topic.
+                        {__("Create a quick poll to get everyone's thoughts on a topic.")}
                     </Dialog.Description>
                     <Suspense fallback={<Loader />}>
                         <CreatePollContent setIsOpen={setIsOpen} channelID={channelID} />

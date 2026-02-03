@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Box, Button, Dialog, Flex, IconButton, Text, TextArea, Tooltip } from '@radix-ui/themes'
 import { DEFAULT_BUTTON_STYLE, ICON_PROPS } from './ToolPanel'
 import { LuFileBox } from 'react-icons/lu'
@@ -24,18 +25,18 @@ const DocumentLinkButton = ({ channelID }: { channelID: string }) => {
         <Tooltip content={`Attach a document from the system`}>
             <Dialog.Trigger>
                 <IconButton
-                    aria-label='Attach a document from the system'
+                    aria-label={__('Attach a document from the system')}
                     variant='ghost'
                     className={DEFAULT_BUTTON_STYLE}
                     size='1'
-                    title='Attach a document from the system'>
+                    title={__('Attach a document from the system')}>
                     <LuFileBox {...ICON_PROPS} />
                 </IconButton>
             </Dialog.Trigger>
         </Tooltip>
         <Dialog.Content className={'static'}>
-            <Dialog.Title className='mb-1'>Send a document</Dialog.Title>
-            <Dialog.Description size='2'>Choose a document from the system to send.</Dialog.Description>
+            <Dialog.Title className='mb-1'>{__('Send a document')}</Dialog.Title>
+            <Dialog.Description size='2'>{__('Choose a document from the system to send.')}</Dialog.Description>
             <DocumentLinkForm channelID={channelID} onClose={off} />
         </Dialog.Content>
     </Dialog.Root>
@@ -95,12 +96,12 @@ const DocumentLinkForm = ({ channelID, onClose }: { channelID: string, onClose: 
                     <Flex direction='column' gap='2'>
                         <LinkFormField
                             name='doctype'
-                            label='Document Type'
+                            label={__('Document Type')}
                             autofocus
                             suggestedItems={recentlyUsedDoctypes}
                             required
                             rules={{
-                                required: 'Document Type is required',
+                                required: __('Document Type is required'),
                                 onChange: onDoctypeChange
                             }}
                             filters={[["issingle", "=", 0], ["istable", "=", 0]]}
@@ -115,10 +116,10 @@ const DocumentLinkForm = ({ channelID, onClose }: { channelID: string, onClose: 
                             <LinkFormField
                                 name='docname'
                                 required
-                                label='Document Name'
-                                placeholder="Select a document"
+                                label={__('Document Name')}
+                                placeholder={__("Select a document")}
                                 disabled={!doctype}
-                                rules={{ required: 'Document Name is required' }}
+                                rules={{ required: __('Document Name is required') }}
                                 doctype={doctype}
                             />
                             <ErrorText>{methods.formState.errors.docname?.message}</ErrorText>
@@ -132,19 +133,19 @@ const DocumentLinkForm = ({ channelID, onClose }: { channelID: string, onClose: 
 
                 <Box width='100%'>
                     <Flex direction='column' gap='0'>
-                        <Label>Message <Text as='span' size='1' color='gray'>(Optional)</Text></Label>
-                        <TextArea {...methods.register('message')} placeholder='Enter a message to send with the document' />
+                        <Label>{__('Message')} <Text as='span' size='1' color='gray'>({__('Optional')})</Text></Label>
+                        <TextArea {...methods.register('message')} placeholder={__('Enter a message to send with the document')} />
                     </Flex>
                 </Box>
 
                 <Flex gap="3" mt="6" justify="end" align='center'>
                     <Dialog.Close disabled={loading}>
-                        <Button variant="soft" color="gray">Cancel</Button>
+                        <Button variant="soft" color="gray">{__('Cancel')}</Button>
                     </Dialog.Close>
                     <Button type='button' disabled={loading} onClick={methods.handleSubmit(onSubmit)}
                     >
                         {loading && <Loader className="text-white" />}
-                        Send
+                        {__('Send')}
                     </Button>
                 </Flex>
             </Stack>

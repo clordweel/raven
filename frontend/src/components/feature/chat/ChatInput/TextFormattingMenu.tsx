@@ -1,4 +1,5 @@
 import { useCurrentEditor } from '@tiptap/react'
+import { __ } from '@/utils/translations'
 import { BiBold, BiCodeAlt, BiCodeBlock, BiHighlight, BiItalic, BiListOl, BiListUl, BiStrikethrough, BiUnderline, BiSolidQuoteAltRight, BiTime } from 'react-icons/bi'
 import { DEFAULT_BUTTON_STYLE, ICON_PROPS } from './ToolPanel'
 import { Box, Flex, IconButton, Separator, Tooltip } from '@radix-ui/themes'
@@ -20,9 +21,9 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + B'} aria-label={getKeyboardMetaKeyString() + ' + B'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleBold().run()}
-                        aria-label='bold'
+                        aria-label={__('bold')}
                         variant='ghost'
-                        title='Bold'
+                        title={__('Bold')}
                         size='1'
                         className={editor.isActive('bold') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
                         disabled={
@@ -38,8 +39,8 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + I'} aria-label={getKeyboardMetaKeyString() + ' + I'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleItalic().run()}
-                        aria-label='italic'
-                        title='Italic'
+                        aria-label={__('italic')}
+                        title={__('Italic')}
                         variant='ghost'
                         size='1'
                         className={editor.isActive('italic') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
@@ -56,8 +57,8 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + U'} aria-label={getKeyboardMetaKeyString() + ' + U'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleUnderline().run()}
-                        aria-label='underline'
-                        title='Underline'
+                        aria-label={__('underline')}
+                        title={__('Underline')}
                         variant='ghost'
                         size='1'
                         className={editor.isActive('underline') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
@@ -78,10 +79,10 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + E'} aria-label={getKeyboardMetaKeyString() + ' + E'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleCode().run()}
-                        aria-label='code'
+                        aria-label={__('code')}
                         variant='ghost'
                         size='1'
-                        title='Code'
+                        title={__('Code')}
                         className={editor.isActive('code') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
                         disabled={
                             !editor.can()
@@ -97,10 +98,10 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + '+ Shift + E'} aria-label={getKeyboardMetaKeyString() + '+ Shift + E'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-                        aria-label='code block'
+                        aria-label={__('code block')}
                         variant='ghost'
                         size='1'
-                        title='Code Block'
+                        title={__('Code Block')}
                         className={editor.isActive('codeBlock') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
                         disabled={
                             !editor.can()
@@ -116,10 +117,10 @@ export const TextFormattingMenu = memo(() => {
                 {/* <Tooltip content={getKeyboardMetaKeyString() + ' + Shift + X'} aria-label={getKeyboardMetaKeyString() + ' + Shift + X'}> */}
                 <IconButton
                     onClick={() => editor.chain().focus().toggleStrike().run()}
-                    aria-label='strike'
+                    aria-label={__('strike')}
                     variant='ghost'
                     size='1'
-                    title='Strike'
+                    title={__('Strike')}
                     className={editor.isActive('strike') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
                     disabled={
                         !editor.can()
@@ -135,9 +136,9 @@ export const TextFormattingMenu = memo(() => {
                 {/* <Tooltip content={getKeyboardMetaKeyString() + ' + Shift + B'} aria-label={getKeyboardMetaKeyString() + ' + Shift + B'}> */}
                 <IconButton
                     onClick={() => editor.chain().focus().toggleBlockquote().run()}
-                    aria-label='blockquote'
+                    aria-label={__('blockquote')}
                     className={editor.isActive('blockquote') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
-                    title='Blockquote'
+                    title={__('Blockquote')}
                     size='1'
                     variant='ghost'
                     disabled={
@@ -157,8 +158,8 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + Shift + 7'} aria-label={getKeyboardMetaKeyString() + ' + Shift + 7'}>
                     <IconButton
                         onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                        aria-label='ordered list'
-                        title='Ordered List'
+                        aria-label={__('ordered list')}
+                        title={__('Ordered List')}
                         size='1'
                         variant='ghost'
                         className={editor.isActive('orderedList') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
@@ -176,8 +177,8 @@ export const TextFormattingMenu = memo(() => {
                 <Tooltip content={getKeyboardMetaKeyString() + ' + Shift + 8'} aria-label={getKeyboardMetaKeyString() + ' + Shift + 8'}>
                     <IconButton
                         onClick={() => editor.chain().focus().liftEmptyBlock().toggleBulletList().run()}
-                        aria-label='bullet list'
-                        title='Bullet List'
+                        aria-label={__('bullet list')}
+                        title={__('Bullet List')}
                         size='1'
                         variant='ghost'
                         className={editor.isActive('bulletList') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
@@ -197,9 +198,9 @@ export const TextFormattingMenu = memo(() => {
             <Flex gap='3' align='center'>
                 <Tooltip content={getKeyboardMetaKeyString() + ' + Shift + H'} aria-label={getKeyboardMetaKeyString() + ' + Shift + H'}>
                     <IconButton
-                        aria-label='highlight'
+                        aria-label={__('highlight')}
                         onClick={() => editor.chain().focus().toggleHighlight().run()}
-                        title='Highlight'
+                        title={__('Highlight')}
                         variant='ghost'
                         size='1'
                         className={editor.isActive('highlight') ? highlightBgColor : DEFAULT_BUTTON_STYLE}
@@ -301,9 +302,9 @@ const TimestampButton = () => {
 
     return <Flex gap='3' align='center'>
         <IconButton
-            aria-label='Parse timestamps from message'
+            aria-label={__('Parse timestamps from message')}
             onClick={onClick}
-            title='Parse timestamps from message'
+            title={__('Parse timestamps from message')}
             variant='ghost'
             size='1'
             className={DEFAULT_BUTTON_STYLE}

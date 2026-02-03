@@ -1,4 +1,5 @@
 import { useDoctypePreview } from "@/hooks/useDoctypePreview"
+import { __ } from '@/utils/translations'
 import { AspectRatio, Badge, DataList, DropdownMenu, Flex, Heading, IconButton, Skeleton, Tooltip } from "@radix-ui/themes"
 import { FrappeConfig, FrappeContext, useFrappeGetCall } from "frappe-react-sdk"
 import { useContext, useMemo, useState } from "react"
@@ -59,9 +60,9 @@ const DoctypeCard = ({ data, doctype, route, docname, mutate }: {
 
     const onCopyLinkClick = () => {
         toast.promise(() => copyToClipboard(route), {
-            loading: 'Copying link...',
-            success: 'Link copied!',
-            error: 'Failed to copy link'
+            loading: __('Copying link...'),
+            success: __('Link copied!'),
+            error: __('Failed to copy link')
         })
     }
 
@@ -121,11 +122,11 @@ const DoctypeCard = ({ data, doctype, route, docname, mutate }: {
                         </Grid>
                     </Flex>
                     <Flex gap='3' align='center'>
-                        <Tooltip content='Open in new tab' delayDuration={800}>
+                        <Tooltip content={__('Open in new tab')} delayDuration={800}>
                             <IconButton
                                 size='1'
-                                title='Open in new tab'
-                                aria-label="Open in new tab"
+                                title={__('Open in new tab')}
+                                aria-label={__("Open in new tab")}
                                 color='gray'
                                 asChild
                                 variant='ghost'
@@ -215,8 +216,8 @@ const DoctypeActionMenu = ({ doctype, docname, onCopyLinkClick, mutate }: { doct
         <DropdownMenu.Trigger>
             <IconButton
                 size='1'
-                title='More actions'
-                aria-label="More actions"
+                title={__('More actions')}
+                aria-label={__("More actions")}
                 color='gray'
                 variant='ghost'
             >
@@ -227,7 +228,7 @@ const DoctypeActionMenu = ({ doctype, docname, onCopyLinkClick, mutate }: { doct
             <DropdownMenu.Item onSelect={onCopyLinkClick}>
                 <Flex gap='2' align='center' pr={'4'}>
                     <BiCopy size={'16'} />
-                    Copy Link
+                    {__('Copy Link')}
                 </Flex>
             </DropdownMenu.Item>
             <PrintSubMenu doctype={doctype} docname={docname} />
@@ -250,7 +251,7 @@ const WorkflowSubMenu = ({ doctype, docname, mutate }: { doctype: string, docnam
         <DropdownMenu.SubTrigger>
             <Flex gap='2' align='center'>
                 <BiGitPullRequest size={'16'} />
-                Workflow
+                {__('Workflow')}
             </Flex>
         </DropdownMenu.SubTrigger>
         <DropdownMenu.SubContent>
@@ -295,15 +296,15 @@ const WorkflowTransitionOptions = ({ doctype, docname, mutate }: { doctype: stri
             mutate()
             refreshTransitions()
 
-            toast.success('Workflow transition applied successfully')
+            toast.success(__('Workflow transition applied successfully'))
         }).catch(error => {
-            toast.error('Failed to apply workflow transition', {
+            toast.error(__('Failed to apply workflow transition'), {
                 description: getErrorMessage(error)
             })
         })
     }
 
-    if (transitions?.message.length === 0) return <DropdownMenu.Item disabled>No transitions available</DropdownMenu.Item>
+    if (transitions?.message.length === 0) return <DropdownMenu.Item disabled>{__('No transitions available')}</DropdownMenu.Item>
 
     return <>
         {transitions?.message.map((transition) => {
@@ -343,7 +344,7 @@ const PrintSubMenu = ({ doctype, docname }: { doctype: string, docname: string }
         <DropdownMenu.SubTrigger>
             <Flex gap='2' align='center'>
                 <BiPrinter size={'16'} />
-                Print
+                {__('Print')}
             </Flex>
         </DropdownMenu.SubTrigger>
         <DropdownMenu.SubContent>
@@ -353,7 +354,7 @@ const PrintSubMenu = ({ doctype, docname }: { doctype: string, docname: string }
                 </DropdownMenu.Item>
             ))
             }
-            <DropdownMenu.Item onClick={() => printit()}>Standard</DropdownMenu.Item>
+            <DropdownMenu.Item onClick={() => printit()}>{__('Standard')}</DropdownMenu.Item>
         </DropdownMenu.SubContent>
     </DropdownMenu.Sub>
 }
