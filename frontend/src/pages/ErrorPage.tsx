@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { lastChannelAtom, lastWorkspaceAtom } from '@/utils/lastVisitedAtoms';

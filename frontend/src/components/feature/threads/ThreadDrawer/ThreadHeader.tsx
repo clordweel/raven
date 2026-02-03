@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { useNavigate, useParams } from "react-router-dom"
 import { __ } from "@/utils/translations"
 import { DropdownMenu, Flex, Heading, IconButton } from "@radix-ui/themes"

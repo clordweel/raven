@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Stack } from '@/components/layout/Stack'
 import { __ } from '@/utils/translations'
 import { Button, Flex, Heading, Text } from '@radix-ui/themes'

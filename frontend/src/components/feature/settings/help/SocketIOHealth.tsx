@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ErrorCallout } from "@/components/common/Callouts/ErrorCallouts"
 import { Stack } from "@/components/layout/Stack"
 import { Badge, Flex, Heading, IconButton, Link, Text } from "@radix-ui/themes"
@@ -41,29 +42,29 @@ const SocketIOHealth = () => {
 
     return (
         <Stack>
-            <Heading as='h3' size='3' className="not-cal font-semibold">Realtime Connection Test</Heading>
-            <Text size='2' color='gray'>If messages on Raven do not appear in realtime, you can inspect your network connection here.</Text>
+            <Heading as='h3' size='3' className="not-cal font-semibold">{__('Realtime Connection Test')}</Heading>
+            <Text size='2' color='gray'>{__('If messages on Raven do not appear in realtime, you can inspect your network connection here.')}</Text>
             {!loading && socketPingTest === 'Fail' && <ErrorCallout
-                message="Realtime connections are not working on your site. Messages won't be refreshed in real-time."
+                message={__("Realtime connections are not working on your site. Messages won't be refreshed in real-time.")}
             />}
             <Flex gap="3" align="center" pt='2'>
-                <Text size="2" color="gray" as='span'>Real-time Ping Check:</Text>
+                <Text size="2" color="gray" as='span'>{__('Real-time Ping Check:')}</Text>
                 <Flex align="center" gap="2">
-                    <Badge color={loading ? 'gray' : socketPingTest === "Pass" ? 'green' : 'red'}>{loading ? 'Loading...' : socketPingTest}</Badge>
-                    {!loading && <IconButton title="Send a ping" aria-label="send a ping" color="gray" size="1" variant="ghost" onClick={onPingCheck}>
+                    <Badge color={loading ? 'gray' : socketPingTest === "Pass" ? 'green' : 'red'}>{loading ? __('Loading...') : socketPingTest}</Badge>
+                    {!loading && <IconButton title={__('Send a ping')} aria-label={__('send a ping')} color="gray" size="1" variant="ghost" onClick={onPingCheck}>
                         <LuRefreshCcw className={clsx(loading ? "animate-spin" : null)} size={12} />
                     </IconButton>}
                 </Flex>
             </Flex>
 
             {socketTransportMode && <Flex gap="2" align="center">
-                <Text size="2" color="gray" as='span'>SocketIO Transport Mode:</Text>
+                <Text size="2" color="gray" as='span'>{__('SocketIO Transport Mode:')}</Text>
                 <Badge color="orange">{socketTransportMode}</Badge>
             </Flex>}
             <div className="pt-2">
                 <Link underline="always" size='2' target="_blank"
-                    title="System Health Report"
-                    href="/app/system-health-report"><TbReportAnalytics size='16' className="-mb-0.5 pr-1" />View Full System Health Report
+                    title={__('System Health Report')}
+                    href="/app/system-health-report"><TbReportAnalytics size='16' className="-mb-0.5 pr-1" />{__('View Full System Health Report')}
                 </Link>
             </div>
         </Stack>

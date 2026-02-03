@@ -1,4 +1,4 @@
-import { __ } from "@/utils/translations"
+import { __ } from '@/utils/translations'
 import { ErrorText, Label } from "@/components/common/Form"
 import { DateTimePicker } from "@/components/common/DateTimePicker"
 import { ErrorBanner, getErrorMessage } from "@/components/layout/AlertBanner/ErrorBanner"
@@ -137,7 +137,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                     aria-label="delete"
                                     variant={'ghost'}
                                     size={'1'}
-                                    title="Remove Option"
+                                    title={__('Remove Option')}
                                     onClick={() => handleRemoveOption(index)}>
                                     <BiTrash size={'12'} />
                                 </IconButton>
@@ -153,9 +153,9 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                                 style={{ width: 'fit-content' }}
                                 onClick={handleAddOption}>
                                 <BiPlus size={'14'} />
-                                Add Option
+                                {__('Add Option')}
                             </Button>
-                            <Text size='1' className="text-gray-500">Maximum of 10 options allowed</Text>
+                            <Text size='1' className="text-gray-500">{__('Maximum of 10 options allowed')}</Text>
                         </Flex>
                     </Flex>
                 </Box>

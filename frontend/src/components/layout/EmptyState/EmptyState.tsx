@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem, DMChannelListItem } from "@/utils/channel/ChannelListProvider"
 import { useCurrentChannelData } from "@/hooks/useCurrentChannelData"
 import { useContext, useMemo } from "react"
