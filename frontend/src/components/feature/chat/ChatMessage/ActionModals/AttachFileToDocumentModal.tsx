@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { Flex, Dialog, IconButton, Box, Button, Callout, Link } from "@radix-ui/themes"
 import { BiX } from "react-icons/bi"
 import { FileMessage, Message } from "../../../../../../../types/Messaging/Message"
@@ -63,11 +64,11 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
                     })
                 }
             }).then(() => {
-                toast.success(`File attached to ${data.doctype} - ${data.docname}`)
+                toast.success(__('File attached to {0} - {1}', [data.doctype, data.docname]))
                 handleClose()
             }).catch((err) => {
                 setError(err)
-                toast.error('Failed to attach file')
+                toast.error(__('Failed to attach file'))
             }).finally(() => {
                 setLoading(false)
             })
@@ -90,7 +91,7 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Flex justify={'between'}>
-                    <Dialog.Title>Attach File to Document</Dialog.Title>
+                    <Dialog.Title>{__('Attach File to Document')}</Dialog.Title>
                     <Dialog.Description hidden>Attach the file to a document</Dialog.Description>
                     <Dialog.Close onClick={handleClose}>
                         <IconButton size='1' variant="soft" color="gray">
@@ -115,11 +116,11 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
                         <Flex direction='column' gap='2'>
                             <LinkFormField
                                 name='doctype'
-                                label='Document Type'
+                                label={__('Document Type')}
                                 autofocus
                                 suggestedItems={recentlyUsedDoctypes}
                                 rules={{
-                                    required: 'Document Type is required',
+                                    required: __('Document Type is required'),
                                     onChange: onDoctypeChange
                                 }}
                                 filters={[["issingle", "=", 0], ["istable", "=", 0]]}
@@ -133,10 +134,10 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
                             <Flex direction='column' gap='2'>
                                 <LinkFormField
                                     name='docname'
-                                    label='Document Name'
-                                    placeholder="Select a document"
+                                    label={__('Document Name')}
+                                    placeholder={__("Select a document")}
                                     disabled={!doctype}
-                                    rules={{ required: 'Document Name is required' }}
+                                    rules={{ required: __('Document Name is required') }}
                                     doctype={doctype}
                                 />
                                 <ErrorText>{methods.formState.errors.docname?.message}</ErrorText>
@@ -147,11 +148,11 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
 
                 <Flex gap="3" mt="6" justify="end" align='center'>
                     <Dialog.Close disabled={loading}>
-                        <Button variant="soft" color="gray">Cancel</Button>
+                        <Button variant="soft" color="gray">{__('Cancel')}</Button>
                     </Dialog.Close>
                     <Button type='submit' disabled={loading}>
                         {loading && <Loader className="text-white" />}
-                        Attach
+                        {__('Attach')}
                     </Button>
                 </Flex>
 

@@ -1,4 +1,5 @@
 import { getFileName } from '@/utils/operations'
+import { __ } from '@/utils/translations'
 import { ImageMessage } from '../../../../../../../types/Messaging/Message'
 import { Box, Button, Dialog, Flex, IconButton, Link } from '@radix-ui/themes'
 import { Suspense, lazy, memo, useState, useRef, useMemo } from 'react'
@@ -74,8 +75,8 @@ export const ImageMessageBlock = memo(({ message, isScrolling = false, user }: I
                     color="gray"
                     radius='large'
                     className='pl-0 pr-[6px] font-bold hover:bg-transparent text-accent-a11 hover:text-gray-12'
-                    aria-label={`Click to ${isVisible ? "hide" : "show"} image`}
-                    title={`${isVisible ? "Hide" : "Show"} image`}
+                    aria-label={__(isVisible ? "Click to hide image" : "Click to show image")}
+                    title={__(isVisible ? "Hide image" : "Show image")}
                     onClick={() => isVisible ? setIsVisible(false) : showImage()}
                 >
                     {isVisible ? <BiChevronDown size='20' className='pt-[1px]' /> : <BiChevronRight size='20' className='pt-[1px]' />}
@@ -188,11 +189,11 @@ export const ImageMessageBlock = memo(({ message, isScrolling = false, user }: I
                                 <Button variant='soft' color='gray' asChild>
                                     <Link className='no-underline' href={message.file} download>
                                         <BiDownload />
-                                        Download
+                                        {__('Download')}
                                     </Link>
                                 </Button>
                                 <Dialog.Close>
-                                    <Button color='gray' variant='soft'>Close</Button>
+                                    <Button color='gray' variant='soft'>{__('Close')}</Button>
                                 </Dialog.Close>
                             </Flex>
                         )}

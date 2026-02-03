@@ -1,4 +1,5 @@
 import { useCurrentEditor } from '@tiptap/react'
+import { __ } from '@/utils/translations'
 import { BiAt, BiHash, BiSmile, BiPaperclip, BiSolidSend, BiChevronDown, BiBellOff } from 'react-icons/bi'
 import { DEFAULT_BUTTON_STYLE, ICON_PROPS } from './ToolPanel'
 import { ToolbarFileProps } from './Tiptap'
@@ -73,8 +74,8 @@ const MentionButtons = () => {
     return <Flex gap='3'>
         <IconButton
             onClick={() => editor.chain().focus().insertContent('#').run()}
-            aria-label='mention channel'
-            title='Mention a channel'
+            aria-label={__('mention channel')}
+            title={__('Mention a channel')}
             className={DEFAULT_BUTTON_STYLE}
             variant='ghost'
             size='1'
@@ -89,11 +90,11 @@ const MentionButtons = () => {
         </IconButton>
         <IconButton
             onClick={() => editor.chain().focus().insertContent('@').run()}
-            aria-label='mention user'
+            aria-label={__('mention user')}
             variant='ghost'
             className={DEFAULT_BUTTON_STYLE}
             size='1'
-            title='Mention a user'
+            title={__('Mention a user')}
             disabled={
                 !editor.can()
                     .chain()
@@ -128,9 +129,9 @@ const EmojiPickerButton = () => {
                 size='1'
                 variant='ghost'
                 className={DEFAULT_BUTTON_STYLE}
-                title='Add emoji'
+                title={__('Add emoji')}
                 disabled={!editor.can().chain().focus().insertContent('😅').run() || !editor.isEditable}
-                aria-label={"add emoji"}>
+                aria-label={__("add emoji")}>
                 <BiSmile {...ICON_PROPS} />
             </IconButton>
         </Popover.Trigger>
@@ -158,9 +159,9 @@ const GIFPickerButton = () => {
                 size='1'
                 variant='ghost'
                 className={DEFAULT_BUTTON_STYLE}
-                title='Add GIF'
+                title={__('Add GIF')}
                 // disabled
-                aria-label={"add GIF"}>
+                aria-label={__("add GIF")}>
                 <HiOutlineGif {...ICON_PROPS} />
             </IconButton>
         </Popover.Trigger>
@@ -191,8 +192,8 @@ const FilePickerButton = ({ fileProps }: { fileProps: ToolbarFileProps }) => {
         variant='ghost'
         className={DEFAULT_BUTTON_STYLE}
         disabled={editor?.isEditable === false}
-        title='Attach file'
-        aria-label={"attach file"}>
+        title={__('Attach file')}
+        aria-label={__("attach file")}>
         <BiPaperclip {...ICON_PROPS} />
     </IconButton>
 }
@@ -252,8 +253,8 @@ export const SendButton = ({ sendMessage, messageSending, setContent, boxProps, 
 
     return <HStack gap='2' align='center' {...boxProps} className={clsx('bg-accent-a2 py-1 px-1 rounded-radius2', boxProps?.className)}>
         <IconButton
-            aria-label='send message'
-            title='Send message'
+            aria-label={__('send message')}
+            title={__('Send message')}
             size='1'
             variant='ghost'
             onClick={() => onClick()}
@@ -267,8 +268,8 @@ export const SendButton = ({ sendMessage, messageSending, setContent, boxProps, 
         <DropdownMenu.Root>
             <DropdownMenu.Trigger>
                 <IconButton
-                    aria-label='send message'
-                    title='Other options'
+                    aria-label={__('send message')}
+                    title={__('Other options')}
                     variant='ghost'
                     size='1'
                     {...props}
@@ -280,7 +281,7 @@ export const SendButton = ({ sendMessage, messageSending, setContent, boxProps, 
             <DropdownMenu.Content>
                 <DropdownMenu.Item onClick={() => onClick(true)}>
                     <BiBellOff />
-                    Send without notification
+                    {__('Send without notification')}
                 </DropdownMenu.Item>
             </DropdownMenu.Content>
         </DropdownMenu.Root>
@@ -300,17 +301,17 @@ const CreatePollButton = ({ channelID }: { channelID: string }) => {
                 variant='ghost'
                 className={DEFAULT_BUTTON_STYLE}
                 disabled={editor?.isEditable === false}
-                title='Create Poll'
-                aria-label={"create poll"}>
+                title={__('Create Poll')}
+                aria-label={__("create poll")}>
                 <MdOutlineBarChart />
             </IconButton>
         </Dialog.Trigger>
         <Dialog.Content className={DIALOG_CONTENT_CLASS}>
             <Dialog.Title>
-                Create Poll
+                {__('Create Poll')}
             </Dialog.Title>
             <Dialog.Description size='2'>
-                Create a quick poll to get everyone's thoughts on a topic.
+                {__("Create a quick poll to get everyone's thoughts on a topic.")}
             </Dialog.Description>
             <Suspense fallback={<Loader />}>
                 <CreatePollContent channelID={channelID} setIsOpen={setIsOpen} />

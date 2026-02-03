@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Flex, Text, Theme } from '@radix-ui/themes'
 import { ReactRendererOptions } from '@tiptap/react'
 import { clsx } from 'clsx'
@@ -94,7 +95,7 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         ref={ref}
         align='center'
         title={item.id}
-        aria-label={`Select emoji ${item.id}`}
+        aria-label={__("Select emoji {0}", [item.id])}
         className={clsx('px-3 py-1.5 gap-2 rounded-md cursor-pointer',
             index === itemsLength - 1 ? 'rounded-b-md' : 'rounded-b-none',
             index === 0 ? 'rounded-t-md' : 'rounded-t-none',

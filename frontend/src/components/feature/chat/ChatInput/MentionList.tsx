@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { useIsUserActive } from '@/hooks/useIsUserActive'
 import { Flex, Text, Theme } from '@radix-ui/themes'
@@ -100,7 +101,7 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         ref={ref}
         align='center'
         title={item.full_name}
-        aria-label={`Mention ${item.full_name}`}
+        aria-label={__("Mention {0}", [item.full_name])}
         className={clsx('px-3 py-1.5 gap-2 rounded-md',
             index === itemsLength - 1 ? 'rounded-b-md' : 'rounded-b-none',
             index === 0 ? 'rounded-t-md' : 'rounded-t-none',
@@ -120,7 +121,7 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         />
         <HStack width='100%' justify='between' align='center' gap='2'>
             <Text as='span' weight='medium' size='2'> {item.full_name}</Text>
-            <Text as='span' color='gray'>{!item.is_member && <BiUserX title='This user is not a member of the channel' />}</Text>
+            <Text as='span' color='gray'>{!item.is_member && <BiUserX title={__('This user is not a member of the channel')} />}</Text>
         </HStack>
 
     </Flex>

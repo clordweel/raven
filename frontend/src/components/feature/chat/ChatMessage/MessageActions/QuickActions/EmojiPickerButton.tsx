@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { __ } from '@/utils/translations'
 import { Box, Flex, IconButton, IconButtonProps, Popover, Portal, Tooltip } from '@radix-ui/themes'
 import { DIALOG_CONTENT_CLASS } from '@/utils/layout/dialog'
 import { Loader } from '@/components/common/Loader'
@@ -30,13 +31,13 @@ export const EmojiPickerButton = ({ saveReaction, isOpen, setIsOpen, iconButtonP
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Flex>
-                <Tooltip content='Add reaction'>
+                <Tooltip content={__('Add reaction')}>
                     <Popover.Trigger>
                         <IconButton
                             variant='soft'
                             size='2'
                             color='gray'
-                            aria-label='pick emoji'
+                            aria-label={__('pick emoji')}
                             {...iconButtonProps}
                             className={clsx(QUICK_ACTION_BUTTON_CLASS, iconButtonProps?.className)}>
                             <LuSmilePlus size={iconSize} />

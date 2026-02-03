@@ -1,4 +1,5 @@
 import { Box, Flex } from '@radix-ui/themes'
+import { __ } from '@/utils/translations'
 import { MessageContextMenuProps } from '../MessageActions'
 import { QUICK_ACTION_BUTTON_CLASS, QuickActionButton } from './QuickActionButton'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
@@ -55,7 +56,7 @@ export const QuickActions = ({ message, onReply, onEdit, isEmojiPickerOpen, setI
     const onEmojiReact = (emoji: string, is_custom: boolean = false, emoji_name?: string) => {
         if (message) {
             postReaction(message, emoji, is_custom, emoji_name).catch((err) => {
-                toast.error("Could not react to message.", {
+                toast.error(__("Could not react to message."), {
                     description: getErrorMessage(err)
                 })
             })
@@ -76,8 +77,8 @@ export const QuickActions = ({ message, onReply, onEdit, isEmojiPickerOpen, setI
                     return <QuickActionButton
                         key={emoji}
                         className={'text-base'}
-                        tooltip={`React with ${emoji}`}
-                        aria-label={`React with ${emoji}`}
+                        tooltip={__("React with {0}", [emoji])}
+                        aria-label={__("React with {0}", [emoji])}
                         onClick={() => {
                             onEmojiReact(emoji)
                         }}>
@@ -92,14 +93,14 @@ export const QuickActions = ({ message, onReply, onEdit, isEmojiPickerOpen, setI
 
                 {isOwner && message.message_type === 'Text' ? <QuickActionButton
                     onClick={onEdit}
-                    tooltip='Edit message'
-                    aria-label='Edit message'>
+                    tooltip={__('Edit message')}
+                    aria-label={__('Edit message')}>
                     <AiOutlineEdit size='18' />
                 </QuickActionButton>
                     :
                     <QuickActionButton
-                        tooltip='Reply'
-                        aria-label='Reply to this message'
+                        tooltip={__('Reply')}
+                        aria-label={__('Reply to this message')}
                         onClick={onReply}>
                         <LuReply size='18' />
                     </QuickActionButton>
@@ -108,9 +109,9 @@ export const QuickActions = ({ message, onReply, onEdit, isEmojiPickerOpen, setI
                 {message && !message.is_thread && showThreadButton && <CreateThreadActionButton messageID={message.name} />}
 
                 <QuickActionButton
-                    aria-label='More actions'
+                    aria-label={__('More actions')}
                     variant='soft'
-                    tooltip='More actions'
+                    tooltip={__('More actions')}
                     onClick={onMoreClick}
                     className={QUICK_ACTION_BUTTON_CLASS}>
                     <BiDotsHorizontalRounded size='18' />

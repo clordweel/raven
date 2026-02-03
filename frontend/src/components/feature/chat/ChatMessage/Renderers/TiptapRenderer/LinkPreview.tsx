@@ -1,4 +1,5 @@
 import { Stack } from '@/components/layout/Stack';
+import { __ } from '@/utils/translations';
 import { Box, Card, IconButton, Text, Tooltip } from '@radix-ui/themes';
 import { useCurrentEditor } from "@tiptap/react";
 import { useFrappeGetCall, useFrappePostCall } from 'frappe-react-sdk';
@@ -125,11 +126,11 @@ const WebLinkPreview = ({ href, messageID }: { href: string, messageID: string }
 
             </Card>
             <div className='absolute top-4 right-2 z-10 group-hover/linkpreview:visible invisible sm:block hidden'>
-                <Tooltip content='Hide link preview'>
+                <Tooltip content={__('Hide link preview')}>
                     <IconButton
                         size='1'
                         color='gray'
-                        aria-label='Hide link preview'
+                        aria-label={__('Hide link preview')}
                         className='bg-black/40 text-white rounded-md'
                         variant='ghost'
                         // variant='soft'
@@ -219,7 +220,7 @@ const YoutubePreview = ({ href, messageID }: { href: string, messageID: string }
             width="480"
             height="270"
             src={embedUrl}
-            title="YouTube video player"
+            title={__("YouTube video player")}
             frameBorder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; modestbranding=1"
             referrerPolicy="strict-origin-when-cross-origin"

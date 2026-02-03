@@ -1,4 +1,5 @@
 
+import { __ } from '@/utils/translations'
 import { Box, Button, Dialog, IconButton, Text, Tooltip } from '@radix-ui/themes'
 import { useCurrentEditor } from '@tiptap/react'
 import { BiSolidMagicWand } from 'react-icons/bi'
@@ -43,16 +44,16 @@ const AISavedPromptsButton = () => {
                 variant='ghost'
                 className={DEFAULT_BUTTON_STYLE}
                 onClick={() => setOpen(true)}
-                title='Insert a Command'
-                aria-label={"insert a command"}>
+                title={__('Insert a Command')}
+                aria-label={__("insert a command")}>
                 <BiSolidMagicWand {...ICON_PROPS} />
             </IconButton>
         </Tooltip>
 
         <Dialog.Content className={DIALOG_CONTENT_CLASS}>
-            <Dialog.Title>Insert a command</Dialog.Title>
+            <Dialog.Title>{__('Insert a command')}</Dialog.Title>
             <Dialog.Description size='2'>
-                Select a saved command to insert into your message.
+                {__('Select a saved command to insert into your message.')}
             </Dialog.Description>
             <SavedPrompts onClose={() => setOpen(false)} />
         </Dialog.Content>
@@ -76,20 +77,20 @@ const SavedPrompts = ({ onClose }: { onClose: () => void }) => {
         <Command.Input
             autoFocus={isDesktop}
             className='ml-0 my-2 text-base italic'
-            placeholder='Search saved prompts' />
+            placeholder={__('Search saved prompts')} />
         <Command.List>
             <Command.Empty className='py-4'>
 
                 <Stack align='center' justify='center' gap='2'>
-                    <Text size='2' color='gray' weight='medium'>No saved prompts found</Text>
+                    <Text size='2' color='gray' weight='medium'>{__('No saved prompts found')}</Text>
                     <Box>
                         <Button className='not-cal'
                             variant='soft'
-                            onClick={() => navigate('/settings/commands')}>Create</Button>
+                            onClick={() => navigate('/settings/commands')}>{__('Create')}</Button>
                     </Box>
                 </Stack>
             </Command.Empty>
-            {isLoading && <Command.Loading>Loading...</Command.Loading>}
+            {isLoading && <Command.Loading>{__('Loading...')}</Command.Loading>}
             {data?.message.map((prompt) => (
                 <Command.Item key={prompt.name}
                     onSelect={() => {
