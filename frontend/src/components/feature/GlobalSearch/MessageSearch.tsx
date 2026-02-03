@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { BiSearch } from 'react-icons/bi'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { useContext, useState, useMemo } from 'react'
@@ -90,7 +91,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                 <TextField.Root
                     onChange={handleChange}
                     type='text'
-                    placeholder='Search messages'
+                    placeholder={__('Search messages')}
                     value={searchText}
                     autoFocus>
                     <TextField.Slot side='left'>
@@ -108,7 +109,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                     }
                     align='center'>
                     <Select.Root value={userFilter} onValueChange={setUserFilter}>
-                        <Select.Trigger placeholder='From' id='from-filter' />
+                        <Select.Trigger placeholder={__('From')} id='from-filter' />
                         <Select.Content className="z-50">
                             <Select.Item value='any'>From anyone</Select.Item>
                             <Select.Group>
@@ -127,7 +128,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                     </Select.Root>
 
                     <Select.Root value={channelFilter} onValueChange={setChannelFilter}>
-                        <Select.Trigger placeholder='Channel / DM' />
+                        <Select.Trigger placeholder={__('Channel / DM')} />
                         <Select.Content className="z-50">
                             <Select.Item value='any'>Any channel</Select.Item>
                             <Select.Group>
@@ -160,7 +161,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                     </Select.Root>
 
                     <Select.Root value={dateFilter} onValueChange={setDateFilter}>
-                        <Select.Trigger placeholder='Date' />
+                        <Select.Trigger placeholder={__('Date')} />
                         <Select.Content className="z-50">
                             <Select.Group>
                                 <Select.Label>Date</Select.Label>
@@ -202,7 +203,7 @@ export const MessageSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggle
                         )
                     })}
                 </Flex> : !showResults && <Box className='text-center' py='8'>
-                    <Text size='2' className='text-gray-11'>Add a search query above to see results.</Text>
+                    <Text size='2' className='text-gray-11'>{__('Add a search query above to see results.')}</Text>
                 </Box>}
             </ScrollArea>
         </Box>

@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { useDebounce } from "@/hooks/useDebounce"
 import { usePagination } from "@/hooks/usePagination"
 import { useFrappeGetCall } from "frappe-react-sdk"
@@ -79,7 +80,7 @@ const ViewFilesContent = () => {
                     <Flex gap='2' className="flex-col sm:flex-row sm:items-center">
                         <TextField.Root className="w-full sm:w-[400px]" onChange={handleChange}
                             type='text'
-                            placeholder='Search for file' autoFocus>
+                            placeholder={__('Search for file')} autoFocus>
                             <TextField.Slot side='left'>
                                 <BiSearch />
                             </TextField.Slot>
@@ -88,7 +89,7 @@ const ViewFilesContent = () => {
                             </TextField.Slot>
                         </TextField.Root>
                         <Select.Root value={fileType} onValueChange={setFileType}>
-                            <Select.Trigger placeholder='File Type' className="w-full sm:w-[200px]" />
+                            <Select.Trigger placeholder={__('File Type')} className="w-full sm:w-[200px]" />
                             <Select.Content className="z-50">
                                 <Select.Group>
                                     <Select.Label>File Type</Select.Label>

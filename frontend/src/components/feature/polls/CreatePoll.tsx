@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { ErrorText, Label } from "@/components/common/Form"
 import { DateTimePicker } from "@/components/common/DateTimePicker"
 import { ErrorBanner, getErrorMessage } from "@/components/layout/AlertBanner/ErrorBanner"
@@ -109,7 +110,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                     <Label htmlFor='question' isRequired>Question</Label>
                     <TextArea {...register("question", {
                         required: 'Question is required'
-                    })} placeholder="Ask a question to gather responses" required />
+                    })} placeholder={__("Ask a question to gather responses")} required />
                     {errors?.question && <ErrorText>{errors.question?.message}</ErrorText>}
                 </Box>
 
@@ -119,7 +120,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
                         {fields && fields.map((field, index) => (
                             <Flex key={field.id} gap='2' align={'start'}>
                                 <div className={'w-full'}>
-                                    <TextField.Root placeholder={`Option ${index + 1}`} {...register(`options.${index}.option`, {
+                                    <TextField.Root placeholder={__("Option {0}", [index + 1])} {...register(`options.${index}.option`, {
                                         required: 'Option is required',
                                         minLength: {
                                             value: 1,

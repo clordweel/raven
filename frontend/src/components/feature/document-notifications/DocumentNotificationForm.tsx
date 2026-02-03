@@ -1,4 +1,5 @@
 import { ErrorText, HelperText, Label } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import LinkFormField from '@/components/common/LinkField/LinkFormField'
 import { HStack, Stack } from '@/components/layout/Stack'
 import useDoctypeMeta from '@/hooks/useDoctypeMeta'
@@ -72,7 +73,7 @@ const GeneralTab = ({ isEdit }: { isEdit: boolean }) => {
                             disabled: isEdit
                         })}
                         disabled={isEdit}
-                        placeholder="Salary Slip Notification"
+                        placeholder={__("Salary Slip Notification")}
                         aria-invalid={errors.notification_name ? 'true' : 'false'}
                     />
                 </Box>
@@ -89,7 +90,7 @@ const GeneralTab = ({ isEdit }: { isEdit: boolean }) => {
                         }}
                         render={({ field }) => (
                             <Select.Root value={field.value} name={field.name} onValueChange={(value) => field.onChange(value)}>
-                                <Select.Trigger placeholder='Pick a trigger' className='w-full' autoFocus />
+                                <Select.Trigger placeholder={__('Pick a trigger')} className='w-full' autoFocus />
                                 <Select.Content>
                                     <Select.Item value='New Document'>New Document</Select.Item>
                                     <Select.Item value='Update'>Update</Select.Item>
@@ -108,7 +109,7 @@ const GeneralTab = ({ isEdit }: { isEdit: boolean }) => {
                     name='document_type'
                     label='Document Type'
                     required
-                    placeholder='e.g. Salary Slip'
+                    placeholder={__('e.g. Salary Slip')}
                     filters={[["istable", "=", 0], ["issingle", "=", 0]]}
                     doctype='DocType'
                     rules={{
@@ -126,7 +127,7 @@ const GeneralTab = ({ isEdit }: { isEdit: boolean }) => {
                     name='sender'
                     label='Sender'
                     required
-                    placeholder='Select a bot'
+                    placeholder={__('Select a bot')}
                     doctype='Raven Bot'
                     rules={{
                         required: 'Sender is required'
@@ -186,7 +187,7 @@ const GeneralTab = ({ isEdit }: { isEdit: boolean }) => {
                 <TextArea
                     {...register('message')}
                     id='message'
-                    placeholder='Hi {{ doc.employee_name }}, your salary slip is ready.'
+                    placeholder={__('Hi {{ doc.employee_name }}, your salary slip is ready.')}
                     rows={10}
                     resize='vertical'
                     aria-invalid={errors.message ? 'true' : 'false'}
@@ -233,9 +234,9 @@ const DoctypeVariables = ({ doctype, withoutJinja }: { doctype: string, withoutJ
         </Text>
         <Box>
             <VisuallyHidden>
-                <Label htmlFor='search'>Search</Label>
+                <Label htmlFor='search'>{__('Search')}</Label>
             </VisuallyHidden>
-            <TextField.Root placeholder='Search' id='search' value={search} onChange={(e) => setSearch(e.target.value)}>
+            <TextField.Root placeholder={__('Search')} id='search' value={search} onChange={(e) => setSearch(e.target.value)}>
                 <TextField.Slot>
                     <BiSearch />
                 </TextField.Slot>
@@ -333,7 +334,7 @@ const RecipientsTab = () => {
                                 render={({ field, fieldState }) => (
                                     <Stack gap='1'>
                                         <Select.Root value={field.value} onValueChange={(value) => field.onChange(value)}>
-                                            <Select.Trigger placeholder='Pick a channel type' className='w-64'
+                                            <Select.Trigger placeholder={__('Pick a channel type')} className='w-64'
                                                 aria-invalid={fieldState.error ? 'true' : 'false'} />
                                             <Select.Content>
                                                 <Select.Item value='Channel'>Channel</Select.Item>
@@ -357,7 +358,7 @@ const RecipientsTab = () => {
                                 render={({ field, fieldState }) => (
                                     <Stack gap='1'>
                                         <Select.Root value={field.value} onValueChange={(value) => field.onChange(value)}>
-                                            <Select.Trigger placeholder='Pick a variable type' className='w-64'
+                                            <Select.Trigger placeholder={__('Pick a variable type')} className='w-64'
                                                 aria-invalid={fieldState.error ? 'true' : 'false'} />
                                             <Select.Content>
                                                 <Select.Item value='Static'>Static</Select.Item>
@@ -446,7 +447,7 @@ const RecipientValueField = ({ index, value, onChange, onBlur, fieldState }: { i
                 hideLabel
                 filters={[['is_direct_message', '=', 0], ['is_archived', '=', 0], ['is_thread', '=', 0]]}
                 required
-                placeholder='Select a channel'
+                placeholder={__('Select a channel')}
                 doctype='Raven Channel'
                 value={value}
                 aria-invalid={fieldState?.error ? 'true' : 'false'}
@@ -458,7 +459,7 @@ const RecipientValueField = ({ index, value, onChange, onBlur, fieldState }: { i
                 hideLabel
                 filters={[['enabled', '=', 1], ['type', '=', 'User']]}
                 required
-                placeholder='Select a user'
+                placeholder={__('Select a user')}
                 doctype='Raven User'
                 value={value}
                 aria-invalid={fieldState?.error ? 'true' : 'false'}
@@ -482,7 +483,7 @@ const RecipientValueField = ({ index, value, onChange, onBlur, fieldState }: { i
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
-        placeholder='e.g. {{ frappe.db.get_value("Employee", doc.employee_id, "user_id") }}'
+        placeholder={__('e.g. {{ frappe.db.get_value("Employee", doc.employee_id, "user_id") }}')}
         aria-invalid={fieldState?.error ? 'true' : 'false'}
     />
 }
@@ -559,7 +560,7 @@ const DoctypeVariableField = ({ type, document_type, value, onChange, onBlur, fi
     }, [doc, type])
 
     return <Select.Root onValueChange={onChange} value={value}>
-        <Select.Trigger placeholder='Pick a field' className='w-full' onBlur={onBlur} aria-invalid={fieldState?.error ? 'true' : 'false'} />
+        <Select.Trigger placeholder={__('Pick a field')} className='w-full' onBlur={onBlur} aria-invalid={fieldState?.error ? 'true' : 'false'} />
         <Select.Content>
             {suggestedFields.length > 0 && <Select.Group>
                 <Select.Label>Suggested</Select.Label>
@@ -592,7 +593,7 @@ const ConditionTab = () => {
                     <TextArea
                         id='condition'
                         {...register('condition')}
-                        placeholder='e.g. doc.docstatus == 1'
+                        placeholder={__('e.g. doc.docstatus == 1')}
                         rows={10}
                     />
                     {errors?.condition && <ErrorText className='pt-1'>{errors.condition.message}</ErrorText>}

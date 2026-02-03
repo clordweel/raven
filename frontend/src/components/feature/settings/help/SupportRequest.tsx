@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { __ } from "@/utils/translations"
 import { Box, Button, Dialog, Flex, Link, RadioCards, Text, TextArea, TextField } from "@radix-ui/themes"
 import { Controller, useForm } from "react-hook-form"
 import { MdOutlineMessage, MdOutlineQuestionMark } from "react-icons/md";
@@ -158,7 +159,7 @@ const SupportRequestForm = ({ onClose }: SupportRequestFormProps) => {
                                 }
                             })}
                             type="email"
-                            placeholder="email@example.com"
+                            placeholder={__("email@example.com")}
                             aria-invalid={errors.email ? 'true' : 'false'}
                         />
                     </Box>

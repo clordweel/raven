@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Stack } from '@/components/layout/Stack'
 import InstructionField from './InstructionField'
 import { useFormContext } from 'react-hook-form'
@@ -26,7 +27,7 @@ const InstructionTemplateForm = ({ isEdit }: Props) => {
                         {...register('template_name', {
                             required: 'Name is required',
                         })}
-                        placeholder="Create Document Template"
+                        placeholder={__("Create Document Template")}
                         aria-invalid={errors.template_name ? 'true' : 'false'}
                     />
                 </Box>

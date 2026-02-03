@@ -197,7 +197,7 @@ const PushNotifications = () => {
                                         required
                                         type='password'
                                         autoComplete='off'
-                                        placeholder='••••••••••••••••••••••••••••••••'
+                                        placeholder={__('Enter password')}
                                         {...register('push_notification_api_secret', {
                                             required: isRavenCloud ? "Please add your Push Notification API Secret" : false,
                                         })}

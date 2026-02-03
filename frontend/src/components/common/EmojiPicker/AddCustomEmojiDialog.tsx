@@ -128,7 +128,7 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
                                 return exists ? 'Emoji name already exists' : true
                             }
                         })}
-                        placeholder="e.g. jawdrop"
+                        placeholder={__("e.g. jawdrop")}
                         aria-invalid={errors.emoji_name ? 'true' : 'false'}
                     />
                 </Box>
@@ -141,12 +141,12 @@ const AddEmojiForm = ({ onClose }: { onClose: (refresh?: boolean) => void }) => 
                     <TextField.Root
                         id='keywords'
                         {...register('keywords')}
-                        placeholder="e.g. shocked, surprised, omg"
+                        placeholder={__("e.g. shocked, surprised, omg")}
                         aria-invalid={errors.keywords ? 'true' : 'false'}
                     />
                 </Box>
                 <HelperText>
-                    You will be able to search for this emoji by these keywords. (Optional)
+                    {__('You will be able to search for this emoji by these keywords. (Optional)')}
                 </HelperText>
                 {errors.keywords && <ErrorText>{errors.keywords?.message}</ErrorText>}
             </Stack>

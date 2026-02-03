@@ -1,4 +1,5 @@
 import { ErrorText, HelperText, Label } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenBotInstructionTemplate } from '@/types/RavenAI/RavenBotInstructionTemplate'
@@ -330,7 +331,7 @@ const ImportTemplate = () => {
 
 
                     {/* <Select.Root>
-                        <Select.Trigger placeholder='Select a template' className='w-full' />
+                        <Select.Trigger placeholder={__('Select a template')} className='w-full' />
                         <Select.Content>
                             {data?.map((t) => <Select.Item key={t.name} value={t.instruction}>
                                 <Text>{t.template_name}</Text> {t.dynamic_instructions ? <Badge color='purple'>Dynamic</Badge> : null}

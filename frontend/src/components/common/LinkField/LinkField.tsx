@@ -1,5 +1,6 @@
 
 
+import { __ } from "@/utils/translations"
 import { useCombobox } from "downshift";
 import { Filter, SearchResult, useSearch } from "frappe-react-sdk";
 import { useState } from "react";
@@ -72,7 +73,7 @@ const LinkField = ({ doctype, filters, hideLabel = false, label, placeholder, va
                 </Label>
             }
             <TextField.Root
-                placeholder={placeholder ?? `Search ${doctype}`}
+                placeholder={placeholder ?? __("Search {0}", [doctype])}
                 className='w-full'
                 disabled={disabled}
                 autoFocus={isDesktop && autofocus}
@@ -84,7 +85,7 @@ const LinkField = ({ doctype, filters, hideLabel = false, label, placeholder, va
         {isOpen && !items.length && (
             <div
                 className={clsx(`p-2 sm:w-[550px] w-[24rem] absolute bg-background rounded-b-md mt-1 shadow-md z-[9999] max-h-96 overflow-scroll`, dropdownClass)}>
-                <Text as='span' size='2' color='gray'>No results found</Text>
+                <Text as='span' size='2' color='gray'>{__('No results found')}</Text>
             </div>
         )}
         <ul

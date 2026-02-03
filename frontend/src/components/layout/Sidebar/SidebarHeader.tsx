@@ -65,7 +65,7 @@ const CommandMenuButton = () => {
     >
         <HStack>
             <TbSearch className='text-lg sm:text-base' />
-            <Text as='span' className='not-cal -mt-0.5' weight='regular'>Search</Text>
+            <Text as='span' className='not-cal -mt-0.5' weight='regular'>{__('Search')}</Text>
         </HStack>
         <Kbd className='dark:font-bold'>{getKeyboardMetaKeyString()}+K</Kbd>
     </Button>

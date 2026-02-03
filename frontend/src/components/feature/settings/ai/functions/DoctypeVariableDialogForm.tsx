@@ -1,4 +1,5 @@
 import { ErrorText, HelperText, Label } from "@/components/common/Form"
+import { __ } from "@/utils/translations"
 import { HStack, Stack } from "@/components/layout/Stack"
 import useDoctypeMeta from "@/hooks/useDoctypeMeta"
 import { DocField } from "@/types/Core/DocField"
@@ -251,7 +252,7 @@ export const DoctypeFieldSelect = ({ doctype, value, onFieldSelect }: { doctype:
     return <Box width='50%'>
         <Label isRequired htmlFor='fieldname'>Field</Label>
         <Select.Root value={value} onValueChange={onValueChange} required>
-            <Select.Trigger placeholder="Select Field" className='w-full' name='fieldname' />
+            <Select.Trigger placeholder={__("Select Field")} className='w-full' name='fieldname' />
             <Select.Content>
                 {fields?.map((field) => (
                     <Select.Item key={field.fieldname} value={field.fieldname ?? ''}>{field.label} ({field.fieldname}) <Badge size='1' color='gray'>{field.fieldtype}</Badge></Select.Item>
@@ -282,7 +283,7 @@ const OtherFormFields = () => {
                                 rules={{ required: "Type is required" }}
                                 render={({ field }) => (
                                     <Select.Root required value={field.value} onValueChange={(value) => field.onChange(value as 'object' | 'array' | 'string' | 'number' | 'boolean')}>
-                                        <Select.Trigger placeholder='Select a variable type' className='w-full' />
+                                        <Select.Trigger placeholder={__('Select a variable type')} className='w-full' />
                                         <Select.Content>
                                             <Select.Item value='string'>String</Select.Item>
                                             <Select.Item value='integer'>Integer</Select.Item>
@@ -360,7 +361,7 @@ const OtherFormFields = () => {
                     {...register('description', {
                         required: true
                     })}
-                    placeholder='Enter a description for this variable'
+                    placeholder={__('Enter a description for this variable')}
                 />
             </Box>
             {errors.description && <ErrorText>{errors.description?.message}</ErrorText>}
@@ -405,7 +406,7 @@ const OptionsField = ({ doctype }: { doctype: string }) => {
             <TextArea
                 {...register('options')}
                 rows={5}
-                placeholder={`Add options separated by a new line.`}
+                placeholder={__('Add options separated by a new line.')}
             />
         </Box>
         {errors.options && <ErrorText>{errors.options?.message}</ErrorText>}
@@ -533,12 +534,12 @@ const QuickImportPopover = ({ doctype }: { doctype: string }) => {
                 variant='surface'
                 className="not-cal"
             >
-                Select {doctype}s
+                {__('Select {0}s', [doctype])}
             </Button>
         </Popover.Trigger>
         <Popover.Content width='360px'>
             <Stack>
-                <TextField.Root value={searchText} onChange={(e) => setSearchText(e.target.value)}>
+                <TextField.Root value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder={__('Search')}>
                     <TextField.Slot side='left'>
                         <BiSearch />
                     </TextField.Slot>

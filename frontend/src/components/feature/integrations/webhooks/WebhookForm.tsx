@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations';
 import { useContext, useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, Checkbox, Flex, TextField, Select, TextArea, Text, Code, Badge, Tabs, } from '@radix-ui/themes';
@@ -123,7 +124,7 @@ const GeneralWebhookForm = ({ isEdit = false }: { isEdit?: boolean }) => {
                         }}
                         render={({ field }) => (
                             <Select.Root value={field.value} onValueChange={field.onChange} required disabled={isEdit}>
-                                <Select.Trigger id='webhook_trigger' placeholder='Trigger Events' />
+                                <Select.Trigger id='webhook_trigger' placeholder={__('Trigger Events')} />
                                 <Select.Content>
                                     <Select.Group>
                                         <Select.Label>Trigger Events</Select.Label>
@@ -250,7 +251,7 @@ const ConditionWebhookForm = () => {
                     }}
                     render={({ field }) => (
                         <Select.Root value={field.value} onValueChange={field.onChange} required>
-                            <Select.Trigger placeholder='Select Field' />
+                            <Select.Trigger placeholder={__('Select Field')} />
                             <Select.Content>
                                 <Select.Group>
                                     <Select.Label>Trigger On</Select.Label>
@@ -300,7 +301,7 @@ const ConditionWebhookForm = () => {
                     name='channel_id'
                     render={({ field }) => (
                         <Select.Root value={field.value} onValueChange={field.onChange} required>
-                            <Select.Trigger placeholder='Select Field' />
+                            <Select.Trigger placeholder={__('Select Field')} />
                             <Select.Content>
                                 <Select.Group>
                                     <Select.Label>Channel</Select.Label>
@@ -327,7 +328,7 @@ const ConditionWebhookForm = () => {
                 name='user'
                 render={({ field }) => (
                     <Select.Root value={field.value} onValueChange={field.onChange} required>
-                        <Select.Trigger placeholder='Select Field' />
+                        <Select.Trigger placeholder={__('Select Field')} />
                         <Select.Content>
                             <Select.Group>
                                 <Select.Label>User</Select.Label>
@@ -353,7 +354,7 @@ const ConditionWebhookForm = () => {
                 name='channel_type'
                 render={({ field }) => (
                     <Select.Root value={field.value} onValueChange={field.onChange} required>
-                        <Select.Trigger placeholder='Select Field' />
+                        <Select.Trigger placeholder={__('Select Field')} />
                         <Select.Content>
                             <Select.Group>
                                 <Select.Label>Channel Type</Select.Label>

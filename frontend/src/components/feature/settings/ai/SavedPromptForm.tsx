@@ -1,4 +1,5 @@
 import { ErrorText, HelperText, Label } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import LinkFormField from '@/components/common/LinkField/LinkFormField'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenBotAIPrompt } from '@/types/RavenAI/RavenBotAIPrompt'
@@ -24,7 +25,7 @@ const SavedPromptForm = () => {
                         autoFocus
                         rows={5}
                         resize='vertical'
-                        placeholder="Can you create purchase invoices from these files?"
+                        placeholder={__("Can you create purchase invoices from these files?")}
                         aria-invalid={errors.prompt ? 'true' : 'false'}
                     />
                 </Box>

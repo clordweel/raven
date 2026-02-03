@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { useFrappeUpdateDoc } from "frappe-react-sdk"
 import { ChangeEvent, useCallback } from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
@@ -80,7 +81,7 @@ export const RenameChannelModalContent = ({ channelID, channelName, type, onClos
                                 <TextField.Root maxLength={50}
                                     required
                                     autoFocus={isDesktop}
-                                    placeholder='e.g. wedding-gone-wrong, joffrey-tributes'
+                                    placeholder={__('e.g. wedding-gone-wrong, joffrey-tributes')}
                                     color={error ? 'red' : undefined}
                                     {...field}
                                     aria-invalid={error ? 'true' : 'false'}

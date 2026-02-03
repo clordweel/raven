@@ -1,4 +1,5 @@
 import { ErrorText, HelperText, Label } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import LinkFormField from '@/components/common/LinkField/LinkFormField'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenMessageAction } from '@/types/RavenIntegrations/RavenMessageAction'
@@ -75,7 +76,7 @@ const GeneralTab = () => {
                                 setValue('title', e.target.value.trim())
                             }
                         })}
-                        placeholder="Create support ticket"
+                        placeholder={__("Create support ticket")}
                         aria-invalid={errors.action_name ? 'true' : 'false'}
                     />
                 </Box>
@@ -93,7 +94,7 @@ const GeneralTab = () => {
                         }}
                         render={({ field }) => (
                             <Select.Root value={field.value} name={field.name} onValueChange={(value) => field.onChange(value)}>
-                                <Select.Trigger placeholder='Pick an action type' className='w-full' autoFocus />
+                                <Select.Trigger placeholder={__('Pick an action type')} className='w-full' autoFocus />
                                 <Select.Content>
                                     <Select.Item value='Create Document'>Create Document</Select.Item>
                                     <Select.Item value='Custom Function'>Custom Function (API)</Select.Item>
@@ -136,7 +137,7 @@ const GeneralTab = () => {
                                 return true
                             }
                         })}
-                        placeholder='myapp.api.my_custom_function'
+                        placeholder={__('myapp.api.my_custom_function')}
                     />
                 </Box>
                 <HelperText>
@@ -199,7 +200,7 @@ const GeneralTab = () => {
                     {...register('title', {
                         required: 'Title is required',
                     })}
-                    placeholder="Create support ticket"
+                    placeholder={__("Create support ticket")}
                     aria-invalid={errors.title ? 'true' : 'false'}
                 />
             </Box>
@@ -211,7 +212,7 @@ const GeneralTab = () => {
         <Stack>
             <Box>
                 <Label htmlFor='description'>Description</Label>
-                <TextArea {...register('description')} id='description' placeholder='Create a support ticket from the message.' />
+                <TextArea {...register('description')} id='description' placeholder={__('Create a support ticket from the message.')} />
             </Box>
             {errors.description && <ErrorText>{errors.description?.message}</ErrorText>}
             <HelperText>This is shown on the message action dialog.</HelperText>
@@ -220,7 +221,7 @@ const GeneralTab = () => {
         <Stack>
             <Box>
                 <Label htmlFor='success_message'>Success Message</Label>
-                <TextArea {...register('success_message')} id='success_message' placeholder='Ticket created successfully.' />
+                <TextArea {...register('success_message')} id='success_message' placeholder={__('Ticket created successfully.')} />
             </Box>
             {errors.success_message && <ErrorText>{errors.success_message?.message}</ErrorText>}
             <HelperText>The message shown in the toast after performing the action.</HelperText>

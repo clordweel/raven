@@ -1,4 +1,5 @@
 import { Label, HelperText, ErrorText } from "@/components/common/Form"
+import { __ } from "@/utils/translations"
 import { RavenSchedulerEvent } from "@/types/RavenIntegrations/RavenSchedulerEvent"
 import { ChannelListContext, ChannelListContextType } from "@/utils/channel/ChannelListProvider"
 import { Flex, Box, TextField, Select, Grid, TextArea } from "@radix-ui/themes"
@@ -41,7 +42,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                     <Label htmlFor="event_name" isRequired>Name</Label>
                     <TextField.Root
                         {...register('event_name', { required: "Name is required.", maxLength: { value: 140, message: "Name cannot be more than 140 characters." } })}
-                        placeholder="e.g. Sales Invoice - Daily Reminder"
+                        placeholder={__("e.g. Sales Invoice - Daily Reminder")}
                         autoFocus
                         id="event_name"
                         aria-describedby={errors.event_name ? 'name-error' : undefined}
@@ -65,7 +66,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 <Select.Root onValueChange={(value) => onChange(value)} value={value} name={name}>
                                     <Select.Trigger
                                         style={{ width: "100%" }}
-                                        placeholder="Select Channel"
+                                        placeholder={__("Select Channel")}
                                         aria-describedby={errors.channel ? 'channel-error' : undefined}
                                         aria-invalid={errors.channel ? 'true' : 'false'}
                                         autoFocus={edit}
@@ -99,7 +100,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                             }}
                             render={({ field: { onChange, value, name } }) => (
                                 <Select.Root onValueChange={(value) => onChange(value)} value={value} name={name}>
-                                    <Select.Trigger style={{ width: "100%" }} placeholder="Select Bot" id={name}
+                                    <Select.Trigger style={{ width: "100%" }} placeholder={__("Select Bot")} id={name}
                                         aria-describedby={errors.bot ? 'bot-error' : undefined}
                                         aria-invalid={errors.bot ? 'true' : 'false'}
                                     />
@@ -132,7 +133,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                             }}
                             render={({ field: { onChange, value, name } }) => (
                                 <Select.Root onValueChange={(value) => onChange(value)} value={value} name={name}>
-                                    <Select.Trigger style={{ width: "100%" }} placeholder="Select Frequency" id={name}
+                                    <Select.Trigger style={{ width: "100%" }} placeholder={__("Select Frequency")} id={name}
                                         aria-describedby={errors.event_frequency ? 'frequency-error' : undefined}
                                         aria-invalid={errors.event_frequency ? 'true' : 'false'}
                                     />
@@ -166,7 +167,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="hour"
-                            placeholder="e.g. 10"
+                            placeholder={__("e.g. 10")}
                             aria-invalid={errors.hour ? 'true' : 'false'}
                             color={errors.hour ? 'red' : 'gray'}
                             aria-describedby={errors.hour ? 'hour-error' : undefined}
@@ -184,7 +185,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="minute"
-                            placeholder="e.g. 30"
+                            placeholder={__("e.g. 30")}
                             aria-invalid={errors.minute ? 'true' : 'false'}
                             color={errors.minute ? 'red' : 'gray'}
                             aria-describedby={errors.minute ? 'minute-error' : undefined}
@@ -204,7 +205,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                             name="day"
                             render={({ field }) => (
                                 <Select.Root {...field} onValueChange={(value) => field.onChange(value)}>
-                                    <Select.Trigger style={{ width: "100%" }} placeholder="Select Day" autoFocus={edit} />
+                                    <Select.Trigger style={{ width: "100%" }} placeholder={__("Select Day")} autoFocus={edit} />
                                     <Select.Content>
                                         <Select.Group>
                                             <Select.Label>Day of the week</Select.Label>
@@ -232,7 +233,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="hour"
-                            placeholder="e.g. 10"
+                            placeholder={__("e.g. 10")}
                             aria-invalid={errors.hour ? 'true' : 'false'}
                             color={errors.hour ? 'red' : 'gray'}
                             aria-describedby={errors.hour ? 'hour-error' : undefined}
@@ -250,7 +251,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="minute"
-                            placeholder="e.g. 30"
+                            placeholder={__("e.g. 30")}
                             aria-invalid={errors.minute ? 'true' : 'false'}
                             color={errors.minute ? 'red' : 'gray'}
                             aria-describedby={errors.minute ? 'minute-error' : undefined}
@@ -274,7 +275,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="date"
-                            placeholder="e.g. 10"
+                            placeholder={__("e.g. 10")}
                             aria-invalid={errors.date ? 'true' : 'false'}
                             color={errors.date ? 'red' : 'gray'}
                             aria-describedby={errors.date ? 'date-error' : undefined}
@@ -291,7 +292,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                     message: "Hour should be in 24 hour format."
                                 }
                             })}
-                            placeholder="e.g. 10"
+                            placeholder={__("e.g. 10")}
                             aria-invalid={errors.hour ? 'true' : 'false'}
                             color={errors.hour ? 'red' : 'gray'}
                             aria-describedby={errors.hour ? 'hour-error' : undefined}
@@ -309,7 +310,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                                 }
                             })}
                             id="minute"
-                            placeholder="e.g. 30"
+                            placeholder={__("e.g. 30")}
                             aria-invalid={errors.minute ? 'true' : 'false'}
                             color={errors.minute ? 'red' : 'gray'}
                             aria-describedby={errors.minute ? 'minute-error' : undefined}
@@ -331,7 +332,7 @@ export const SchedulerEventsForm = ({ edit = false }: Props) => {
                 <Label htmlFor="content" isRequired>Message</Label>
                 <TextArea
                     {...register('content', { required: "Message is required." })}
-                    placeholder="e.g. Hello, this is a reminder to pay your dues."
+                    placeholder={__("e.g. Hello, this is a reminder to pay your dues.")}
                     rows={10}
                     aria-describedby={errors.content ? 'content-error' : undefined}
                     aria-invalid={errors.content ? 'true' : 'false'}
@@ -366,7 +367,7 @@ const AdvancedCronInput = ({ name, label, ...props }: { name: string; label: str
                         }
                     })}
                     id="minute"
-                    placeholder="e.g. 30"
+                    placeholder={__("e.g. 30")}
                     aria-invalid={errors.minute ? 'true' : 'false'}
                     color={errors.minute ? 'red' : 'gray'}
                     aria-describedby={errors.minute ? 'minute-error' : undefined}
@@ -384,7 +385,7 @@ const AdvancedCronInput = ({ name, label, ...props }: { name: string; label: str
                         }
                     })}
                     id="hour"
-                    placeholder="e.g. 10"
+                    placeholder={__("e.g. 10")}
                     aria-invalid={errors.hour ? 'true' : 'false'}
                     color={errors.hour ? 'red' : 'gray'}
                     aria-describedby={errors.hour ? 'hour-error' : undefined}
@@ -402,7 +403,7 @@ const AdvancedCronInput = ({ name, label, ...props }: { name: string; label: str
                         }
                     })}
                     id="date"
-                    placeholder="e.g. 10"
+                    placeholder={__("e.g. 10")}
                     aria-invalid={errors.date ? 'true' : 'false'}
                     color={errors.date ? 'red' : 'gray'}
                     aria-describedby={errors.date ? 'date-error' : undefined}
@@ -421,7 +422,7 @@ const AdvancedCronInput = ({ name, label, ...props }: { name: string; label: str
                         }
                     })}
                     id="month"
-                    placeholder="e.g. 10"
+                    placeholder={__("e.g. 10")}
                     aria-invalid={errors.month ? 'true' : 'false'}
                     color={errors.month ? 'red' : 'gray'}
                     aria-describedby={errors.month ? 'month-error' : undefined}
@@ -435,7 +436,7 @@ const AdvancedCronInput = ({ name, label, ...props }: { name: string; label: str
                     name="day"
                     render={({ field }) => (
                         <Select.Root {...field} onValueChange={(value) => field.onChange(value)} defaultValue="1">
-                            <Select.Trigger style={{ width: "100%" }} placeholder="Select Day" />
+                            <Select.Trigger style={{ width: "100%" }} placeholder={__("Select Day")} />
                             <Select.Content>
                                 <Select.Group>
                                     <Select.Label>Day of the week</Select.Label>

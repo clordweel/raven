@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { HStack, Stack } from "../layout/Stack"
 import { Checkbox, Table, Text, TextField } from "@radix-ui/themes"
 import { UserFields, UserListContext } from "@/utils/users/UserListProvider"
@@ -82,7 +83,7 @@ const SearchBar = ({ onSearch }: { onSearch: (search: string) => void }) => {
     }, [search])
 
     return (
-        <TextField.Root placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}>
+        <TextField.Root placeholder={__("Search")} value={search} onChange={(e) => setSearch(e.target.value)}>
             <TextField.Slot>
                 <BiSearch />
             </TextField.Slot>

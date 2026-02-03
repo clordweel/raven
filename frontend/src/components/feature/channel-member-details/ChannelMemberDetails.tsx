@@ -1,4 +1,5 @@
 import { useContext, useMemo, useState } from "react"
+import { __ } from "@/utils/translations"
 import { useDebounce } from "../../../hooks/useDebounce"
 import { UserContext } from "../../../utils/auth/UserProvider"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
@@ -36,7 +37,7 @@ export const ChannelMemberDetails = ({ channelData, channelMembers, activeUsers,
         <Flex direction='column' gap='4' className={'h-[66vh] pb-2 sm:h-96'}>
             <Flex gap='2' justify='between'>
                 <div className={'w-full sm:w-full'}>
-                    <TextField.Root autoFocus placeholder='Find members' onChange={handleChange} value={searchText} >
+                    <TextField.Root autoFocus placeholder={__('Find members')} onChange={handleChange} value={searchText} >
                         <TextField.Slot side='left'>
                             <BiSearch />
                         </TextField.Slot>

@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { Label } from "@/components/common/Form"
 import { UserAvatar } from "@/components/common/UserAvatar"
 import { HStack, Stack } from "@/components/layout/Stack"
@@ -78,7 +79,7 @@ function MultipleUserComboBox({ selectedUsers, setSelectedUsers, getFilteredUser
                 </Label>
                 <TextField.Root
                     // variant='soft'
-                    placeholder="Type a name..."
+                    placeholder={__("Type a name...")}
                     size='3'
                     className='w-full'
                     autoFocus={isDesktop}

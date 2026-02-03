@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { HStack, Stack } from '../layout/Stack'
 import { Badge, Button, CheckboxCards, Grid, Heading, ScrollArea, Spinner, Text, TextField } from '@radix-ui/themes'
@@ -111,7 +112,7 @@ const DocTypePreviewEditor = ({ doctype, docname, eligibleFields, previewFields,
             <Text size='2'>No fields have been selected for preview, hence we would show all mandatory fields of {doctype} in the preview.</Text>
         </div>}
         <HStack align='center' pt='2'>
-            <TextField.Root placeholder='Search fields' className='w-full' size='2' value={search} onChange={e => setSearch(e.target.value)}>
+            <TextField.Root placeholder={__('Search fields')} className='w-full' size='2' value={search} onChange={e => setSearch(e.target.value)}>
                 <TextField.Slot>
                     <BiSearch />
                 </TextField.Slot>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { __ } from '@/utils/translations'
 import { NumberVariableType, StringVariableType, VariableType } from './FunctionConstants'
 import { Label, HelperText } from '@/components/common/Form'
 import { Stack, HStack } from '@/components/layout/Stack'
@@ -42,7 +43,7 @@ const VariableDialog = ({ defaultValues, onAdd, allowNameChange, name: defaultNa
                         <Box>
                             <Label isRequired>Type</Label>
                             <Select.Root required value={type} onValueChange={(value) => setType(value as 'object' | 'array' | 'string' | 'number' | 'boolean')}>
-                                <Select.Trigger placeholder='Select a variable type' className='w-full' />
+                                <Select.Trigger placeholder={__('Select a variable type')} className='w-full' />
                                 <Select.Content>
                                     <Select.Item value='string'>String</Select.Item>
                                     <Select.Item value='array'>Array</Select.Item>
@@ -84,7 +85,7 @@ const VariableDialog = ({ defaultValues, onAdd, allowNameChange, name: defaultNa
                         <Select.Root value={items?.type}
                             onValueChange={(value) => setItems(v => ({ ...v, type: value as 'string' | 'number' }))}
                         >
-                            <Select.Trigger placeholder='Select a variable type' className='w-full' />
+                            <Select.Trigger placeholder={__('Select a variable type')} className='w-full' />
                             <Select.Content>
                                 <Select.Item value='string'>String</Select.Item>
                                 <Select.Item value='number'>Number</Select.Item>
@@ -101,7 +102,7 @@ const VariableDialog = ({ defaultValues, onAdd, allowNameChange, name: defaultNa
                         required
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        placeholder='Enter a description for this variable'
+                        placeholder={__('Enter a description for this variable')}
                     />
                 </Box>
 

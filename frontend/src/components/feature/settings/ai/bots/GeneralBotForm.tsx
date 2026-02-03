@@ -1,4 +1,5 @@
 import { Label, ErrorText, HelperText } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import { Stack, HStack } from '@/components/layout/Stack'
 import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
@@ -22,7 +23,7 @@ const GeneralBotForm = () => {
                             required: 'Name is required',
                         })}
                         autoFocus
-                        placeholder="accounts-bot"
+                        placeholder={__("accounts-bot")}
                         aria-invalid={errors.bot_name ? 'true' : 'false'}
                     />
                 </Box>
@@ -38,7 +39,7 @@ const GeneralBotForm = () => {
                         {...register('description')}
                         rows={5}
                         resize='vertical'
-                        placeholder="A bot to handle accounts"
+                        placeholder={__("A bot to handle accounts")}
                         aria-invalid={errors.description ? 'true' : 'false'}
                     />
                 </Box>

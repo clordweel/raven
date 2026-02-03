@@ -1,4 +1,5 @@
 import { Label, ErrorText, HelperText } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import { Stack, HStack } from '@/components/layout/Stack'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
 import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
@@ -30,7 +31,7 @@ const AIFeaturesBotForm = (props: Props) => {
                             id='openai_assistant_id'
                             {...register('openai_assistant_id')}
                             readOnly
-                            placeholder="asst_*******************"
+                            placeholder={__("asst_*******************")}
                             aria-invalid={errors.openai_assistant_id ? 'true' : 'false'}
                         />
                     </Box>
@@ -85,11 +86,11 @@ const AIFeaturesBotForm = (props: Props) => {
                                                 onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
                                             />
                                         )} />
-                                    <span>Enable File Search</span>
-                                    <Tooltip content='View OpenAI documentation about File Search'>
+                                    <span>{__('Enable File Search')}</span>
+                                    <Tooltip content={__('View OpenAI documentation about File Search')}>
                                         <a href='https://platform.openai.com/docs/assistants/tools/file-search'
-                                            title='View OpenAI documentation about File Search'
-                                            aria-label='View OpenAI documentation about File Search'
+                                            title={__('View OpenAI documentation about File Search')}
+                                            aria-label={__('View OpenAI documentation about File Search')}
                                             target='_blank' className='text-gray-11 -mb-1'>
                                             <BiInfoCircle size={16} /></a>
                                     </Tooltip>
@@ -99,9 +100,9 @@ const AIFeaturesBotForm = (props: Props) => {
                             <HelperText>
                                 Enable this if you want the bot to be able to read PDF files and scan them.
                                 <br /><br />
-                                File search enables the assistant with knowledge from files that you upload.
+                                {__('File search enables the assistant with knowledge from files that you upload.')}
                                 <br />
-                                Once a file is uploaded, the assistant automatically decides when to retrieve content based on user requests.
+                                {__('Once a file is uploaded, the assistant automatically decides when to retrieve content based on user requests.')}
                             </HelperText>
                         </Stack>
                         <Stack>
@@ -264,7 +265,7 @@ const ModelProviderSelector = () => {
                             value={field.value || (hasOpenAI ? 'OpenAI' : 'Local LLM')}
                             name={field.name}
                             onValueChange={(value) => field.onChange(value)}>
-                            <Select.Trigger placeholder='Select Provider' className='w-full' />
+                            <Select.Trigger placeholder={__('Select Provider')} className='w-full' />
                             <Select.Content>
                                 {hasOpenAI ? <Select.Item value='OpenAI'>OpenAI</Select.Item> : null}
                                 {hasLocalLLM ? <Select.Item value='Local LLM'>Local LLM</Select.Item> : null}
@@ -330,7 +331,7 @@ const ModelSelector = () => {
                             value={field.value || defaultModel}
                             name={field.name}
                             onValueChange={(value) => field.onChange(value)}>
-                            <Select.Trigger placeholder='Select Model' className='w-full' />
+                            <Select.Trigger placeholder={__('Select Model')} className='w-full' />
                             <Select.Content>
                                 {validModels.length > 0 ? (
                                     validModels.map((model: string) => (
@@ -376,7 +377,7 @@ const ReasoningEffortSelector = () => {
                             value={field.value || 'medium'}
                             name={field.name}
                             onValueChange={(value) => field.onChange(value)}>
-                            <Select.Trigger placeholder='Select Reasoning Effort' className='w-full' />
+                            <Select.Trigger placeholder={__('Select Reasoning Effort')} className='w-full' />
                             <Select.Content>
                                 <Select.Item value='low'>Low</Select.Item>
                                 <Select.Item value='medium'>Medium</Select.Item>

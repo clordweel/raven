@@ -93,7 +93,7 @@ const BotTable = ({ bots }: { bots: RavenBot[] }) => {
                                                 />
                                                 <BotFeatureRow
                                                     enabled={bot.enable_file_search}
-                                                    label="File Search"
+                                                    label={__("File Search")}
                                                 />
                                                 <BotFeatureRow
                                                     enabled={bot.enable_code_interpreter}

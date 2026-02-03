@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { Label } from "@/components/common/Form"
 import { UserAvatar } from "@/components/common/UserAvatar"
 import { HStack } from "@/components/layout/Stack"
@@ -133,7 +134,7 @@ const UsersOrChannelsDropdown = ({ selectedOptions, setSelectedOptions, label = 
                         {label}
                     </Label>
                     <TextField.Root
-                        placeholder="Type a name..."
+                        placeholder={__("Type a name...")}
                         className='w-full'
                         autoFocus={isDesktop}
                         {...getInputProps(getDropdownProps())}

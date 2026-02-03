@@ -1,4 +1,5 @@
 import { Label, ErrorText, HelperText } from '@/components/common/Form'
+import { __ } from '@/utils/translations'
 import { Stack, HStack } from '@/components/layout/Stack'
 import { RavenAIFunction } from '@/types/RavenAI/RavenAIFunction'
 import { Box, Checkbox, Text, TextField, Select, TextArea, Tabs, Grid } from '@radix-ui/themes'
@@ -100,7 +101,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                         }}
                         render={({ field }) => (
                             <Select.Root value={field.value} name={field.name} onValueChange={(value) => field.onChange(value)}>
-                                <Select.Trigger placeholder='Pick a function type' className='w-full' autoFocus />
+                                <Select.Trigger placeholder={__('Pick a function type')} className='w-full' autoFocus />
                                 <Select.Content>
                                     <Select.Group>
                                         <Select.Label className='pl-3'>Standard</Select.Label>
@@ -142,7 +143,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                             }
                         })}
                         readOnly={isEdit}
-                        placeholder="get_purchase_invoice"
+                        placeholder={__("get_purchase_invoice")}
                         aria-invalid={errors.function_name ? 'true' : 'false'}
                     />
                 </Box>
@@ -160,7 +161,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                     control={control}
                     name='description'
                     render={({ field }) => (
-                        <TextArea id='description' {...field} placeholder='Describe what this function does.' />
+                        <TextArea id='description' {...field} placeholder={__('Describe what this function does.')} />
                     )}
                 />
             </Box>
@@ -281,7 +282,7 @@ const CustomFunction = () => {
                         return true
                     }
                 })}
-                placeholder='myapp.api.my_custom_function'
+                placeholder={__('myapp.api.my_custom_function')}
             />
         </Box>
         <HelperText>

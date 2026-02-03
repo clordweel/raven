@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { BiSearch } from 'react-icons/bi'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { useState, useContext } from 'react'
@@ -81,7 +82,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     }}
                         onChange={handleChange}
                         type='text'
-                        placeholder='Search messages'
+                        placeholder={__('Search files')}
                         value={searchText}
                         autoFocus
                     >
@@ -93,7 +94,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                         </TextField.Slot>
                     </TextField.Root>
                     <Select.Root value={fileType} onValueChange={setFileType} >
-                        <Select.Trigger placeholder='File Type' className='min-w-[20%]' />
+                        <Select.Trigger placeholder={__('File Type')} className='min-w-[20%]' />
                         <Select.Content className="z-50">
                             <Select.Group>
                                 <Select.Label>File Type</Select.Label>
@@ -147,7 +148,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     columns={{ initial: '2', md: '5' }}
                     align='center'>
                     <Select.Root value={userFilter} onValueChange={setUserFilter}>
-                        <Select.Trigger placeholder='From' id='from-filter' />
+                        <Select.Trigger placeholder={__('From')} id='from-filter' />
                         <Select.Content className="z-50">
                             <Select.Item value='any'>From anyone</Select.Item>
                             <Select.Group>
@@ -166,7 +167,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     </Select.Root>
 
                     <Select.Root value={channelFilter} onValueChange={setChannelFilter}>
-                        <Select.Trigger placeholder='Channel / DM' />
+                        <Select.Trigger placeholder={__('Channel / DM')} />
                         <Select.Content className="z-50">
                             <Select.Item value='any'>Any channel</Select.Item>
                             <Select.Group>
@@ -199,7 +200,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                     </Select.Root>
 
                     <Select.Root value={dateFilter} onValueChange={setDateFilter}>
-                        <Select.Trigger placeholder='Date' />
+                        <Select.Trigger placeholder={__('Date')} />
                         <Select.Content className="z-50">
                             <Select.Group>
                                 <Select.Label>Date</Select.Label>

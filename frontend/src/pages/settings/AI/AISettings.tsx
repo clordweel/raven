@@ -169,7 +169,7 @@ const OpenAISection = () => {
                             id='openai_organisation_id'
                             autoComplete='off'
                             required
-                            placeholder='org-************************'
+                            placeholder={__('org-************************')}
                             {...register('openai_organisation_id', {
                                 required: enableOpenAI ? "Please add your OpenAI Organization ID" : false,
                                 maxLength: {
@@ -190,7 +190,7 @@ const OpenAISection = () => {
                             required
                             type='password'
                             autoComplete='off'
-                            placeholder='••••••••••••••••••••••••••••••••'
+                            placeholder={__('Enter password')}
                             {...register('openai_api_key', {
                                 required: enableOpenAI ? "Please add your OpenAI API Key" : false,
                             })}
@@ -206,7 +206,7 @@ const OpenAISection = () => {
                             className={'w-48 sm:w-96'}
                             id='openai_project_id'
                             autoComplete='off'
-                            placeholder='proj_************************'
+                            placeholder={__('proj_************************')}
                             {...register('openai_project_id', {
                                 maxLength: {
                                     value: 140,
@@ -311,7 +311,7 @@ const LocalLLMSection = () => {
                                     value={field.value}
                                     onValueChange={field.onChange}
                                 >
-                                    <Select.Trigger placeholder="Select Provider" className='w-48 sm:w-96' />
+                                    <Select.Trigger placeholder={__("Select Provider")} className='w-48 sm:w-96' />
                                     <Select.Content>
                                         <Select.Item value="LM Studio">LM Studio</Select.Item>
                                         <Select.Item value="Ollama">Ollama</Select.Item>
@@ -334,7 +334,7 @@ const LocalLLMSection = () => {
                                 id='local_llm_api_url'
                                 required={enableLocalLLM === 1}
                                 autoComplete='off'
-                                placeholder='http://localhost:11434/v1'
+                                placeholder={__('http://localhost:11434/v1')}
                                 {...register('local_llm_api_url', {
                                     required: enableLocalLLM ? "Please add your Local LLM API URL" : false,
                                 })}
@@ -365,7 +365,7 @@ const LocalLLMSection = () => {
                                 id='openai_compatible_api_key'
                                 type='password'
                                 autoComplete='off'
-                                placeholder='••••••••••••••••••••••••••••••••'
+                                placeholder={__('Enter password')}
                                 {...register('openai_compatible_api_key')}
                                 aria-invalid={errors.openai_compatible_api_key ? 'true' : 'false'}
                             />

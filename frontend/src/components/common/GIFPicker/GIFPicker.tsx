@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { useDebounce } from "@/hooks/useDebounce"
 import { Box, Flex, ScrollArea, TextField } from "@radix-ui/themes"
 import { useState } from "react"
@@ -36,7 +37,7 @@ const GIFPicker = ({ onSelect }: GIFPickerProps) => {
                         onChange={(e) => setSearchText(e.target.value)}
                         value={searchText}
                         type='text'
-                        placeholder='Search GIFs'>
+                        placeholder={__('Search GIFs')}>
                         <TextField.Slot side='left'>
                             <BiSearch />
                         </TextField.Slot>
