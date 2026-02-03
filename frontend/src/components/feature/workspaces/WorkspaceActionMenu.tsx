@@ -2,6 +2,7 @@ import { Label } from '@/components/common/Form'
 import { Loader } from '@/components/common/Loader'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import { HStack, Stack } from '@/components/layout/Stack'
+import { __ } from '@/utils/translations'
 import { lastWorkspaceAtom } from '@/utils/lastVisitedAtoms'
 import { AlertDialog, Box, Button, Dialog, DropdownMenu, IconButton, TextField, VisuallyHidden } from '@radix-ui/themes'
 import { useFrappeDeleteDoc, useFrappePostCall, useSWRConfig } from 'frappe-react-sdk'
@@ -33,11 +34,11 @@ const WorkspaceActionMenu = ({ workspaceID, workspaceName }: Props) => {
                 <DropdownMenu.Content>
                     <DropdownMenu.Item onClick={() => setIsRenameDialogOpen(true)}>
                         <AiOutlineEdit />
-                        Rename
+                        {__('Rename')}
                     </DropdownMenu.Item>
                     <DropdownMenu.Item color='red' onClick={() => setIsDeleteDialogOpen(true)}>
                         <BiTrash />
-                        Delete
+                        {__('Delete')}
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
@@ -77,7 +78,7 @@ const RenameWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
             merge: 0
         })
             .then((res) => {
-                toast.success("Workspace renamed")
+                toast.success(__("Workspace renamed"))
                 globalMutate("workspaces_list")
                 onOpenChange(false)
                 // Update local storage if the last used workspace was renamed
@@ -90,16 +91,16 @@ const RenameWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
             })
     }
     return (<>
-        <Dialog.Title>Rename Workspace</Dialog.Title>
+        <Dialog.Title>{__('Rename Workspace')}</Dialog.Title>
         <VisuallyHidden>
             <Dialog.Description>
-                Select a new name for your workspace
+                {__('Select a new name for your workspace')}
             </Dialog.Description>
         </VisuallyHidden>
         <Stack>
             <ErrorBanner error={error} />
             <Box>
-                <Label>Select a new name for your workspace</Label>
+                <Label>{__('Select a new name for your workspace')}</Label>
                 <TextField.Root required value={name} onChange={(e) => setName(e.target.value)} />
             </Box>
         </Stack>
@@ -107,12 +108,12 @@ const RenameWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
         <HStack pt='4' justify='end'>
             <Dialog.Close>
                 <Button color='gray' variant='soft' disabled={loading} type='button'>
-                    Close
+                    {__('Close')}
                 </Button>
             </Dialog.Close>
             <Button disabled={loading} onClick={handleSubmit} type='button'>
                 {loading && <Loader className='text-white' />}
-                {loading ? "Renaming..." : "Rename"}
+                {loading ? __("Renaming...") : __("Rename")}
             </Button>
         </HStack>
     </>
@@ -133,7 +134,7 @@ const DeleteWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
         if (isNameTyped) {
             deleteDoc("Raven Workspace", workspaceID)
                 .then(() => {
-                    toast.success("Workspace deleted")
+                    toast.success(__("Workspace deleted"))
                     onOpenChange(false)
                     globalMutate("workspaces_list")
                     navigate("../", {
@@ -144,14 +145,14 @@ const DeleteWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
     }
 
     return <>
-        <AlertDialog.Title>Delete {workspaceName}?</AlertDialog.Title>
+        <AlertDialog.Title>{__('Delete {0}?', [workspaceName])}</AlertDialog.Title>
         <AlertDialog.Description size='2'>
-            Are you sure you want to delete this workspace? If you proceed, all channels, threads and messages within the workspace will be deleted. This action cannot be undone.
+            {__('Are you sure you want to delete this workspace? If you proceed, all channels, threads and messages within the workspace will be deleted. This action cannot be undone.')}
         </AlertDialog.Description>
         <Stack pt='2'>
             <ErrorBanner error={error} />
             <Box>
-                <Label htmlFor='delete-workspace-name'>Enter the workspace name to confirm deletion</Label>
+                <Label htmlFor='delete-workspace-name'>{__('Enter the workspace name to confirm deletion')}</Label>
                 <TextField.Root
                     id='delete-workspace-name'
                     value={typedName}
@@ -162,13 +163,13 @@ const DeleteWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
             <HStack pt='2' justify='end'>
                 <AlertDialog.Cancel>
                     <Button color='gray' variant='soft' disabled={loading}>
-                        Cancel
+                        {__('Cancel')}
                     </Button>
                 </AlertDialog.Cancel>
                 <Button color='red' disabled={loading || !isNameTyped} onClick={handleDelete}
                 >
                     {loading && <Loader className='text-white' />}
-                    {loading ? "Deleting..." : "Delete"}
+                    {loading ? __("Deleting...") : __("Delete")}
                 </Button>
             </HStack>
         </Stack>

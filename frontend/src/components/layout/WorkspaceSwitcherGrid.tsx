@@ -1,4 +1,5 @@
 import useFetchWorkspaces, { WorkspaceFields } from '@/hooks/fetchers/useFetchWorkspaces'
+import { __ } from '@/utils/translations'
 import { Avatar, Card, Grid, Heading, Text } from '@radix-ui/themes'
 import { Link } from 'react-router-dom'
 import { HStack, Stack } from './Stack'
@@ -36,8 +37,8 @@ const WorkspaceSwitcherGrid = () => {
         <Stack className='sm:p-28 py-16 sm:px-8 px-4 gap-16 animate-fadein'>
             <div className='container flex mx-auto flex-col gap-5 max-w-screen-lg'>
                 <Stack gap='1'>
-                    <Heading className='not-cal' size='4'>My Workspaces</Heading>
-                    <Text size='2' color='gray' weight='medium'>Switch between workspaces that you are a member of.</Text>
+                    <Heading className='not-cal' size='4'>{__('My Workspaces')}</Heading>
+                    <Text size='2' color='gray' weight='medium'>{__('Switch between workspaces that you are a member of.')}</Text>
                 </Stack>
                 <Grid columns={{
                     sm: '1',
@@ -53,8 +54,8 @@ const WorkspaceSwitcherGrid = () => {
             {otherWorkspaces.length > 0 && (
                 <div className='container flex mx-auto flex-col gap-5 max-w-screen-lg'>
                     <Stack gap='1'>
-                        <Heading className='not-cal' size='4'>Other Workspaces</Heading>
-                        <Text size='2' color='gray' weight='medium'>Explore other workspaces that you can join.</Text>
+                        <Heading className='not-cal' size='4'>{__('Other Workspaces')}</Heading>
+                        <Text size='2' color='gray' weight='medium'>{__('Explore other workspaces that you can join.')}</Text>
                     </Stack>
                     <Grid columns={{
                         sm: '1',
@@ -81,14 +82,14 @@ const WorkspaceMemberCount = ({ workspace }: { workspace: string }) => {
     }
 
     if (data.message === 0) {
-        return <Text size='2' as='span' color='gray' weight='medium'>No members</Text>
+        return <Text size='2' as='span' color='gray' weight='medium'>{__('No members')}</Text>
     }
 
     if (data.message === 1) {
-        return <Text size='2' as='span' color='gray' weight='medium'>1 solo member</Text>
+        return <Text size='2' as='span' color='gray' weight='medium'>{__('1 solo member')}</Text>
     }
 
-    return <Text size='2' as='span' color='gray' weight='medium'>{data.message} members</Text>
+    return <Text size='2' as='span' color='gray' weight='medium'>{data.message} {__('members')}</Text>
 }
 
 const getLogo = (workspace: WorkspaceFields) => {
@@ -113,7 +114,7 @@ const MyWorkspaceItem = ({ workspace }: { workspace: WorkspaceFields }) => {
     }
 
     return <Card asChild className='shadow-sm hover:scale-105 transition-all duration-200'>
-        <Link aria-label={`Switch to ${workspace.workspace_name} workspace`} to={`/${workspace.name}`} onClick={openWorkspace}>
+        <Link aria-label={__('Switch to {0} workspace', [workspace.workspace_name])} to={`/${workspace.name}`} onClick={openWorkspace}>
             <HStack>
                 <Avatar
                     size={{ sm: '4', md: '4' }}
@@ -125,7 +126,7 @@ const MyWorkspaceItem = ({ workspace }: { workspace: WorkspaceFields }) => {
                 <Stack className='gap-0.5'>
                     <Stack className='gap-0.5'>
                         <Heading as='h3' size='3' className='not-cal font-semibold'>{workspace.workspace_name}</Heading>
-                        {workspace.type === 'Public' ? <Text size='2' color='gray' weight='medium' as='span'>Public</Text> : <Text size='2' color='gray' weight='medium'>Private</Text>}
+                        {workspace.type === 'Public' ? <Text size='2' color='gray' weight='medium' as='span'>{__('Public')}</Text> : <Text size='2' color='gray' weight='medium'>{__('Private')}</Text>}
                     </Stack>
                     {workspace.description && <Text as='p' size='2' color='gray' className='line-clamp-2 text-ellipsis'>{workspace.description}</Text>}
                 </Stack>
@@ -147,14 +148,14 @@ const OtherWorkspaceItem = ({ workspace }: { workspace: WorkspaceFields }) => {
             mutate('workspaces_list')
             mutate('channel_list')
         }), {
-            loading: 'Joining workspace...',
-            success: 'You have joined the workspace.',
-            error: (error) => `There was an error while joining the workspace.\n${getErrorMessage(error)}`,
+            loading: __('Joining workspace...'),
+            success: __('You have joined the workspace.'),
+            error: (error) => `${__('There was an error while joining the workspace.')}\n${getErrorMessage(error)}`,
         })
     }
 
     return <Card className='relative shadow-sm hover:scale-105 transition-all duration-200' >
-        <HStack role='button' onClick={joinWorkspace} title={`Join ${workspace.workspace_name} workspace`} aria-label={`Join ${workspace.workspace_name} workspace`}>
+        <HStack role='button' onClick={joinWorkspace} title={__('Join {0} workspace', [workspace.workspace_name])} aria-label={__('Join {0} workspace', [workspace.workspace_name])}>
             <Avatar
                 size={{ sm: '4', md: '4' }}
                 className='hover:shadow-sm transition-all duration-200'

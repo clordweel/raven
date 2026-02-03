@@ -2,6 +2,7 @@ import { Sidebar } from '@/components/layout/Sidebar/Sidebar'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { ChannelIcon } from '@/utils/layout/channelIcon'
+import { __ } from '@/utils/translations'
 import { Flex, Text } from '@radix-ui/themes'
 
 type Props = {}
@@ -18,7 +19,7 @@ const MobileTabsPage = (props: Props) => {
                     <ChannelIcon type='Open' size='32' />
                     <ChannelIcon type='Private' size='32' />
                 </HStack>
-                <Text size='3' weight='medium' color='gray'>Select a channel from the sidebar to view it's messages</Text>
+                <Text size='3' weight='medium' color='gray'>{__("Select a channel from the sidebar to view it's messages")}</Text>
             </Stack>
 
         </Flex>

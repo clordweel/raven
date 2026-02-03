@@ -72,3 +72,19 @@ python3 scripts/sync_translations_from_pot.py --export-template -o raven/transla
 1. 在 Frappe/ERPNext 中启用语言「简体中文」（若未启用，在 Language 列表中添加并启用）。
 2. 用户资料或系统设置中将默认语言设为「简体中文」（或 `zh`）。
 3. 清除缓存或重新加载页面后，Raven 界面会从 `raven/translations/zh.csv` 加载对应译文。**推荐**：在 bench 目录下执行 `bench --site <站点名> clear-cache`（或 `bench --site all clear-cache`）。若仍不生效，再执行 `bench --site all execute frappe.translate.clear_cache` 显式清除翻译缓存（Raven 已通过 `clear_cache` 钩子自动调用，一般只需 `clear-cache`）。**用户需将界面语言设为「简体中文」**，并做一次**强制刷新**（Ctrl+Shift+R 或 Cmd+Shift+R）以加载最新 boot 与译文。
+
+## 7. 前端未翻译字符串筛查
+
+`frontend/src` 下所有面向用户的英文字符串应使用 `__("...")` 包裹，并在 `scripts/build_zh_translations.py` 的 `ZH_MAP` 中补充中文译文。
+
+**筛查方式**：在 `frontend/src` 下搜索未包裹的英文字符串，例如：
+- JSX 内直接出现的英文：`>[\s]*[A-Za-z][^<{]*<`、`title=['\"][^'\"]*['\"]`、`placeholder=['\"][^'\"]*['\"]`、`aria-label=['\"][^'\"]*['\"]`
+- 排除已使用 `__(...)` 或 `{__('...')}` 的行
+
+**处理步骤**：
+1. 在对应组件顶部添加 `import { __ } from '@/utils/translations'`（若尚未引入）。
+2. 将硬编码英文字符串改为 `{__('英文')}` 或 `{__('带 {0} 占位', [变量])}`。
+3. 在 `scripts/build_zh_translations.py` 的 `ZH_MAP` 中新增 `"英文": "中文"`。
+4. 执行 `python3 scripts/build_zh_translations.py` 更新 `raven/translations/zh.csv`。
+
+**已系统处理过的区域**（本次）：工作区切换（WorkspaceSwitcher、WorkspaceSwitcherGrid）、空状态（EmptyState）、受保护路由与用户列表加载提示、NotFound/ErrorPage、MobileTabsPage、WorkspaceActionMenu、AddWorkspaceSidebarButton。其余 settings 子页、auth 页、Sidebar、threads、AI/Integrations 等仍可继续按上述方式逐文件筛查补充。

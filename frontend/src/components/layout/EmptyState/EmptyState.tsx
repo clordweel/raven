@@ -5,6 +5,7 @@ import { EditDescriptionButton } from "@/components/feature/channel-details/edit
 import { AddMembersButton } from "@/components/feature/channel-member-details/add-members/AddMembersButton"
 import { UserContext } from "@/utils/auth/UserProvider"
 import { useGetUserRecords } from "@/hooks/useGetUserRecords"
+import { __ } from "@/utils/translations"
 import { Badge, Box, Flex, Heading, Link, Text } from "@radix-ui/themes"
 import { UserAvatar } from "@/components/common/UserAvatar"
 import { ChannelIcon } from "@/utils/layout/channelIcon"
@@ -19,10 +20,10 @@ export const EmptyStateForSearch = () => {
     return (
         <Flex justify="center" align="center" className={'w-full h-64'}>
             <Flex direction='column' gap='1' className="text-center">
-                <Text weight="bold" size='5'>Nothing turned up</Text>
-                <Text as='span' size='2'>You may want to try using different keywords, checking for typos or adjusting your filters.</Text>
-                <Text as='span' size='2'>Not the results that you expected? File an issue on <Link href="https://github.com/The-Commit-Company/Raven" target="_blank" rel="noreferrer">
-                    <Text color='blue' size='2'>GitHub</Text>
+                <Text weight="bold" size='5'>{__('Nothing turned up')}</Text>
+                <Text as='span' size='2'>{__('You may want to try using different keywords, checking for typos or adjusting your filters.')}</Text>
+                <Text as='span' size='2'>{__('Not the results that you expected?')} <Link href="https://github.com/The-Commit-Company/Raven" target="_blank" rel="noreferrer">
+                    <Text color='blue' size='2'>{__('GitHub')}</Text>
                 </Link>.
                 </Text>
             </Flex>
@@ -55,7 +56,7 @@ const EmptyStateForChannel = ({ channelData }: EmptyStateForChannelProps) => {
                     <ChannelIcon type={channelData?.type} />
                     <Heading size='4'>{channelData?.channel_name}</Heading>
                 </Flex>
-                <Text size='2'>{users[channelData.owner]?.full_name} created this channel on <DateMonthYear date={channelData?.creation} />. This is the very beginning of the <strong>{channelData?.channel_name}</strong> channel.</Text>
+                <Text size='2'>{__('{0} created this channel on', [users[channelData.owner]?.full_name ?? ''])} <DateMonthYear date={channelData?.creation} />. {__('This is the very beginning of the {0} channel.', [channelData?.channel_name ?? ''])}</Text>
                 {channelData?.channel_description && <Text size={'1'} color='gray'>{channelData?.channel_description}</Text>}
             </Flex>
             {channelData?.is_archived == 0 && isAdmin && <Flex gap='4' className={'z-1'}>
@@ -100,21 +101,21 @@ const EmptyStateForDM = ({ channelData }: EmptyStateForDMProps) => {
                         <Flex direction='column' gap='0'>
                             <Heading size='4'>{userName}</Heading>
                             <div>
-                                {isBot ? <Badge color='gray' className="py-0 px-1">Bot</Badge> : <Text size='1' color='gray'>{peer}</Text>}
+                                {isBot ? <Badge color='gray' className="py-0 px-1">{__('Bot')}</Badge> : <Text size='1' color='gray'>{peer}</Text>}
                             </div>
                         </Flex>
                     </Flex>
                     {channelData?.is_self_message == 1 ?
                         <Flex direction='column' gap='0'>
-                            <Text size='2'><strong>This space is all yours.</strong> Draft messages, list your to-dos, or keep links and files handy. </Text>
-                            <Text size='2'>And if you ever feel like talking to yourself, don't worry, we won't judge - just remember to bring your own banter to the table.</Text>
+                            <Text size='2'><strong>{__('This space is all yours.')}</strong> {__('Draft messages, list your to-dos, or keep links and files handy.')} </Text>
+                            <Text size='2'>{__("And if you ever feel like talking to yourself, don't worry, we won't judge - just remember to bring your own banter to the table.")}</Text>
                         </Flex>
                         :
                         <Flex gap='2' align='center'>
                             {peer || fullName ?
-                                <Text size='2'>This is a Direct Message channel between you and <strong>{fullName ?? peer}</strong>.</Text>
+                                <Text size='2'>{__('This is a Direct Message channel between you and')} <strong>{fullName ?? peer}</strong>.</Text>
                                 :
-                                <Text size='2'>We could not find the user for this DM channel ({replaceCurrentUserFromDMChannelName(channelData.channel_name, currentUser)}).</Text>
+                                <Text size='2'>{__('We could not find the user for this DM channel')} ({replaceCurrentUserFromDMChannelName(channelData.channel_name, currentUser)}).</Text>
                             }
                         </Flex>
                     }
@@ -128,11 +129,11 @@ export const EmptyStateForSavedMessages = () => {
     return (
         <Box className={'py-2 px-6'}>
             <Flex direction='column' gap='2'>
-                <Text size='3'><strong>Your saved messages will appear here</strong></Text>
+                <Text size='3'><strong>{__('Your saved messages will appear here')}</strong></Text>
                 <Flex direction='column' gap='1'>
-                    <Text size='2' as='span'>Saved messages are a convenient way to keep track of important information or messages you want to refer back to later.</Text>
+                    <Text size='2' as='span'>{__('Saved messages are a convenient way to keep track of important information or messages you want to refer back to later.')}</Text>
                     <Text size='2' as='span'>
-                        You can save messages by simply clicking on the bookmark icon <BiBookmark className={'-mb-0.5'} /> in message actions.
+                        {__('You can save messages by simply clicking on the bookmark icon')} <BiBookmark className={'-mb-0.5'} /> {__('in message actions.')}
                     </Text>
                 </Flex>
             </Flex>
@@ -144,10 +145,10 @@ export const EmptyStateForThreads = () => {
     return (
         <Box className={'py-2 px-6'}>
             <Flex direction='column' gap='2'>
-                <Text size='3'><strong>No threads to show</strong></Text>
+                <Text size='3'><strong>{__('No threads to show')}</strong></Text>
                 <Flex direction='column' gap='1'>
-                    <Text as='span' size='2'>Threads are a way to keep conversations organized and focused. You can create a thread by replying to a message.</Text>
-                    <Text as='span' size='2'>You can also start a thread by clicking on the <strong>Create Thread</strong> button on any message.</Text>
+                    <Text as='span' size='2'>{__('Threads are a way to keep conversations organized and focused. You can create a thread by replying to a message.')}</Text>
+                    <Text as='span' size='2'>{__('You can also start a thread by clicking on the')} <strong>{__('Create Thread')}</strong> {__('button on any message.')}</Text>
                 </Flex>
             </Flex>
         </Box>

@@ -1,6 +1,7 @@
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle, DrawerTrigger } from '@/components/layout/Drawer'
 import { Stack } from '@/components/layout/Stack'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
+import { __ } from '@/utils/translations'
 import { DIALOG_CONTENT_CLASS } from '@/utils/layout/dialog'
 import { hasRavenAdminRole } from '@/utils/roles'
 import { Dialog, IconButton, Tooltip } from '@radix-ui/themes'
@@ -40,7 +41,7 @@ const AddWorkspaceModal = () => {
     if (isDesktop) {
 
         return <Dialog.Root open={isOpen} onOpenChange={setValue}>
-            <Tooltip content="Create Workspace" side='right'>
+            <Tooltip content={__('Create Workspace')} side='right'>
                 <Dialog.Trigger>
                     <IconButton
                         color='gray'
@@ -51,8 +52,8 @@ const AddWorkspaceModal = () => {
                 </Dialog.Trigger>
             </Tooltip>
             <Dialog.Content className={DIALOG_CONTENT_CLASS}>
-                <Dialog.Title>Create Workspace</Dialog.Title>
-                <Dialog.Description size='2'>Workspaces allow you to organize your channels and teams.</Dialog.Description>
+                <Dialog.Title>{__('Create Workspace')}</Dialog.Title>
+                <Dialog.Description size='2'>{__('Workspaces allow you to organize your channels and teams.')}</Dialog.Description>
                 <Stack>
                     <AddWorkspaceForm onClose={onClose} />
                 </Stack>
@@ -71,8 +72,8 @@ const AddWorkspaceModal = () => {
         </DrawerTrigger>
         <DrawerContent>
             <div className='pb-16 overflow-y-scroll min-h-96'>
-                <DrawerTitle>Create Workspace</DrawerTitle>
-                <DrawerDescription>Workspaces allow you to organize your channels and teams.</DrawerDescription>
+                <DrawerTitle>{__('Create Workspace')}</DrawerTitle>
+                <DrawerDescription>{__('Workspaces allow you to organize your channels and teams.')}</DrawerDescription>
                 <AddWorkspaceForm onClose={onClose} />
             </div>
         </DrawerContent>

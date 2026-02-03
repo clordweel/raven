@@ -1,6 +1,7 @@
 import { HStack, Stack } from '@/components/layout/Stack'
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { lastChannelAtom, lastWorkspaceAtom } from '@/utils/lastVisitedAtoms';
+import { __ } from '@/utils/translations';
 import { Button, Code, Flex, Heading, Link, Text } from '@radix-ui/themes'
 import { useAtomValue } from 'jotai';
 import { useNavigate, useRouteError } from 'react-router-dom'
@@ -44,13 +45,13 @@ const ErrorPage = () => {
         <Flex className='h-screen w-screen bg-gray-2' align='center' justify='center'>
             <Stack gap='4'>
                 <Heading as='h1' size='5' className='text-center not-cal'>{errorDueToUpdate ?
-                    "A new update is available." :
-                    "There was an unexpected error."}
+                    __("A new update is available.") :
+                    __("There was an unexpected error.")}
                 </Heading>
-                <Text>If you face this error again, please report it either on <Link target='_blank' href='https://github.com/The-Commit-Company/raven/issues'>GitHub</Link> or <Link target='_blank' href='https://support.ravenchat.ai/'> our support portal</Link>.</Text>
+                <Text>{__('If you face this error again, please report it either on')} <Link target='_blank' href='https://github.com/The-Commit-Company/raven/issues'>{__('GitHub')}</Link> {__('or')} <Link target='_blank' href='https://support.ravenchat.ai/'>{__('our support portal')}</Link>.</Text>
 
                 {!errorDueToUpdate && <details>
-                    <summary><Text size='2'>Show error details</Text></summary>
+                    <summary><Text size='2'>{__('Show error details')}</Text></summary>
                     <Code color='gray'>{(error as Error).message}</Code>
                 </details>
                 }
@@ -59,13 +60,13 @@ const ErrorPage = () => {
                         size='2'
                         className='not-cal'
                         onClick={reloadPage}>
-                        {errorDueToUpdate ? "Upgrade to a better experience" : "Reload the Page"}
+                        {errorDueToUpdate ? __("Upgrade to a better experience") : __("Reload the Page")}
                     </Button>
                     {!errorDueToUpdate && <Button
                         variant='soft'
                         color='gray'
                         size='2' className='not-cal' onClick={goToChannels}>
-                        Back to Channels
+                        {__('Back to Channels')}
                     </Button>
                     }
                 </HStack>
