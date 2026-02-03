@@ -30,7 +30,7 @@ export const CreateChannelButton = () => {
     if (isDesktop) {
         return <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
             <Dialog.Trigger>
-                <IconButton variant='soft' size='1' radius='large' color='gray' aria-label='Create Channel' title='Create Channel'
+                <IconButton variant='soft' size='1' radius='large' color='gray' aria-label={__('Create Channel')} title={__('Create Channel')}
                     className='transition-all ease-ease text-gray-10 bg-transparent hover:bg-gray-3 hover:text-gray-12'>
                     <FiPlus size='16' />
                 </IconButton>
@@ -45,7 +45,7 @@ export const CreateChannelButton = () => {
         return <Drawer open={isOpen} onOpenChange={setIsOpen}>
 
             <DrawerTrigger asChild>
-                <IconButton variant='soft' size='1' radius='large' color='gray' aria-label='Create Channel' title='Create Channel'
+                <IconButton variant='soft' size='1' radius='large' color='gray' aria-label={__('Create Channel')} title={__('Create Channel')}
                     className='transition-all ease-ease text-gray-10 bg-transparent hover:bg-gray-3 hover:text-gray-12'>
                     <FiPlus size='16' />
                 </IconButton>
@@ -176,7 +176,7 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                     {!canCreateChannel?.message && <CustomCallout
                         iconChildren={<BiInfoCircle size='18' />}
                         rootProps={{ color: 'yellow', variant: 'surface' }}
-                        textChildren={<Text>You cannot create a new channel since you are not an admin of this workspace. Ask an admin to create a channel or make you an admin.</Text>}
+                        textChildren={<Text>{__('You cannot create a new channel since you are not an admin of this workspace. Ask an admin to create a channel or make you an admin.')}</Text>}
                     />}
                     <ErrorBanner error={channelCreationError} />
                     <Box>
@@ -231,11 +231,11 @@ const CreateChannelContent = ({ isOpen, setIsOpen }: { setIsOpen: (v: boolean) =
                             {...register('channel_description')}
                             aria-invalid={errors.channel_description ? 'true' : 'false'}
                         />
-                        <HelperText>What is this channel about?</HelperText>
+                        <HelperText>{__('What is this channel about?')}</HelperText>
                         {errors?.channel_description && <ErrorText>{errors.channel_description?.message}</ErrorText>}
                     </Box>
                     <Flex gap='2' direction='column'>
-                        <Label htmlFor='channel_type'>Channel Type</Label>
+                        <Label htmlFor='channel_type'>{__('Channel Type')}</Label>
                         <Controller
                             name='type'
                             control={control}

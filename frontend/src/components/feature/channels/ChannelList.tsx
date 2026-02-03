@@ -191,8 +191,8 @@ const ChannelListActions = () => {
                 </IconButton>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-                {showOnlyMyChannels ? <DropdownMenu.Item onClick={showAllChannels}>Show All Channels</DropdownMenu.Item> :
-                    <DropdownMenu.Item onClick={hideNonMemberChannels}>Show Only My Channels</DropdownMenu.Item>}
+                {showOnlyMyChannels ? <DropdownMenu.Item onClick={showAllChannels}>{__('Show All Channels')}</DropdownMenu.Item> :
+                    <DropdownMenu.Item onClick={hideNonMemberChannels}>{__('Show Only My Channels')}</DropdownMenu.Item>}
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     )

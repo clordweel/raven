@@ -12,6 +12,7 @@ import useFetchActiveUsers from "@/hooks/fetchers/useFetchActiveUsers"
 import { useIsDesktop } from "@/hooks/useMediaQuery"
 import { Drawer, DrawerContent } from "@/components/layout/Drawer"
 import { hasRavenAdminRole } from "@/utils/roles"
+import { __ } from "@/utils/translations"
 
 interface ViewChannelDetailsModalContentProps {
     open: boolean,
@@ -86,14 +87,14 @@ const ViewChannelDetailsModalContent = ({ setOpen, channelData }: ViewChannelDet
             <Tabs.Root defaultValue="About">
                 <Flex direction={'column'} gap='4'>
                     <Tabs.List>
-                        <Tabs.Trigger value="About">About</Tabs.Trigger>
+                        <Tabs.Trigger value="About">{__('About')}</Tabs.Trigger>
                         <Tabs.Trigger value="Members">
                             <Flex gap='2'>
-                                <Text>Members</Text>
+                                <Text>{__('Members')}</Text>
                                 <Text>{memberCount}</Text>
                             </Flex>
                         </Tabs.Trigger>
-                        <Tabs.Trigger value="Settings">Settings</Tabs.Trigger>
+                        <Tabs.Trigger value="Settings">{__('Settings')}</Tabs.Trigger>
                     </Tabs.List>
                     <Box>
                         <Tabs.Content value="About">
