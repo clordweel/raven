@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
 import { DeleteChannelModal } from './DeleteChannelModal'
 import { BiTrash } from 'react-icons/bi'
@@ -29,7 +30,7 @@ export const DeleteChannelButton = ({ onClose: onCloseParent, channelData, allow
                 <AlertDialog.Trigger>
                     <Button className={'py-6 px-4 bg-transparent text-red-700 dark:text-red-500 hover:bg-red-3 dark:hover:bg-red-2 not-cal text-left justify-start rounded-none rounded-b-md'} disabled={!allowSettingChange}>
                         <BiTrash />
-                        Delete channel
+                        {__('Delete channel')}
                     </Button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -46,7 +47,7 @@ export const DeleteChannelButton = ({ onClose: onCloseParent, channelData, allow
                 <DrawerTrigger asChild>
                     <Button className={'py-6 px-4 bg-transparent text-red-700 dark:text-red-500 hover:bg-red-3 dark:hover:bg-red-2 not-cal text-left justify-start rounded-none'} disabled={!allowSettingChange}>
                         <BiTrash />
-                        Delete channel
+                        {__('Delete channel')}
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>

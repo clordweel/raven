@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Avatar, Badge, Box, BoxProps, Button, ContextMenu, Flex, HoverCard, IconButton, Link, Text, Theme } from '@radix-ui/themes'
 import { Message, MessageBlock } from '../../../../../../types/Messaging/Message'
 import { MessageContextMenu } from './MessageActions/MessageActions'
@@ -220,7 +221,7 @@ export const MessageItem = ({ message, setDeleteMessage, isHighlighted, onReplyM
                                     {message.link_doctype && message.link_document && <Box className={clsx(message.is_continuation ? 'ml-0.5' : '-ml-0.5')}>
                                         <DoctypeLinkRenderer doctype={message.link_doctype} docname={message.link_document} />
                                     </Box>}
-                                    {message.is_edited === 1 && <Text size='1' className='text-gray-10'>(edited)</Text>}
+                                    {message.is_edited === 1 && <Text size='1' className='text-gray-10'>{__('(edited)')}</Text>}
                                     {message_reactions?.length &&
                                         <MessageReactions
                                             message={message}

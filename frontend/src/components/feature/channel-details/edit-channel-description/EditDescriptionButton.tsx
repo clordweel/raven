@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
 import { Button, Dialog } from '@radix-ui/themes'
 import { EditChannelDescriptionModalContent } from './EditChannelDescriptionModal'
@@ -18,7 +19,7 @@ export const EditDescriptionButton = ({ channelData, is_in_box }: EditDescriptio
     const onClose = () => {
         setOpen(false)
     }
-    const button_text = channelData && channelData.channel_description && channelData.channel_description.length > 0 ? 'Edit' : 'Add'
+    const button_text = channelData && channelData.channel_description && channelData.channel_description.length > 0 ? __('Edit') : __('Add')
 
     const isDesktop = useIsDesktop()
 
@@ -27,7 +28,7 @@ export const EditDescriptionButton = ({ channelData, is_in_box }: EditDescriptio
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <Dialog.Trigger>
                     <Button variant='ghost' size='1'>
-                        {button_text} {is_in_box ? '' : 'description'}
+                        {button_text} {is_in_box ? '' : __('description')}
                     </Button>
                 </Dialog.Trigger>
                 <Dialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -41,7 +42,7 @@ export const EditDescriptionButton = ({ channelData, is_in_box }: EditDescriptio
         return <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
                 <Button variant='ghost' size='1'>
-                    {button_text} {is_in_box ? '' : 'description'}
+                    {button_text} {is_in_box ? '' : __('description')}
                 </Button>
             </DrawerTrigger>
             <DrawerContent>

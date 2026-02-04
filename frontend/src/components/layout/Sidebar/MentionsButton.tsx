@@ -147,10 +147,10 @@ const MentionsList = () => {
                     <LuAtSign size={48} />
                 </div>
                 <Text size='5' weight='medium' className='mb-2'>
-                    No mentions yet
+                    {__('No mentions yet')}
                 </Text>
                 <Text as='p' size='2' color='gray' className='sm:max-w-[400px] max-w-[320px]'>
-                    When someone mentions you in a message, you'll see it here.
+                    {__("When someone mentions you in a message, you'll see it here.")}
                 </Text>
             </Flex>
         )

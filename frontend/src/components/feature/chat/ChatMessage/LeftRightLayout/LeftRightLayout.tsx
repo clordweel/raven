@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { UserFields } from "@/utils/users/UserListProvider"
 import { Message, MessageBlock } from "../../../../../../../types/Messaging/Message"
 import { MessageContent, MessageSenderAvatar, UserHoverCard } from "../MessageItem"
@@ -137,7 +138,7 @@ export const LeftRightLayout = ({ message, user, isActive, isHighlighted, onRepl
                                     <DoctypeLinkRenderer doctype={message.link_doctype} docname={message.link_document} />
                                 </Box>}
 
-                                {message.is_edited === 1 && <Text size='1' className='text-gray-10'>(edited)</Text>}
+                                {message.is_edited === 1 && <Text size='1' className='text-gray-10'>{__('(edited)')}</Text>}
 
                                 {message_reactions?.length &&
                                     <MessageReactions

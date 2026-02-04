@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { DropdownMenu } from '@radix-ui/themes'
 import { BiLogIn } from 'react-icons/bi'
 import { WorkspaceFields } from '@/hooks/fetchers/useFetchWorkspaces'
@@ -20,15 +21,15 @@ const JoinWorkspaceButton = ({ workspace }: Props) => {
             mutate('workspaces_list')
             mutate('channel_list')
         }), {
-            loading: 'Joining workspace...',
-            success: 'You have joined the workspace.',
-            error: (error) => `There was an error while joining the workspace.\n${getErrorMessage(error)}`,
+            loading: __('Joining workspace...'),
+            success: __('You have joined the workspace.'),
+            error: (error) => `${__('There was an error while joining the workspace.')}\n${getErrorMessage(error)}`,
         })
     }
     return (
         <DropdownMenu.Item onClick={joinWorkspace}>
             <BiLogIn fontSize={16} />
-            Join
+            {__('Join')}
         </DropdownMenu.Item>
     )
 }

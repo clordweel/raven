@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { BiBox } from "react-icons/bi";
 import { ArchiveChannelModal } from "./ArchiveChannelModal";
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider";
@@ -28,7 +29,7 @@ export const ArchiveChannelButton = ({ onClose: onCloseParent, channelData, allo
                 <AlertDialog.Trigger>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 text-left justify-start rounded-none'} disabled={!allowSettingChange}>
                         <BiBox />
-                        Archive channel
+                        {__('Archive channel')}
                     </Button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -45,7 +46,7 @@ export const ArchiveChannelButton = ({ onClose: onCloseParent, channelData, allo
                 <DrawerTrigger asChild>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 text-left justify-start rounded-none'} disabled={!allowSettingChange}>
                         <BiBox />
-                        Archive channel
+                        {__('Archive channel')}
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>

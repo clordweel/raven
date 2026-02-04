@@ -207,7 +207,7 @@ class RavenChannelMember(Document):
 						"doctype": "Raven Message",
 						"channel_id": self.channel_id,
 						"message_type": "System",
-						"text": f"{member_name} joined.",
+						"text": _("{0} joined.").format(member_name),
 					}
 				).insert(ignore_permissions=True)
 			else:
@@ -217,7 +217,7 @@ class RavenChannelMember(Document):
 						"doctype": "Raven Message",
 						"channel_id": self.channel_id,
 						"message_type": "System",
-						"text": f"{current_user_name} added {member_name}.",
+						"text": _("{0} added {1}.").format(current_user_name, member_name),
 					}
 				).insert(ignore_permissions=True)
 
@@ -242,7 +242,7 @@ class RavenChannelMember(Document):
 			# Send a system message to the channel mentioning the member who became admin
 			member_name = frappe.get_cached_value("Raven User", self.user_id, "full_name")
 			text = (
-				f"{member_name} is now an admin." if self.is_admin else f"{member_name} is no longer an admin."
+				_("{0} is now an admin.").format(member_name) if self.is_admin else _("{0} is no longer an admin.").format(member_name)
 			)
 			frappe.get_doc(
 				{

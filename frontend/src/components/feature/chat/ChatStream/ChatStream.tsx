@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Message } from '../../../../../../types/Messaging/Message'
 import { DeleteMessageDialog, useDeleteMessage } from '../ChatMessage/MessageActions/DeleteMessage'
 import { EditMessageDialog, useEditMessage } from '../ChatMessage/MessageActions/EditMessage'
@@ -201,7 +202,7 @@ const ChatStream = forwardRef(({ channelID, replyToMessage, showThreadButton = t
                 <Button
                     className='shadow-lg'
                     onClick={goToLatestMessages}>
-                    Scroll to new messages
+                    {__('Scroll to new messages')}
                     <FiArrowDown size={18} />
                 </Button>
             </div>}

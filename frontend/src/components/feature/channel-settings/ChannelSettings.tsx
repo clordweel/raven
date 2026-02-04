@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
 import { ArchiveChannelButton } from "./archive-channel/ArchiveChannelButton"
 import { ChangeChannelTypeButton } from "./change-channel-type/ChangeChannelTypeButton"
@@ -24,8 +25,8 @@ export const ChannelSettings = ({ onClose, channelData, allowSettingChange }: Pr
                     </Flex>
                 </Box>
                 <Flex direction='column' gap='1'>
-                    <Text size='1' weight='light' className={'px-1'}>Only channel admins or Raven admins are allowed to change the channel settings</Text>
-                    <Text size='1' weight='light' className={'px-1'}>General channel cannot be modified/ removed</Text>
+                    <Text size='1' weight='light' className={'px-1'}>{__('Only channel admins or Raven admins are allowed to change the channel settings')}</Text>
+                    <Text size='1' weight='light' className={'px-1'}>{__('General channel cannot be modified/ removed')}</Text>
                 </Flex>
             </Flex>
         </div>

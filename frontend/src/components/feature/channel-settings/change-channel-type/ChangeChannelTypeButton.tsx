@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
 import { BiGlobe, BiHash, BiLockAlt } from 'react-icons/bi'
 import { ChangeChannelTypeModal } from './ChangeChannelTypeModal'
@@ -55,7 +56,7 @@ const ChangeChannelTypePublicPrivate = ({ channelData, allowSettingChange }: Cha
                 <Dialog.Trigger>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Public' ? <BiLockAlt /> : <BiHash />}
-                        Change to a {channelData.type === 'Public' ? 'private' : 'public'} channel
+                        {channelData.type === 'Public' ? __('Change to a private channel') : __('Change to a public channel')}
                     </Button>
                 </Dialog.Trigger>
                 <Dialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -73,7 +74,7 @@ const ChangeChannelTypePublicPrivate = ({ channelData, allowSettingChange }: Cha
                 <DrawerTrigger asChild>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Public' ? <BiLockAlt /> : <BiHash />}
-                        Change to a {channelData.type === 'Public' ? 'private' : 'public'} channel
+                        {channelData.type === 'Public' ? __('Change to a private channel') : __('Change to a public channel')}
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>
@@ -105,7 +106,7 @@ const ChangeChannelTypeOpenPublic = ({ channelData, allowSettingChange }: Change
                 <Dialog.Trigger>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Open' ? <BiHash /> : <BiGlobe />}
-                        Change to a {channelData.type === 'Open' ? 'public' : 'open'} channel
+                        {channelData.type === 'Open' ? __('Change to a public channel') : __('Change to an open channel')}
                     </Button>
                 </Dialog.Trigger>
                 <Dialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -122,7 +123,7 @@ const ChangeChannelTypeOpenPublic = ({ channelData, allowSettingChange }: Change
                 <DrawerTrigger asChild>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Open' ? <BiHash /> : <BiGlobe />}
-                        Change to a {channelData.type === 'Open' ? 'public' : 'open'} channel
+                        {channelData.type === 'Open' ? __('Change to a public channel') : __('Change to an open channel')}
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>
@@ -154,7 +155,7 @@ const ChangeChannelTypeOpenPrivate = ({ channelData, allowSettingChange }: Chang
                 <Dialog.Trigger>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Open' ? <BiLockAlt /> : <BiGlobe />}
-                        Change to a {channelData.type === 'Open' ? 'private' : 'open'} channel
+                        {channelData.type === 'Open' ? __('Change to a private channel') : __('Change to an open channel')}
                     </Button>
                 </Dialog.Trigger>
                 <Dialog.Content className={DIALOG_CONTENT_CLASS}>
@@ -171,7 +172,7 @@ const ChangeChannelTypeOpenPrivate = ({ channelData, allowSettingChange }: Chang
                 <DrawerTrigger asChild>
                     <Button className={'py-6 px-4 bg-transparent text-zinc-900 dark:text-white not-cal hover:bg-gray-3 justify-start rounded-none'} disabled={!allowSettingChange}>
                         {channelData.type === 'Open' ? <BiLockAlt /> : <BiGlobe />}
-                        Change to a {channelData.type === 'Open' ? 'private' : 'open'} channel
+                        {channelData.type === 'Open' ? __('Change to a private channel') : __('Change to an open channel')}
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>

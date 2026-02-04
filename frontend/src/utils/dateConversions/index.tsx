@@ -1,16 +1,14 @@
-import { getDateObject } from "./utils";
+import { __ } from "@/utils/translations"
+import { getDateObject, USER_DATE_FORMAT } from "./utils"
 
 interface Props {
     date: string;
 }
 /**
- * Returns a date in the standard format that the user has set in their preferences
- * @param props
- * @returns
+ * Returns a date in the format that the user has set in their preferences (locale-aware)
  */
 export const StandardDate = (props: Props) => {
-
-    return getDateObject(props.date).format("DD/MM/YYYY")
+    return getDateObject(props.date).format(USER_DATE_FORMAT)
 }
 
 /**
@@ -21,9 +19,10 @@ export const DateMonthYear = (props: Props) => {
     return getDateObject(props.date).format("Do MMMM YYYY")
 }
 
+/** Returns date and time with translated "at" (e.g. "1 January 2024 at 10:30 AM") */
 export const DateMonthAtHourMinuteAmPm = (props: Props) => {
-
-    return getDateObject(props.date).format("Do MMMM [at] hh:mm A")
+    const d = getDateObject(props.date)
+    return d.format("Do MMMM") + " " + __("at") + " " + d.format("hh:mm A")
 }
 
 export const getTimePassed = (date: string) => {

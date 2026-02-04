@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { useContext, useMemo } from "react"
 import { UserContext } from "../../../utils/auth/UserProvider"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
@@ -37,7 +38,7 @@ export const ChannelDetails = ({ channelData, channelMembers, onClose }: Channel
             <Box className={'p-4 rounded-md border border-gray-6'}>
                 <Flex justify={'between'}>
                     <Flex direction={'column'}>
-                        <Text weight='medium' size='2'>Channel name</Text>
+                        <Text weight='medium' size='2'>{__('Channel name')}</Text>
                         <Flex gap='1' pt='1' align='center'>
                             <ChannelIcon type={channelData.type} size='14' />
                             <Text size='2'>{channelData?.channel_name}</Text>
@@ -59,9 +60,9 @@ export const ChannelDetails = ({ channelData, channelMembers, onClose }: Channel
                 <Flex direction='column' gap='4'>
                     <Flex justify={'between'}>
                         <Flex direction={'column'} gap='1'>
-                            <Text weight='medium' size='2'>Channel description</Text>
+                            <Text weight='medium' size='2'>{__('Channel description')}</Text>
                             <Text size='1' color='gray'>
-                                {channelData && channelData.channel_description && channelData.channel_description.length > 0 ? channelData.channel_description : 'No description'}
+                                {channelData && channelData.channel_description && channelData.channel_description.length > 0 ? channelData.channel_description : __('No description')}
                             </Text>
                         </Flex>
                         <EditDescriptionButton channelData={channelData} is_in_box={true} disabled={channelData.is_archived == 1 && !isAdmin} />
@@ -70,10 +71,10 @@ export const ChannelDetails = ({ channelData, channelMembers, onClose }: Channel
                     <Separator className={'w-full'} />
 
                     <Flex direction={'column'} gap='1'>
-                        <Text weight='medium' size='2'>Created by</Text>
+                        <Text weight='medium' size='2'>{__('Created by')}</Text>
                         <Flex gap='1'>
                             {channelData?.owner && <Text size='1'>{channelOwner?.full_name ?? channelData?.owner}</Text>}
-                            {channelData.creation && <Text size='1' color='gray' as='span'>on <DateMonthYear date={channelData?.creation} /></Text>}
+                            {channelData.creation && <Text size='1' color='gray' as='span'> {__('on')} <DateMonthYear date={channelData?.creation} /></Text>}
                         </Flex>
                     </Flex>
 

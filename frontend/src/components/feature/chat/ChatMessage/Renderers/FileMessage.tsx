@@ -138,7 +138,7 @@ const PDFPreviewContent = ({ fileName, user, message }: { fileName: string, user
 
     return <>
         <Dialog.Title size='3'>{fileName}</Dialog.Title>
-        <Dialog.Description color='gray' size='1'>{user?.full_name ?? message.owner} on <DateMonthAtHourMinuteAmPm date={message.creation} /></Dialog.Description>
+        <Dialog.Description color='gray' size='1'>{user?.full_name ?? message.owner} {__('on')} <DateMonthAtHourMinuteAmPm date={message.creation} /></Dialog.Description>
         <Box my='4'>
             <embed
                 src={message.file}

@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { ThreadPreviewBox } from '../ThreadPreviewBox'
 import { ThreadMessage } from '../Threads'
 import { FrappeConfig, FrappeContext, FrappeError, useSWRInfinite } from 'frappe-react-sdk'
@@ -166,17 +167,17 @@ const ThreadsList = ({ aiThreads, content, channel, endpoint = "raven.api.thread
             </li>
         ))}
         <div ref={observerTarget} className="h-4" />
-        {isLoadingMore && <BeatLoader text='Loading more threads...' />}
+        {isLoadingMore && <BeatLoader text={__('Loading more threads...')} />}
     </ul>
 }
 
 const EmptyStateForThreads = ({ isFiltered = false }: { isFiltered?: boolean }) => {
     const content = useMemo(() => isFiltered ? {
-        title: "You're all caught up",
-        description: 'There are no unread threads to show. Clear the filter to see all threads.'
+        title: __("You're all caught up"),
+        description: __('There are no unread threads to show. Clear the filter to see all threads.')
     } : {
-        title: 'No threads yet',
-        description: 'Threads help keep conversations organized. Reply to any message to start a new thread or use the thread icon on messages to join existing discussions.'
+        title: __('No threads yet'),
+        description: __('Threads help keep conversations organized. Reply to any message to start a new thread or use the thread icon on messages to join existing discussions.')
     }, [isFiltered])
 
     return (

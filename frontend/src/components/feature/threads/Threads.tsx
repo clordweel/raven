@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { PageHeader } from "@/components/layout/Heading/PageHeader"
 import { Box, Flex, Heading, Tabs } from "@radix-ui/themes"
 import { BiChevronLeft } from "react-icons/bi"
@@ -42,7 +43,7 @@ const Threads = () => {
                     <Link to={`/${workspaceID}`} className="block bg-transparent hover:bg-transparent active:bg-transparent sm:hidden">
                         <BiChevronLeft size='24' className="block text-gray-12" />
                     </Link>
-                    <Heading size='5'>Threads</Heading>
+                    <Heading size='5'>{__('Threads')}</Heading>
                 </Flex>
             </PageHeader>
             <div className="flex gap-0">
@@ -50,9 +51,9 @@ const Threads = () => {
                     {/* Show only regular threads now since this needs pagination */}
                     <Tabs.Root defaultValue="Participating">
                         <Tabs.List className="px-4">
-                            <Tabs.Trigger value="Participating">Participating</Tabs.Trigger>
-                            <Tabs.Trigger value="Other">Other</Tabs.Trigger>
-                            <Tabs.Trigger value="AI Threads">AI Agents</Tabs.Trigger>
+                            <Tabs.Trigger value="Participating">{__('Participating')}</Tabs.Trigger>
+                            <Tabs.Trigger value="Other">{__('Other')}</Tabs.Trigger>
+                            <Tabs.Trigger value="AI Threads">{__('AI Agents')}</Tabs.Trigger>
                         </Tabs.List>
                         <Tabs.Content value="Participating">
                             <ParticipatingThreads />

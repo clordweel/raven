@@ -49,7 +49,7 @@ export const SettingsSidebar = () => {
                 <SettingsSeparator />
                 <div className='flex flex-col gap-1 -mx-1'>
                     <SettingsSidebarItem title="Mobile App" to='mobile-app' standalone icon={BiMobileAlt} />
-                    <SettingsSidebarItem title="Push Notifications" to='push-notifications' standalone icon={BiNotification} />
+                    <SettingsSidebarItem title={__('Push Notifications')} to='push-notifications' standalone icon={BiNotification} />
                     <SettingsSidebarItem title="Help & Support" to='help' standalone icon={FiLifeBuoy} />
                 </div>
             </Flex>

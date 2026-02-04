@@ -1,3 +1,4 @@
+import { __ } from '@/utils/translations'
 import { Member } from '@/hooks/fetchers/useFetchChannelMembers'
 import useIsPushNotificationEnabled from '@/hooks/fetchers/useIsPushNotificationEnabled'
 import { UserContext } from '@/utils/auth/UserProvider'
@@ -44,7 +45,7 @@ const ChannelPushNotificationToggle = ({ channelID, channelMember }: Props) => {
                     }
                 })
                 .catch(() => {
-                    toast.error('Failed to update notification settings')
+                    toast.error(__('Failed to update notification settings'))
                 })
         }
     }
@@ -56,11 +57,11 @@ const ChannelPushNotificationToggle = ({ channelID, channelMember }: Props) => {
             <Flex justify={'between'}>
                 <Flex direction={'column'} gap='1'>
                     <Text as="label" weight='medium' htmlFor='channel_push' size="2">
-                        Push Notifications
+                        {__('Push Notifications')}
                     </Text>
                     {isPushAvailable ? null :
                         <Text size='1' color='gray'>
-                            Push notification is not enabled for the site. Please contact your administrator.
+                            {__('Push notification is not enabled for the site. Please contact your administrator.')}
                         </Text>
                     }
                 </Flex>

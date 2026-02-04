@@ -115,7 +115,7 @@ const MemberList = ({ channelData, channelMembers, activeUsers, updateMembers, i
                                         )}
                                         <Flex gap='1'>
                                             <Text weight='light' size='1'>{member.full_name}</Text>
-                                            {member.name === currentUser && <Text weight='light' size='1'>(You)</Text>}
+                                            {member.name === currentUser && <Text weight='light' size='1'>({__('You')})</Text>}
                                             {channelMembers[member.name]?.is_admin == 1 && <Flex align="center"><BiSolidCrown color='#FFC53D' /></Flex>}
                                         </Flex>
                                     </Flex>

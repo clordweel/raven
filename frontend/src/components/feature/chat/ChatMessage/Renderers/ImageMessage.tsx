@@ -153,7 +153,7 @@ export const ImageMessageBlock = memo(({ message, isScrolling = false, user }: I
                         )}
 
                         <Dialog.Title size='3' className='h-0 invisible sm:h-auto sm:visible'>{fileName}</Dialog.Title>
-                        <Dialog.Description color='gray' size='1' className='h-0 invisible sm:h-auto sm:visible'>{user?.full_name ?? message.owner} on <DateMonthAtHourMinuteAmPm date={message.creation} /></Dialog.Description>
+                        <Dialog.Description color='gray' size='1' className='h-0 invisible sm:h-auto sm:visible'>{user?.full_name ?? message.owner} {__('on')} <DateMonthAtHourMinuteAmPm date={message.creation} /></Dialog.Description>
                         <Box className={clsx(
                             'w-full mx-auto items-center flex justify-center',
                             isMobile ? 'h-[100dvh] absolute inset-0' : 'my-4'

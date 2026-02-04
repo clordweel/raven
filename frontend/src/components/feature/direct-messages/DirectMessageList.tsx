@@ -108,7 +108,7 @@ export const DirectMessageItemElement = ({ channel }: { channel: DMChannelWithUn
                 initial: '3',
                 md: '2'
             }} className="text-ellipsis line-clamp-1" weight={showUnread ? 'bold' : 'medium'}>
-                {channel.peer_user_id !== currentUser ? userData?.full_name ?? channel.peer_user_id ?? replaceCurrentUserFromDMChannelName(channel.channel_name, currentUser) : `${userData?.full_name} (You)`}
+                {channel.peer_user_id !== currentUser ? userData?.full_name ?? channel.peer_user_id ?? replaceCurrentUserFromDMChannelName(channel.channel_name, currentUser) : `${userData?.full_name} (${__('You')})`}
             </Text>
             {showUnread ? <SidebarBadge>{channel.unread_count}</SidebarBadge> : null}
         </Flex>
@@ -177,7 +177,7 @@ const ExtraUsersItem = ({ user, createDMChannel }: { user: UserFields, createDMC
                 initial: '3',
                 md: '2'
             }} className="text-ellipsis line-clamp-1" weight='medium'>
-                {user.name !== currentUser ? user.full_name : `${user.full_name} (You)`}
+                {user.name !== currentUser ? user.full_name : `${user.full_name} (${__('You')})`}
             </Text>
         </Flex>
     </SidebarButtonItem>

@@ -1,3 +1,4 @@
+import { __ } from "@/utils/translations"
 import { DateMonthYear, StandardDate } from "@/utils/dateConversions"
 import { Box, Button, DropdownMenu, Flex, HoverCard, Inset, Table, Text, Tooltip } from "@radix-ui/themes"
 import { FileInChannel } from "./ViewFilesContent"
@@ -17,12 +18,12 @@ export const FilesTable = ({ data }: { data: FileInChannel[] }) => {
             <Table.Root variant="surface" className='overflow-scroll'>
                 <Table.Header>
                     <Table.Row>
-                        <Table.ColumnHeaderCell>Preview</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Sent by</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Shared on</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Preview')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Size')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Sent by')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Shared on')}</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -87,7 +88,7 @@ export const FilesTable = ({ data }: { data: FileInChannel[] }) => {
                             </DropdownMenu.Root>
                             <Flex gap='2' align='center'>
                                 <Text size='1' color='gray'>
-                                    by {file.full_name ?? file.owner} on <DateMonthYear date={file.creation} />
+                                    {__('by')} {file.full_name ?? file.owner} {__('on')} <DateMonthYear date={file.creation} />
                                 </Text>
                             </Flex>
                         </Box>
