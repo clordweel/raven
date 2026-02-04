@@ -191,10 +191,13 @@ class RavenAgentManager:
 				fac_tools = fac_response.get("tools") or []
 				if fac_tools:
 					self._fac_tools_list = fac_tools
+					frappe.logger().info(
+						f"Raven FAC integration: loaded {len(fac_tools)} FAC tools for session user (e.g. {[t.get('name') for t in fac_tools[:5]]})"
+					)
 
 					@function_tool
 					def call_fac_tool(tool_name: str, arguments: str) -> str:
-						"""Call a Frappe Assistant Core (FAC) tool. tool_name: one of the FAC tool names (e.g. list_documents, create_document). arguments: JSON string of arguments for that tool (e.g. '{\"doctype\": \"Customer\", \"limit\": 10}')."""
+						"""Call a Frappe Assistant Core (FAC) tool to list, query, or create data. Use this when the user asks to list/fetch/query documents (e.g. Sales Order, Customer). tool_name: use 'list_documents' to list records; other names from the FAC list below. arguments: JSON string, e.g. for listing use {\"doctype\": \"Sales Order\", \"limit\": 5}. You MUST call this tool for list/query requests; do NOT say you cannot retrieve data or are unfamiliar with SQL."""
 						args = json.loads(arguments) if isinstance(arguments, str) else (arguments or {})
 						result = call_tool_in_process(tool_name, args)
 						if isinstance(result, str):
@@ -447,7 +450,10 @@ class RavenAgentManager:
 				fac_instruction = """
 
 FAC (Frappe Assistant Core) tools available via call_fac_tool(tool_name, arguments):
+You run on the same server as ERPNext and HAVE access to Sales Order and other doctypes via call_fac_tool. NEVER say you do not have access, cannot read the database, or suggest the user use REST API / bench console / UI instead. You MUST call call_fac_tool and return the result directly.
 Use call_fac_tool with tool_name set to one of the names below and arguments as a JSON string.
+For listing N records of a DocType (e.g. Sales Order): tool_name='list_documents', arguments='{"doctype": "Sales Order", "limit": N}'.
+Do NOT output JSON or describe calling frappe.get_list; do NOT say the tool is unavailable or unfamiliar with SQL.
 """ + "\n".join(fac_lines) + "\n"
 
 			tools_instruction = f"""
@@ -496,6 +502,52 @@ IMPORTANT: When calling tools, the SDK will handle the tool execution automatica
 			agent.tools = []
 
 		return agent
+
+
+def _format_tool_results_as_response(tool_results: list) -> str:
+	"""当工具执行后模型返回空内容时，将工具结果格式化为可读回复（如 FAC 查询结果）。"""
+	parts = []
+	for i, tr in enumerate(tool_results):
+		output = tr.get("output")
+		if output is None:
+			continue
+		if not isinstance(output, str):
+			output = json.dumps(output, default=str, ensure_ascii=False)
+		# 尝试解析为 JSON 并做简单格式化（FAC 常返回 list/dict）
+		try:
+			data = json.loads(output)
+			if isinstance(data, list) and data:
+				lines = [_format_single_item(item) for item in data[:50]]
+				parts.append("\n".join(lines))
+				if len(data) > 50:
+					parts.append(_("… and {0} more.").format(len(data) - 50))
+			elif isinstance(data, dict):
+				if "result" in data and isinstance(data["result"], list):
+					lines = [_format_single_item(item) for item in data["result"][:50]]
+					parts.append("\n".join(lines))
+					if len(data["result"]) > 50:
+						parts.append(_("… and {0} more.").format(len(data["result"]) - 50))
+				else:
+					parts.append(output)
+			else:
+				parts.append(output)
+		except (json.JSONDecodeError, TypeError):
+			parts.append(output)
+	if not parts:
+		return ""
+	return "\n\n".join(parts)
+
+
+def _format_single_item(item) -> str:
+	"""将单条记录格式化为一行（支持 dict 或简单类型）。"""
+	if isinstance(item, dict):
+		name = item.get("name") or item.get("title") or item.get("id")
+		if name is not None:
+			return f"• {name}"
+		# 取前几个键值
+		kv = [f"{k}: {v}" for k, v in list(item.items())[:5]]
+		return " • ".join(kv) if kv else str(item)
+	return f"• {item}"
 
 
 # Async handler function that can be called from sync context
@@ -555,6 +607,11 @@ async def handle_ai_request_async(
 			if bot.model_provider == "Local LLM":
 				raise TypeError("Force fallback for Local LLM to handle custom tool calls")
 
+			# 当启用 FAC 工具时强制走 fallback：由我们控制「发请求 → 执行 tool_calls → 第二轮请求」，
+			# 避免 Runner.run 只返回首轮「正在查询…」而不执行工具或不做第二轮导致用户看不到结果
+			if getattr(manager, "_fac_tools_list", None):
+				raise TypeError("Force fallback for FAC tool calls")
+
 			# Use Runner.run as a static method (not an instance)
 			# Set max_turns to prevent infinite loops
 			result = await Runner.run(agent, full_input, max_turns=5)
@@ -567,6 +624,8 @@ async def handle_ai_request_async(
 				should_fallback = True
 			elif isinstance(e, TypeError) and "Force fallback for Local LLM" in str(e):
 				# Forced fallback for Local LLM to handle custom tool calls
+				should_fallback = True
+			elif isinstance(e, TypeError) and "Force fallback for FAC tool calls" in str(e):
 				should_fallback = True
 			elif isinstance(e, openai.NotFoundError):
 				# 404 errors indicate the endpoint is not supported (like agents SDK endpoints on Ollama)
@@ -582,24 +641,52 @@ async def handle_ai_request_async(
 						tools_param = []
 						for tool in manager.tools:
 							# Skip non-FunctionTool tools (like CodeInterpreterTool)
-							# as they can't be converted to OpenAI function format
-							if hasattr(tool, "description") and hasattr(tool, "params_json_schema"):
-								# Convert FunctionTool to OpenAI function format
+							if not hasattr(tool, "description"):
+								continue
+							schema = getattr(tool, "params_json_schema", None) or getattr(
+								tool, "parameters", None
+							)
+							if schema:
 								tool_def = {
 									"type": "function",
 									"function": {
 										"name": tool.name,
 										"description": tool.description,
-										"parameters": tool.params_json_schema,
+										"parameters": schema,
 									},
 								}
 								tools_param.append(tool_def)
+						# 确保 FAC 的 call_fac_tool 一定在列表中（部分 SDK 可能无 params_json_schema）
+						if getattr(manager, "_fac_tools_list", None):
+							names = [t["function"]["name"] for t in tools_param]
+							if "call_fac_tool" not in names:
+								tools_param.append({
+									"type": "function",
+									"function": {
+										"name": "call_fac_tool",
+										"description": "Call a Frappe Assistant Core (FAC) tool to list, query, or create data. You run on the same server as ERPNext and HAVE access to Sales Order etc. via this tool. Use when the user asks to list/fetch/query (e.g. Sales Order, Customer). tool_name: use 'list_documents' to list. arguments: JSON string, e.g. {\"doctype\": \"Sales Order\", \"limit\": 5}. You MUST call this tool for list/query; do NOT say you cannot access the database or suggest REST API/console/UI.",
+										"parameters": {
+											"type": "object",
+											"properties": {
+												"tool_name": {"type": "string", "description": "FAC tool name, e.g. list_documents"},
+												"arguments": {"type": "string", "description": "JSON string of arguments, e.g. {\"doctype\": \"Sales Order\", \"limit\": 5}"},
+											},
+											"required": ["tool_name", "arguments"],
+										},
+									},
+								})
 
 					# Add instruction to encourage immediate tool use
 					enhanced_instructions = (
 						agent.instructions
 						+ "\n\nIMPORTANT: When asked to perform an action, use your tools immediately. Do not overthink. Keep responses brief and action-oriented. When asked to improve something, propose a specific solution immediately. File content from uploaded documents is automatically extracted and included in the conversation - DO NOT use the analyze_conversation_file tool for files that are already in the conversation context, just use the extracted content provided."
 					)
+					if getattr(manager, "_fac_tools_list", None):
+						enhanced_instructions += (
+							"\n\nFAC tool call (mandatory for list/query requests): You run on the same server as ERPNext and HAVE access to Sales Order and other doctypes via the tool call_fac_tool. NEVER say you do not have access, cannot read the database, or suggest the user use REST API / bench console / UI to query themselves. You MUST call call_fac_tool and return the query result directly."
+							"\n\nWhen the user asks to list, query, or fetch data (e.g. '查一下最新/最近 销售订单', 'list Sales Orders', 'get Customers'), you MUST invoke the function call_fac_tool. Do NOT output JSON or text describing frappe.get_list or REST API; do NOT say 'frappe.get_list is not registered' or 'tool unavailable'. The only way to list ERPNext/Frappe data here is to call call_fac_tool with tool_name='list_documents' and arguments as a JSON string (e.g. {\"doctype\": \"Sales Order\", \"limit\": 1})."
+							"\n\nExample: User says '查一下最新的一条销售订单' → invoke call_fac_tool with tool_name='list_documents', arguments='{\"doctype\": \"Sales Order\", \"limit\": 1}'. Then format and return the result. Do NOT reply with only 'I am fetching' or 'please wait' without calling the tool; do NOT suggest the user go to Selling > Sales Order or use API/console."
+						)
 
 					# Build messages array with proper conversation history
 					messages = [{"role": "system", "content": [{"type": "text", "text": enhanced_instructions}]}]
@@ -691,6 +778,9 @@ async def handle_ai_request_async(
 
 								if final_response and final_response.choices:
 									raw_response = final_response.choices[0].message.content
+									# 工具执行后模型有时返回空 content，用工具结果作为回复避免 "No response content."
+									if not (raw_response and raw_response.strip()) and tool_results:
+										raw_response = _format_tool_results_as_response(tool_results)
 								else:
 									raw_response = "Failed to get final response after tool execution."
 							else:
@@ -792,7 +882,9 @@ async def handle_ai_request_async(
 		# Format the response if not already formatted
 		from raven.ai.response_formatter import format_ai_response
 
-		final_response = result.final_output
+		final_response = getattr(result, "final_output", None) if result else None
+		if not (final_response and str(final_response).strip()):
+			final_response = _("No response content from the model. Try rephrasing or check tool results in Error Log.")
 
 		# Check if response needs formatting (contains think tags or boxed notation)
 		if "<think>" in final_response or "\\boxed{" in final_response:
