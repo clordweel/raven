@@ -18,6 +18,9 @@
   "openai_organisation_id",
   "openai_api_key",
   "openai_project_id",
+  "fac_integration_section",
+  "enable_fac_integration",
+  "fac_integration_mode",
   "column_break_occp",
   "enable_local_llm",
   "local_llm_provider",
@@ -150,6 +153,27 @@
    "fieldname": "openai_project_id",
    "fieldtype": "Data",
    "label": "OpenAI Project ID"
+  },
+  {
+   "fieldname": "fac_integration_section",
+   "fieldtype": "Section Break",
+   "label": "FAC Integration"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.enable_ai_integration",
+   "description": "Use Frappe Assistant Core (FAC) tools in Raven bots. Requires frappe_assistant_core app.",
+   "fieldname": "enable_fac_integration",
+   "fieldtype": "Check",
+   "label": "Enable FAC Integration"
+  },
+  {
+   "default": "In-process",
+   "depends_on": "eval:doc.enable_fac_integration",
+   "fieldname": "fac_integration_mode",
+   "fieldtype": "Select",
+   "label": "FAC Integration Mode",
+   "options": "In-process\nHTTP"
   },
   {
    "fieldname": "column_break_occp",
