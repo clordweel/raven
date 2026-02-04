@@ -1,5 +1,6 @@
 import { Loader } from "@/components/common/Loader"
 import MessageActionForm from "@/components/feature/message-actions/MessageActionForm"
+import { __ } from '@/utils/translations'
 import CommonSettingsMenu from "@/components/feature/settings/common/CommonSettingsMenu"
 import { ErrorBanner } from "@/components/layout/AlertBanner/ErrorBanner"
 import { FullPageLoader } from "@/components/layout/Loaders/FullPageLoader"
@@ -47,7 +48,7 @@ const ViewMessageActionContent = ({ data, mutate }: { data: RavenMessageAction, 
     const onSubmit = (data: RavenMessageAction) => {
         updateDoc("Raven Message Action", data.name, data)
             .then((doc) => {
-                toast.success("Saved")
+                toast.success(__("Saved"))
                 methods.reset(doc)
                 mutate(doc, { revalidate: false })
             })
@@ -73,15 +74,15 @@ const ViewMessageActionContent = ({ data, mutate }: { data: RavenMessageAction, 
             <SettingsContentContainer>
                 <SettingsPageHeader
                     title={data.action_name}
-                    headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
+                    headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Message Action" docname={data.name} label={"Message Action"} />
+                        <CommonSettingsMenu doctype="Raven Message Action" docname={data.name} label={__("Message Action")} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Message Actions', href: '../' }, { label: data.action_name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __('Message Actions'), href: '../' }, { label: data.action_name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 <MessageActionForm />

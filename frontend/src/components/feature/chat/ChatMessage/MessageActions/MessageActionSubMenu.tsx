@@ -1,4 +1,5 @@
 import { ContextMenu, Flex, Text } from '@radix-ui/themes'
+import { __ } from '@/utils/translations'
 import { BiBoltCircle } from 'react-icons/bi'
 import { useFrappeGetDocList } from 'frappe-react-sdk'
 import { RavenMessageAction } from '@/types/RavenIntegrations/RavenMessageAction'
@@ -14,7 +15,7 @@ const MessageActionSubMenu = (props: Props) => {
         <ContextMenu.SubTrigger>
             <Flex gap='2' align='center'>
                 <BiBoltCircle size={'18'} />
-                Actions
+                {__('Actions')}
             </Flex>
         </ContextMenu.SubTrigger>
         <ContextMenu.SubContent>
@@ -59,7 +60,7 @@ const MessageActionSubMenuContent = (props: Props) => {
         })
 
             : <ContextMenu.Item disabled>
-                No Actions Available
+                {__('No Actions Available')}
             </ContextMenu.Item>}
     </>
 }

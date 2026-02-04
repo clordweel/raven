@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom"
+import { __ } from '@/utils/translations'
 import { Message } from "../../../../../../../types/Messaging/Message"
 import { Button, Flex, Text } from "@radix-ui/themes"
 import { useFrappeGetCall } from "frappe-react-sdk"
@@ -16,7 +17,7 @@ export const ThreadMessage = ({ thread }: { thread: Message }) => {
                     color="gray"
                     variant={'ghost'}
                     className={'not-cal w-fit hover:bg-transparent hover:underline cursor-pointer'}>
-                    <Link to={`/${workspaceID}/${thread.channel_id}/thread/${thread.name}`}>View Thread</Link>
+                    <Link to={`/${workspaceID}/${thread.channel_id}/thread/${thread.name}`}>{__('View Thread')}</Link>
                 </Button>
             </Flex>
         </div>
@@ -34,6 +35,6 @@ export const ThreadReplyCount = ({ thread }: { thread: Message }) => {
 
     return <Flex gap='1' align={'center'}>
         <Text size='1' className={'font-semibold text-accent-a11'}>{data?.message ?? 0}</Text>
-        <Text size='1' className={'font-semibold text-accent-a11'}>{data?.message === 1 ? 'Reply' : 'Replies'}</Text>
+        <Text size='1' className={'font-semibold text-accent-a11'}>{data?.message === 1 ? __('Reply') : __('Replies')}</Text>
     </Flex>
 }

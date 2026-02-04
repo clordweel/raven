@@ -1,4 +1,5 @@
 import { Badge, Box, Flex, Text } from '@radix-ui/themes'
+import { __ } from '@/utils/translations'
 import { getTimePassed, DateMonthYear } from '@/utils/dateConversions'
 import { MessageContent, MessageSenderAvatar, UserHoverCard } from '../chat/ChatMessage/MessageItem'
 import { useGetUser } from '@/hooks/useGetUser'
@@ -153,7 +154,7 @@ export const ThreadPreviewBox = ({ thread, unreadCount }: { thread: ThreadMessag
                         </Flex>
                         <Flex align={'center'} gap='2' className='pl-11'>
                             <ViewThreadParticipants participants={thread.participants ?? []} />
-                            <Text as='div' size='1' className={'font-medium text-accent-a11'}>{thread.reply_count ?? 0} {thread.reply_count && thread.reply_count === 1 ? 'Reply' : 'Replies'}</Text>
+                            <Text as='div' size='1' className={'font-medium text-accent-a11'}>{thread.reply_count ?? 0} {thread.reply_count && thread.reply_count === 1 ? __('Reply') : __('Replies')}</Text>
                         </Flex>
                         {/* {lastMessageDetails && <LastMessagePreview
                             details={lastMessageDetails}
