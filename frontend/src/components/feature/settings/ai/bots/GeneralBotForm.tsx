@@ -16,11 +16,11 @@ const GeneralBotForm = () => {
         <Stack gap='4'>
             <Stack maxWidth={'480px'}>
                 <Box>
-                    <Label htmlFor='bot_name' isRequired>Name</Label>
+                    <Label htmlFor='bot_name' isRequired>{__('Name')}</Label>
                     <TextField.Root
                         id='bot_name'
                         {...register('bot_name', {
-                            required: 'Name is required',
+                            required: __('Name is required'),
                         })}
                         autoFocus
                         placeholder={__("accounts-bot")}
@@ -33,7 +33,7 @@ const GeneralBotForm = () => {
 
             <Stack>
                 <Box>
-                    <Label htmlFor='description'>Description</Label>
+                    <Label htmlFor='description'>{__('Description')}</Label>
                     <TextArea
                         id='description'
                         {...register('description')}
@@ -63,11 +63,11 @@ const GeneralBotForm = () => {
                                 />
                             )} />
 
-                        Is AI Agent
+                        {__('Is AI Agent')}
                     </HStack>
                 </Text>
                 <HelperText>
-                    Check to enable AI features for this bot
+                    {__('Check to enable AI features for this bot')}
                 </HelperText>
             </Stack>
 

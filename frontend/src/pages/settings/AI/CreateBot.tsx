@@ -5,6 +5,7 @@ import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import { Button } from '@radix-ui/themes'
 import { useFrappeCreateDoc } from 'frappe-react-sdk'
 import { useEffect } from 'react'
@@ -53,13 +54,13 @@ const CreateBot = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create an Agent'
+                            title={__('Create an Agent')}
                             // description='Bots can be used to send reminders, run AI assistants, and more.'
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Agents', href: '../' }, { label: 'New Agent', href: '' }]}
+                            breadcrumbs={[{ label: __('Agents'), href: '../' }, { label: __('New Agent'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <BotForm isEdit={false} />

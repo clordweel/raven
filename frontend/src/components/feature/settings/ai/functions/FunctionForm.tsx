@@ -27,7 +27,7 @@ const FunctionForm = ({ isEdit }: { isEdit?: boolean }) => {
         <Tabs.Root defaultValue='function_details'>
             <Tabs.List>
                 <Tabs.Trigger value='function_details'>
-                    <LuSquareFunction {...ICON_PROPS} /> Details
+                    <LuSquareFunction {...ICON_PROPS} /> {__('Details')}
                 </Tabs.Trigger>
                 <Tabs.Trigger
                     value='variables'
@@ -45,7 +45,7 @@ const FunctionForm = ({ isEdit }: { isEdit?: boolean }) => {
                         "Set Value",
                         "Get Report Result"
                     ], type)}>
-                    <LuVariable {...ICON_PROPS} /> Variables
+                    <LuVariable {...ICON_PROPS} /> {__('Variables')}
                 </Tabs.Trigger>
             </Tabs.List>
             <Stack pt='4'>
@@ -91,12 +91,12 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
         <Grid columns={'2'} gap='4'>
             <Stack>
                 <Box>
-                    <Label htmlFor='type' isRequired>Type</Label>
+                    <Label htmlFor='type' isRequired>{__('Type')}</Label>
                     <Controller
                         control={control}
                         name='type'
                         rules={{
-                            required: 'Type is required',
+                            required: __('Type is required'),
                             onChange: onFunctionChange
                         }}
                         render={({ field }) => (
@@ -104,17 +104,17 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                                 <Select.Trigger placeholder={__('Pick a function type')} className='w-full' autoFocus />
                                 <Select.Content>
                                     <Select.Group>
-                                        <Select.Label className='pl-3'>Standard</Select.Label>
+                                        <Select.Label className='pl-3'>{__('Standard')}</Select.Label>
                                         {FUNCTION_TYPES.filter(f => f.type === "Standard").map(f => <Select.Item value={f.value} key={f.value}>{f.value}</Select.Item>)}
                                     </Select.Group>
 
                                     <Select.Group>
-                                        <Select.Label className='pl-3'>Miscellaneous</Select.Label>
+                                        <Select.Label className='pl-3'>{__('Miscellaneous')}</Select.Label>
                                         {FUNCTION_TYPES.filter(f => f.type === "Other").map(f => <Select.Item value={f.value} key={f.value}>{f.value}</Select.Item>)}
                                     </Select.Group>
 
                                     <Select.Group>
-                                        <Select.Label className='pl-3'>Bulk Operations</Select.Label>
+                                        <Select.Label className='pl-3'>{__('Bulk Operations')}</Select.Label>
                                         {FUNCTION_TYPES.filter(f => f.type === "Bulk Operations").map(f => <Select.Item value={f.value} key={f.value}>{f.value}</Select.Item>)}
                                     </Select.Group>
 
@@ -129,15 +129,15 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
             <ReferenceDoctypeField />
             <Stack>
                 <Box>
-                    <Label htmlFor='function_name' isRequired>Name</Label>
+                    <Label htmlFor='function_name' isRequired>{__('Name')}</Label>
                     <TextField.Root
                         id='function_name'
                         {...register('function_name', {
-                            required: 'Name is required',
+                            required: __('Name is required'),
                             disabled: isEdit,
                             validate: (value) => {
                                 if (value.includes(' ')) {
-                                    return 'Name cannot contain spaces'
+                                    return __('Name cannot contain spaces')
                                 }
                                 return true
                             }
@@ -148,7 +148,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                     />
                 </Box>
                 {errors.function_name && <ErrorText>{errors.function_name?.message}</ErrorText>}
-                <HelperText>This needs to be unique and cannot contain spaces.</HelperText>
+                <HelperText>{__('This needs to be unique and cannot contain spaces.')}</HelperText>
             </Stack>
         </Grid>
 
@@ -156,7 +156,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
 
         <Stack>
             <Box>
-                <Label htmlFor='description' isRequired>Description</Label>
+                <Label htmlFor='description' isRequired>{__('Description')}</Label>
                 <Controller
                     control={control}
                     name='description'
@@ -166,7 +166,7 @@ const GeneralFunctionDetails = ({ isEdit }: { isEdit?: boolean }) => {
                 />
             </Box>
             {errors.description && <ErrorText>{errors.description?.message}</ErrorText>}
-            <HelperText>This is used to describe what this function does to the AI Agent.</HelperText>
+            <HelperText>{__('This is used to describe what this function does to the AI Agent.')}</HelperText>
         </Stack>
 
         <CustomFunction />
@@ -194,7 +194,7 @@ const FunctionHelperText = () => {
     const functionDef = FUNCTION_TYPES.find(f => f.value === type)
 
     if (!functionDef) {
-        return <HelperText>Select a function type from the dropdown above.</HelperText>
+        return <HelperText>{__('Select a function type from the dropdown above.')}</HelperText>
     }
 
     return <HelperText>{functionDef.description}</HelperText>
@@ -222,11 +222,11 @@ const PassParamsAsJSON = () => {
                         />
                     )} />
 
-                Pass parameters as JSON
+                {__('Pass parameters as JSON')}
             </HStack>
         </Text>
         <HelperText>
-            If checked, the params will be passed as a JSON object instead of named parameters
+            {__('If checked, the params will be passed as a JSON object instead of named parameters')}
         </HelperText>
     </Stack>
 }
@@ -249,11 +249,11 @@ const RequiresWritePermissions = () => {
                         />
                     )} />
 
-                Requires Write Permissions
+                {__('Requires Write Permissions')}
             </HStack>
         </Text>
         <HelperText>
-            Check this if the function you have selected requires write permissions.
+            {__('Check this if the function you have selected requires write permissions.')}
         </HelperText>
     </Stack>
 }
@@ -270,14 +270,14 @@ const CustomFunction = () => {
 
     return <Stack>
         <Box>
-            <Label htmlFor='function_path' isRequired={type === 'Custom Function'}>Custom Function Path</Label>
+            <Label htmlFor='function_path' isRequired={type === 'Custom Function'}>{__('Custom Function Path')}</Label>
             <TextArea
                 id='function_path'
                 {...register('function_path', {
-                    required: type === 'Custom Function' ? 'Path is required' : false,
+                    required: type === 'Custom Function' ? __('Path is required') : false,
                     validate: (value) => {
                         if (value?.includes(' ')) {
-                            return 'Path cannot contain spaces'
+                            return __('Path cannot contain spaces')
                         }
                         return true
                     }
@@ -286,7 +286,7 @@ const CustomFunction = () => {
             />
         </Box>
         <HelperText>
-            Dotted path to the custom function/API. Cannot contain spaces.
+            {__('Dotted path to the custom function/API. Cannot contain spaces.')}
         </HelperText>
         {errors.function_path && <ErrorText>{errors.function_path?.message}</ErrorText>}
     </Stack>
@@ -381,17 +381,17 @@ const ReferenceDoctypeField = () => {
     return <Stack>
         <LinkFormField
             name='reference_doctype'
-            label='Reference Doctype'
+            label={__('Reference Doctype')}
             required
             filters={[["istable", "=", 0], ["issingle", "=", 0]]}
             doctype='DocType'
             rules={{
-                required: DOCUMENT_REF_FUNCTIONS.includes(type) ? 'Reference Doctype is required' : false,
+                required: DOCUMENT_REF_FUNCTIONS.includes(type) ? __('Reference Doctype is required') : false,
                 onChange: onReferenceDoctypeChange
             }}
         />
         <HelperText>
-            The document you want this function to operate on.
+            {__('The document you want this function to operate on.')}
         </HelperText>
         {errors.reference_doctype && <ErrorText>{errors.reference_doctype?.message}</ErrorText>}
     </Stack>

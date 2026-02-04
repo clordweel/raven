@@ -19,13 +19,13 @@ const InstructionTemplateForm = ({ isEdit }: Props) => {
             <AINotEnabledCallout />
             <Stack maxWidth={'480px'}>
                 <Box>
-                    <Label htmlFor='template_name' isRequired>Template Name</Label>
+                    <Label htmlFor='template_name' isRequired>{__('Template Name')}</Label>
                     <TextField.Root
                         readOnly={isEdit}
                         autoFocus={!isEdit}
                         id='template_name'
                         {...register('template_name', {
-                            required: 'Name is required',
+                            required: __('Name is required'),
                         })}
                         placeholder={__("Create Document Template")}
                         aria-invalid={errors.template_name ? 'true' : 'false'}

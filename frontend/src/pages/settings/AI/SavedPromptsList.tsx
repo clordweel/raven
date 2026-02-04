@@ -1,5 +1,6 @@
 import AINotEnabledCallout from '@/components/feature/settings/ai/AINotEnabledCallout'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 import { EmptyState, EmptyStateDescription, EmptyStateIcon, EmptyStateLinkAction, EmptyStateTitle } from '@/components/layout/EmptyState/EmptyListViewState'
 import { TableLoader } from '@/components/layout/Loaders/TableLoader'
 import PageContainer from '@/components/layout/Settings/PageContainer'
@@ -34,10 +35,10 @@ const SavedPromptList = (props: Props) => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Saved Commands'
-                    description='Save commonly used commands and prompts for your AI bots and access them via "/" in chat.'
+                    title={__('Saved Commands')}
+                    description={__('Save commonly used commands and prompts for your AI bots and access them via "/" in chat.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -48,12 +49,12 @@ const SavedPromptList = (props: Props) => {
                     <EmptyStateIcon>
                         <BiSolidMagicWand />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Who's going to type all that?</EmptyStateTitle>
+                    <EmptyStateTitle>{__("Who's going to type all that?")}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Often we ask our AI assistants for the same thing.<br />Save commonly used commands here and insert them in your message by either clicking the <BiSolidMagicWand /> button or using <Kbd>{getKeyboardMetaKeyString()} + ⇧ + K</Kbd>.
+                        {__("Often we ask our AI assistants for the same thing.")}<br />{__('Save commonly used commands here and insert them in your message by either clicking the')} <BiSolidMagicWand /> {__('button or using')} <Kbd>{getKeyboardMetaKeyString()} + ⇧ + K</Kbd>.
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first command
+                        {__('Create your first command')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -66,9 +67,9 @@ const SavedPromptTable = ({ data }: { data: RavenBotAIPrompt[] }) => {
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Agent</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Is Global?</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Agent')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Is Global?')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>

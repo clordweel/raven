@@ -1,5 +1,6 @@
 import AINotEnabledCallout from '@/components/feature/settings/ai/AINotEnabledCallout'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 import { EmptyState, EmptyStateDescription, EmptyStateIcon, EmptyStateLinkAction, EmptyStateTitle } from '@/components/layout/EmptyState/EmptyListViewState'
 import { TableLoader } from '@/components/layout/Loaders/TableLoader'
 import PageContainer from '@/components/layout/Settings/PageContainer'
@@ -34,10 +35,10 @@ const InstructionTemplateList = (props: Props) => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Instruction Templates'
-                    description='Save commonly used instructions as templates for your bots.'
+                    title={__('Instruction Templates')}
+                    description={__('Save commonly used instructions as templates for your bots.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -48,12 +49,12 @@ const InstructionTemplateList = (props: Props) => {
                     <EmptyStateIcon>
                         <BiFile />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>AI Instruction Templates</EmptyStateTitle>
+                    <EmptyStateTitle>{__('AI Instruction Templates')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Most bots require the same kind of instructions to perform their tasks, like "format dates as DD-MM-YYYY" or "the current user is <Code color='gray'>{"{{user}}"}</Code>".<br />Save commonly used instructions as templates for your AI bots.
+                        {__('Most bots require the same kind of instructions to perform their tasks, like "format dates as DD-MM-YYYY" or "the current user is "')}<Code color='gray'>{"{{user}}"}</Code>".<br />{__('Save commonly used instructions as templates for your AI bots.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first template
+                        {__('Create your first template')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -66,8 +67,8 @@ const InstructionTable = ({ data }: { data: RavenBotInstructionTemplate[] }) => 
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Description')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -79,7 +80,7 @@ const InstructionTable = ({ data }: { data: RavenBotInstructionTemplate[] }) => 
                                     <Text weight='medium'>{d.template_name}</Text>
                                 </Link>
                                 {d.dynamic_instructions ?
-                                    <Badge color='purple'><RiSparkling2Fill /> Dynamic</Badge>
+                                    <Badge color='purple'><RiSparkling2Fill /> {__('Dynamic')}</Badge>
 
                                     : null}
                             </HStack>

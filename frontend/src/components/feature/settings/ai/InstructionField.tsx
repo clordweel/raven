@@ -41,13 +41,13 @@ const InstructionField = ({ allowUsingTemplate, instructionRequired, autoFocus }
                                 />
                             )} />
 
-                        Dynamic Instructions
+                        {__('Dynamic Instructions')}
                     </Flex>
                 </Text>
                 <HelperText size='2'>
-                    Dynamic Instructions allow you to embed Jinja tags in your instruction to the bot.
+                    {__('Dynamic Instructions allow you to embed Jinja tags in your instruction to the bot.')}
                     <br /><br />
-                    Instructions would be different based on the user who is calling the bot or the data in your system as they are computed every time the bot is called.
+                    {__('Instructions would be different based on the user who is calling the bot or the data in your system as they are computed every time the bot is called.')}
                 </HelperText>
             </Flex>
 
@@ -163,8 +163,8 @@ const DynamicInstructionField = ({ allowUsingTemplate, instructionRequired, auto
 
     return <Stack gap='4'>
         <SegmentedControl.Root defaultValue="editor" value={view} onValueChange={setView}>
-            <SegmentedControl.Item value="editor">Editor</SegmentedControl.Item>
-            <SegmentedControl.Item value="preview">Preview</SegmentedControl.Item>
+            <SegmentedControl.Item value="editor">{__('Editor')}</SegmentedControl.Item>
+            <SegmentedControl.Item value="preview">{__('Preview')}</SegmentedControl.Item>
         </SegmentedControl.Root>
         {view === 'editor' ? <StaticInstructionField className='w-full'
             allowUsingTemplate={allowUsingTemplate}
@@ -175,14 +175,14 @@ const DynamicInstructionField = ({ allowUsingTemplate, instructionRequired, auto
 
         <Separator className='w-full' />
         <Text size='2'>
-            Here are some variables you can use in your instruction. Simply copy by clicking on the variable.
-            <br />You can also use standard Jinja variables available in the system.
+            {__('Here are some variables you can use in your instruction. Simply copy by clicking on the variable.')}
+            <br />{__('You can also use standard Jinja variables available in the system.')}
         </Text>
         <Table.Root variant='surface'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Variable</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Variable')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Description')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -208,13 +208,13 @@ export const VariableTooltip = ({ text, withoutJinja = false }: { text: string, 
         e.preventDefault()
         window.navigator.clipboard.writeText(withoutJinja ? text : "{{ " + text + " }}")
             .then(() => {
-                setTooltip('Copied!')
+                setTooltip(__('Copied!'))
                 setTimeout(() => {
                     setTooltip('')
                 }, 1000)
             })
             .catch(() => {
-                toast.error('Failed to copy to clipboard')
+                toast.error(__('Failed to copy to clipboard'))
             })
     }
 
@@ -265,21 +265,21 @@ const StaticInstructionField = ({ allowUsingTemplate, instructionRequired, ...pr
 
     const isDynamic = watch('dynamic_instructions')
 
-    const placeholder = isDynamic ? "You are an assistant running on an ERP. The current user's name is {{ first_name }} and the current company is {{ company }}." : 'You are an assistant running on an ERP. You can answer questions about the company.'
+    const placeholder = isDynamic ? __("You are an assistant running on an ERP. The current user's name is {{ first_name }} and the current company is {{ company }}.") : __('You are an assistant running on an ERP. You can answer questions about the company.')
 
     return <Stack>
         <Box>
             <HStack justify={'between'}>
-                <Label htmlFor='instruction' isRequired>Instruction</Label>
+                <Label htmlFor='instruction' isRequired>{__('Instruction')}</Label>
                 {allowUsingTemplate && <ImportTemplate />}
             </HStack>
             <TextArea
                 id='instruction'
                 {...register('instruction', {
-                    required: instructionRequired ? 'Instruction is required' : false,
+                    required: instructionRequired ? __('Instruction is required') : false,
                     validate: (value) => {
                         if (!isDynamic && value.includes('{{')) {
-                            return 'You cannot include Jinja tags without enabling dynamic instructions.'
+                            return __('You cannot include Jinja tags without enabling dynamic instructions.')
                         }
                         return true
                     }

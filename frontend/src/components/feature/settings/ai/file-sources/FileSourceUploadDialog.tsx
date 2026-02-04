@@ -4,6 +4,7 @@ import { FileUploadBox } from '@/components/feature/userSettings/UploadImage/Fil
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenAIFileSource } from '@/types/RavenAI/RavenAIFileSource'
+import { __ } from '@/utils/translations'
 import { Box, ButtonProps, Dialog, Spinner, TextField } from '@radix-ui/themes'
 import { Button } from '@radix-ui/themes'
 import { useFrappeCreateDoc, useFrappeFileUpload } from 'frappe-react-sdk'
@@ -27,12 +28,12 @@ const FileSourceUploadDialog = ({ onUpload, buttonProps }: Props) => {
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger>
-                <Button {...buttonProps} type='button'>Upload</Button>
+                <Button {...buttonProps} type='button'>{__('Upload')}</Button>
             </Dialog.Trigger>
             <Dialog.Content>
-                <Dialog.Title>Upload File</Dialog.Title>
+                <Dialog.Title>{__('Upload File')}</Dialog.Title>
                 <Dialog.Description size='2'>
-                    Upload a file to use as a data source for AI Agents.
+                    {__('Upload a file to use as a data source for AI Agents.')}
                 </Dialog.Description>
                 <FileSourceUploadForm onClose={onClose} />
             </Dialog.Content>

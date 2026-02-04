@@ -38,14 +38,14 @@ export const SettingsSidebar = () => {
                     {/* <SettingsSidebarItem title="Frappe CRM" to='frappe-crm' /> */}
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title="AI" icon={BiBot} requireAdmin>
-                    <SettingsSidebarItem title="Agents" to='bots' />
-                    <SettingsSidebarItem title="Functions" to='functions' />
-                    <SettingsSidebarItem title="File Sources" to='file-sources' />
-                    <SettingsSidebarItem title="Instructions" to="instructions" />
-                    <SettingsSidebarItem title="Document Processors" to="document-processors" />
-                    <SettingsSidebarItem title="Commands" to='commands' />
-                    <SettingsSidebarItem title="AI Settings" to='ai-settings' />
+                <SettingsGroup title={__('AI')} icon={BiBot} requireAdmin>
+                    <SettingsSidebarItem title={__('Agents')} to='bots' />
+                    <SettingsSidebarItem title={__('Functions')} to='functions' />
+                    <SettingsSidebarItem title={__('File Sources')} to='file-sources' />
+                    <SettingsSidebarItem title={__('Instructions')} to="instructions" />
+                    <SettingsSidebarItem title={__('Document Processors')} to="document-processors" />
+                    <SettingsSidebarItem title={__('Commands')} to='commands' />
+                    <SettingsSidebarItem title={__('AI Settings')} to='ai-settings' />
                 </SettingsGroup>
                 <SettingsSeparator />
                 <div className='flex flex-col gap-1 -mx-1'>

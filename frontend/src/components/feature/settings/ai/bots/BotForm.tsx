@@ -6,6 +6,7 @@ import GeneralBotForm from './GeneralBotForm'
 import BotFunctionsForm from './BotFunctionsForm'
 import { useFormContext } from 'react-hook-form'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import BotDocs from './BotDocs'
 import BotFileSources from './BotFileSources'
 import AIFeaturesBotForm from './AIFeaturesBotForm'
@@ -23,13 +24,13 @@ const BotForm = ({ isEdit }: { isEdit: boolean }) => {
     return (
         <Tabs.Root defaultValue='general'>
             <Tabs.List>
-                <Tabs.Trigger value='general'><BiBot {...ICON_PROPS} /> General</Tabs.Trigger>
-                {isAiBot ? <Tabs.Trigger value='ai'><LuSparkles {...ICON_PROPS} /> AI</Tabs.Trigger> : null}
-                {isAiBot ? <Tabs.Trigger value='instructions'><BiFile {...ICON_PROPS} /> Instructions</Tabs.Trigger> : null}
-                {isAiBot ? <Tabs.Trigger value='functions'><LuSquareFunction {...ICON_PROPS} /> Functions</Tabs.Trigger> : null}
-                {isAiBot ? <Tabs.Trigger value='document-processors'><BiFile {...ICON_PROPS} /> Document Processors</Tabs.Trigger> : null}
-                {isAiBot ? <Tabs.Trigger value='file-sources'><BiFile {...ICON_PROPS} /> Files</Tabs.Trigger> : null}
-                {isEdit ? <Tabs.Trigger value='api-docs'><BiCode {...ICON_PROPS} /> API Docs</Tabs.Trigger> : null}
+                <Tabs.Trigger value='general'><BiBot {...ICON_PROPS} /> {__('General')}</Tabs.Trigger>
+                {isAiBot ? <Tabs.Trigger value='ai'><LuSparkles {...ICON_PROPS} /> {__('AI')}</Tabs.Trigger> : null}
+                {isAiBot ? <Tabs.Trigger value='instructions'><BiFile {...ICON_PROPS} /> {__('Instructions')}</Tabs.Trigger> : null}
+                {isAiBot ? <Tabs.Trigger value='functions'><LuSquareFunction {...ICON_PROPS} /> {__('Functions')}</Tabs.Trigger> : null}
+                {isAiBot ? <Tabs.Trigger value='document-processors'><BiFile {...ICON_PROPS} /> {__('Document Processors')}</Tabs.Trigger> : null}
+                {isAiBot ? <Tabs.Trigger value='file-sources'><BiFile {...ICON_PROPS} /> {__('Files')}</Tabs.Trigger> : null}
+                {isEdit ? <Tabs.Trigger value='api-docs'><BiCode {...ICON_PROPS} /> {__('API Docs')}</Tabs.Trigger> : null}
             </Tabs.List>
             <Box pt='4'>
                 <Tabs.Content value='general'>

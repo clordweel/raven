@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Link as RadixLink, Text } from "@radix-ui/themes"
 import useRavenSettings from "@/hooks/fetchers/useRavenSettings"
 import { CustomCallout } from "@/components/common/Callouts/CustomCallout"
+import { __ } from "@/utils/translations"
 
 const AINotEnabledCallout = () => {
 
@@ -18,14 +19,14 @@ const AINotEnabledCallout = () => {
     }
 
     const message = !isAIEnabled 
-        ? "Raven AI is not enabled. Please enable it in" 
-        : "No AI providers are configured. Please configure at least one provider in"
+        ? __("Raven AI is not enabled. Please enable it in") 
+        : __("No AI providers are configured. Please configure at least one provider in")
 
     return (
         <CustomCallout
             iconChildren={<BiInfoCircle size='18' />}
             rootProps={{ color: 'blue', variant: 'surface' }}
-            textChildren={<Text>{message} <RadixLink asChild color='blue' underline='always'><Link to='/settings/ai-settings'>AI Settings</Link></RadixLink></Text>}
+            textChildren={<Text>{message} <RadixLink asChild color='blue' underline='always'><Link to='/settings/ai-settings'>{__('AI Settings')}</Link></RadixLink></Text>}
         />
     )
 }

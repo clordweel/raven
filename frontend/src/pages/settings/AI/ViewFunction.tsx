@@ -1,5 +1,6 @@
 import { Loader } from "@/components/common/Loader"
 import FunctionForm from "@/components/feature/settings/ai/functions/FunctionForm"
+import { __ } from '@/utils/translations'
 import CommonSettingsMenu from "@/components/feature/settings/common/CommonSettingsMenu"
 import { ErrorBanner } from "@/components/layout/AlertBanner/ErrorBanner"
 import { FullPageLoader } from "@/components/layout/Loaders/FullPageLoader"
@@ -48,7 +49,7 @@ const ViewFunctionContent = ({ data, mutate }: { data: RavenAIFunction, mutate: 
     const onSubmit = (data: RavenAIFunction) => {
         updateDoc("Raven AI Function", data.name, data)
             .then((doc) => {
-                toast.success("Saved")
+                toast.success(__("Saved"))
                 methods.reset(doc)
                 mutate(doc, { revalidate: false })
             })
@@ -72,15 +73,15 @@ const ViewFunctionContent = ({ data, mutate }: { data: RavenAIFunction, mutate: 
             <SettingsContentContainer>
                 <SettingsPageHeader
                     title={data.name}
-                    headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
+                    headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven AI Function" docname={data.name} label={"Function"} />
+                        <CommonSettingsMenu doctype="Raven AI Function" docname={data.name} label={__("Function")} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Functions', href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __('Functions'), href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 <FunctionForm isEdit />

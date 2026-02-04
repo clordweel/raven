@@ -1,6 +1,7 @@
 import { Loader } from '@/components/common/Loader'
 import InstructionTemplateForm from '@/components/feature/settings/ai/InstructionTemplateForm'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
@@ -47,12 +48,12 @@ const CreateInstructionTemplate = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create an Instruction Template'
+                            title={__('Create an Instruction Template')}
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __("Creating") : __("Create")}
                             </Button>}
-                            breadcrumbs={[{ label: 'Instruction Templates', href: '../' }, { label: 'New Instruction Template', href: '' }]}
+                            breadcrumbs={[{ label: __('Instruction Templates'), href: '../' }, { label: __('New Instruction Template'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <InstructionTemplateForm />

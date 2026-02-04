@@ -1,4 +1,5 @@
 import AINotEnabledCallout from '@/components/feature/settings/ai/AINotEnabledCallout'
+import { __ } from '@/utils/translations'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
@@ -38,12 +39,12 @@ const DocumentProcessors = () => {
 
         createProcessor({ processor_type_key: selectedProcessorType }).then(() => {
             refetchProcessors()
-            toast.success('Processor created successfully', {
-                description: 'The processor has been created and is now available to use.'
+            toast.success(__('Processor created successfully'), {
+                description: __('The processor has been created and is now available to use.')
             })
             setSelectedProcessorType('')
         }).catch((error) => {
-            toast.error('Failed to create processor', {
+            toast.error(__('Failed to create processor'), {
                 description: error.message
             })
         })
@@ -52,12 +53,12 @@ const DocumentProcessors = () => {
     const handleDeleteProcessor = (processorId: string, processorName: string) => {
         deleteProcessor({ processor_id: processorId }).then(() => {
             refetchProcessors()
-            toast.success('Processor deleted successfully', {
-                description: `${processorName} has been deleted from your Google Cloud project.`
+            toast.success(__('Processor deleted successfully'), {
+                description: __('{0} has been deleted from your Google Cloud project.', [processorName])
             })
         })
         .catch((error) => {
-            toast.error('Failed to delete processor', {
+            toast.error(__('Failed to delete processor'), {
                 description: error.message
             })
         })
@@ -68,12 +69,12 @@ const DocumentProcessors = () => {
             <PageContainer>
                 <SettingsContentContainer>
                     <SettingsPageHeader
-                        title='Document Processors'
-                        description='Create and manage document processors for your bots.'
+                        title={__('Document Processors')}
+                        description={__('Create and manage document processors for your bots.')}
                     />
                     <Callout.Root color="amber">
                         <Callout.Icon><BiErrorCircle /></Callout.Icon>
-                        <Callout.Text>You need Raven Admin permissions to manage document processors.</Callout.Text>
+                        <Callout.Text>{__('You need Raven Admin permissions to manage document processors.')}</Callout.Text>
                     </Callout.Root>
                 </SettingsContentContainer>
             </PageContainer>
@@ -89,8 +90,8 @@ const DocumentProcessors = () => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Document Processors'
-                    description='View your active document processors or select a processor type and create a new processor.'
+                    title={__('Document Processors')}
+                    description={__('View your active document processors or select a processor type and create a new processor.')}
                     actions={
                         <Button
                             onClick={handleCreateProcessor}

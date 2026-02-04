@@ -1,5 +1,6 @@
 import AINotEnabledCallout from '@/components/feature/settings/ai/AINotEnabledCallout'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 import { EmptyState, EmptyStateDescription, EmptyStateIcon, EmptyStateLinkAction, EmptyStateTitle } from '@/components/layout/EmptyState/EmptyListViewState'
 import { TableLoader } from '@/components/layout/Loaders/TableLoader'
 import PageContainer from '@/components/layout/Settings/PageContainer'
@@ -33,10 +34,10 @@ const FunctionList = (props: Props) => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='Functions'
-                    description='Declare functions to be used by your AI bots.'
+                    title={__('Functions')}
+                    description={__('Declare functions to be used by your AI bots.')}
                     actions={<Button asChild disabled={!isRavenAdmin}>
-                        <Link to='create'>Create</Link>
+                        <Link to='create'>{__('Create')}</Link>
                     </Button>}
                 />
                 {isLoading && !error && <TableLoader columns={4} />}
@@ -47,12 +48,12 @@ const FunctionList = (props: Props) => {
                     <EmptyStateIcon>
                         <LuSquareFunction />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>Bots + Functions = AI Magic</EmptyStateTitle>
+                    <EmptyStateTitle>{__('Bots + Functions = AI Magic')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        Use the no-code builder to create functions that allow AI bots to perform actions within the system when requested, like creating documents, or fetching reports to analyze.
+                        {__('Use the no-code builder to create functions that allow AI bots to perform actions within the system when requested, like creating documents, or fetching reports to analyze.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <EmptyStateLinkAction to='create'>
-                        Create your first function
+                        {__('Create your first function')}
                     </EmptyStateLinkAction>}
                 </EmptyState>}
             </SettingsContentContainer>
@@ -65,10 +66,10 @@ const FunctionTable = ({ functions }: { functions: RavenAIFunction[] }) => {
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Writes</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Description')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Writes')}</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>

@@ -8,6 +8,7 @@ import SettingsContentContainer from "@/components/layout/Settings/SettingsConte
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
 import { RavenBotInstructionTemplate } from "@/types/RavenAI/RavenBotInstructionTemplate"
+import { __ } from "@/utils/translations"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { SWRResponse, useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk"
@@ -48,7 +49,7 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBotInstructionTemplate, m
     const onSubmit = (data: RavenBotInstructionTemplate) => {
         updateDoc("Raven Bot Instruction Template", data.name, data)
             .then((doc) => {
-                toast.success("Saved")
+                toast.success(__("Saved"))
                 methods.reset(doc)
                 mutate(doc, { revalidate: false })
             })
@@ -72,15 +73,15 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBotInstructionTemplate, m
             <SettingsContentContainer>
                 <SettingsPageHeader
                     title={data.name}
-                    headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
+                    headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Bot Instruction Template" docname={data.name} label={"Instruction Template"} />
+                        <CommonSettingsMenu doctype="Raven Bot Instruction Template" docname={data.name} label={__("Instruction Template")} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Instruction Templates', href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __('Instruction Templates'), href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 <InstructionTemplateForm isEdit />

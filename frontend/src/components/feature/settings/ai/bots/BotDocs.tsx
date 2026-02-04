@@ -1,6 +1,7 @@
 import CodeBlock from '@/components/layout/CodeBlock'
 import { Stack } from '@/components/layout/Stack'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import { Code, Heading, Text } from '@radix-ui/themes'
 import { useFormContext } from 'react-hook-form'
 
@@ -48,15 +49,15 @@ ${botVarName}.send_message(channel_id="channel-name", text="This is a test messa
     return (
         <Stack gap='3' pt='2'>
             <Text as='p' size='3'>
-                The following code samples show how to use the bot/agent in a Frappe app or Server Script.
+                {__('The following code samples show how to use the bot/agent in a Frappe app or Server Script.')}
             </Text>
             <Stack gap='0'>
                 <Stack gap='1'>
                     <SectionHeading>
-                        Sending a message to a channel
+                        {__('Sending a message to a channel')}
                     </SectionHeading>
                     <Paragraph>
-                        Bots can be used to send messages to channels with HTML formatted content.
+                        {__('Bots can be used to send messages to channels with HTML formatted content.')}
                     </Paragraph>
                 </Stack>
                 <CodeBlock
@@ -66,10 +67,10 @@ ${botVarName}.send_message(channel_id="channel-name", text="This is a test messa
             <Stack gap='0'>
                 <Stack gap='1'>
                     <SectionHeading>
-                        Sending a message to a channel in markdown format
+                        {__('Sending a message to a channel in markdown format')}
                     </SectionHeading>
                     <Paragraph>
-                        You can send markdown formatted text to a channel by setting the <Code>markdown</Code> parameter to True.
+                        {__('You can send markdown formatted text to a channel by setting the')} <Code>markdown</Code> {__('parameter to True.')}
                     </Paragraph>
                 </Stack>
                 <CodeBlock
@@ -80,10 +81,10 @@ ${botVarName}.send_message(channel_id="channel-name", text="This is a test messa
             <Stack gap='0'>
                 <Stack gap='1'>
                     <SectionHeading>
-                        Sending a message with a document link
+                        {__('Sending a message with a document link')}
                     </SectionHeading>
                     <Paragraph>
-                        You can send a message with a link to any document in the system by setting the <Code>link_doctype</Code> and <Code>link_document</Code> parameters.
+                        {__('You can send a message with a link to any document in the system by setting the')} <Code>link_doctype</Code> {__('and')} <Code>link_document</Code> {__('parameters.')}
                     </Paragraph>
                 </Stack>
                 <CodeBlock
@@ -93,11 +94,11 @@ ${botVarName}.send_message(channel_id="channel-name", text="This is a test messa
             <Stack gap='0'>
                 <Stack gap='1'>
                     <SectionHeading>
-                        Sending a direct message to a user
+                        {__('Sending a direct message to a user')}
                     </SectionHeading>
                     <Paragraph>
-                        You can send a direct message to a user by calling the <Code>send_direct_message</Code> method and setting the user_id parameter.
-                        This method also accepts markdown and document link parameters.
+                        {__('You can send a direct message to a user by calling the')} <Code>send_direct_message</Code> {__('method and setting the user_id parameter.')}
+                        {' '}{__('This method also accepts markdown and document link parameters.')}
                     </Paragraph>
                 </Stack>
                 <CodeBlock

@@ -1,5 +1,6 @@
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import { Badge, Box, Button, Card, IconButton, Link, Popover, Text } from '@radix-ui/themes'
 import React, { useContext } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -45,14 +46,14 @@ const BotFunctionsForm = (props: Props) => {
         <Stack gap='4'>
             <HStack justify={'between'} align='center'>
                 <Text color='gray' size='2'>
-                    Add functions that the bot can use to create or update documents in the system.
+                    {__('Add functions that the bot can use to create or update documents in the system.')}
                     <br />
-                    Create functions in the <Link asChild><RouterLink to='/settings/functions'>function builder</RouterLink></Link> and then add them here.
+                    {__('Create functions in the')} <Link asChild><RouterLink to='/settings/functions'>{__('function builder')}</RouterLink></Link> {__('and then add them here.')}
                 </Text>
                 <Box>
                     <Popover.Root>
                         <Popover.Trigger>
-                            <Button size='2' variant='soft'>Add Function</Button>
+                            <Button size='2' variant='soft'>{__('Add Function')}</Button>
                         </Popover.Trigger>
                         <Popover.Content width="380px" className='relative overflow-visible'>
                             <Stack>
@@ -61,12 +62,12 @@ const BotFunctionsForm = (props: Props) => {
                                     value={aiFunction}
                                     filters={[['name', 'not in', fields.map(field => field.function) ?? []] as any]}
                                     dropdownClass='sm:w-[350px]'
-                                    label='Function'
+                                    label={__('Function')}
                                     setValue={setAiFunction}
                                 />
                                 <HStack justify='end'>
                                     <Popover.Close>
-                                        <Button type='button' onClick={onSelect}>Add</Button>
+                                        <Button type='button' onClick={onSelect}>{__('Add')}</Button>
                                     </Popover.Close>
                                 </HStack>
                             </Stack>
@@ -91,8 +92,8 @@ const BotFunctionsForm = (props: Props) => {
                             </Stack>
                             <IconButton size='2' color='red' variant='ghost'
                                 type='button'
-                                title='Remove'
-                                aria-label='Remove'
+                                title={__('Remove')}
+                                aria-label={__('Remove')}
                                 mr='1'
                                 onClick={() => remove(index)}><BiTrashAlt size='16' /></IconButton>
                         </HStack>

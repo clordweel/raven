@@ -1,6 +1,7 @@
 import { ErrorText, HelperText } from '@/components/common/Form'
 import { Stack, HStack } from '@/components/layout/Stack'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import { Checkbox, Text, Separator, Callout, Flex, Badge, Skeleton, RadioCards } from '@radix-ui/themes'
 import { useFormContext, Controller } from 'react-hook-form'
 import { BiCheck, BiInfoCircle } from 'react-icons/bi'
@@ -76,7 +77,7 @@ export const BotDocumentProcessorsForm = () => {
                         <BiInfoCircle />
                     </Callout.Icon>
                     <Callout.Text>
-                        Document Processors require Google Cloud APIs to be enabled in your Raven settings.
+                        {__('Document Processors require Google Cloud APIs to be enabled in your Raven settings.')}
                     </Callout.Text>
                 </Callout.Root>
             </Stack>
@@ -100,12 +101,11 @@ export const BotDocumentProcessorsForm = () => {
                                 />
                             )}
                         />
-                        <span>Use Google Document/Vision AI to parse documents</span>
+                        <span>{__('Use Google Document/Vision AI to parse documents')}</span>
                     </HStack>
                 </Text>
                 <HelperText>
-                    When images or PDFs are uploaded to the agent, Raven will automatically call Google Cloud APIs
-                    to process the document and send its results to the agent for better context.
+                    {__('When images or PDFs are uploaded to the agent, Raven will automatically call Google Cloud APIs to process the document and send its results to the agent for better context.')}
                 </HelperText>
             </Stack>
 
@@ -115,17 +115,16 @@ export const BotDocumentProcessorsForm = () => {
                     <Stack gap='4'>
                         <Stack>
                             <Text size="3" weight="medium" className="text-gray-12">
-                                Document Processor Selection
+                                {__('Document Processor Selection')}
                             </Text>
 
                             <Flex align="center" gap="1">
                             <Text size="2" className="text-gray-11">
-                                Choose an existing document processor for this bot.
-                                Processors can be shared across multiple bots.
+                                {__('Choose an existing document processor for this bot. Processors can be shared across multiple bots.')}
                             </Text>
                             <Text size="2" className="text-gray-11">
                                 <Link to="/settings/document-processors" target="_blank" className='text-accent-9 hover:underline'>
-                                    Create Document Processors
+                                    {__('Create Document Processors')}
                                 </Link>
                             </Text>
                             </Flex>
@@ -144,7 +143,7 @@ export const BotDocumentProcessorsForm = () => {
                                     <BiInfoCircle />
                                 </Callout.Icon>
                                 <Callout.Text>
-                                    Error fetching processors: {processorsError.message}
+                                    {__('Error fetching processors:')} {processorsError.message}
                                 </Callout.Text>
                             </Callout.Root>
                         )}
@@ -157,9 +156,9 @@ export const BotDocumentProcessorsForm = () => {
                                 </Callout.Icon>
                                 <Callout.Text>
                                     <Flex gap="2">
-                                        <Text>No document processors have been created yet. You need to create at least one processor before you can assign it to this bot.</Text>
+                                        <Text>{__('No document processors have been created yet. You need to create at least one processor before you can assign it to this bot.')}</Text>
                                         <Link to="/settings/document-processors" target="_blank" className='text-amber-800 dark:text-amber-500 hover:underline'>
-                                            Create Document Processors
+                                            {__('Create Document Processors')}
                                         </Link>
                                     </Flex>
                                 </Callout.Text>

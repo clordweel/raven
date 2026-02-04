@@ -26,7 +26,7 @@ const AIFeaturesBotForm = (props: Props) => {
             {!isLocalLLM && openAIAssistantID && (
                 <Stack maxWidth={'480px'}>
                     <Box>
-                        <Label htmlFor='openai_assistant_id'>OpenAI Assistant ID</Label>
+                        <Label htmlFor='openai_assistant_id'>{__('OpenAI Assistant ID')}</Label>
                         <TextField.Root
                             id='openai_assistant_id'
                             {...register('openai_assistant_id')}
@@ -61,11 +61,11 @@ const AIFeaturesBotForm = (props: Props) => {
                                 />
                             )} />
 
-                        Allow Agent to Write Documents
+                        {__('Allow Agent to Write Documents')}
                     </HStack>
                 </Text>
                 <HelperText>
-                    Checking this will allow the bot to create/update/delete documents in the system.
+                    {__('Checking this will allow the bot to create/update/delete documents in the system.')}
                 </HelperText>
             </Stack>
 
@@ -98,7 +98,7 @@ const AIFeaturesBotForm = (props: Props) => {
                                 </HStack>
                             </Text>
                             <HelperText>
-                                Enable this if you want the bot to be able to read PDF files and scan them.
+                                {__('Enable this if you want the bot to be able to read PDF files and scan them.')}
                                 <br /><br />
                                 {__('File search enables the assistant with knowledge from files that you upload.')}
                                 <br />
@@ -117,11 +117,11 @@ const AIFeaturesBotForm = (props: Props) => {
                                                 onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
                                             />
                                         )} />
-                                    <span>Enable Code Interpreter</span>
-                                    <Tooltip content='View OpenAI documentation about Code Interpreter'>
+                                    <span>{__('Enable Code Interpreter')}</span>
+                                    <Tooltip content={__('View OpenAI documentation about Code Interpreter')}>
                                         <a href='https://platform.openai.com/docs/assistants/tools/code-interpreter'
-                                            title='View OpenAI documentation about Code Interpreter'
-                                            aria-label='View OpenAI documentation about Code Interpreter'
+                                            title={__('View OpenAI documentation about Code Interpreter')}
+                                            aria-label={__('View OpenAI documentation about Code Interpreter')}
                                             target='_blank' className='text-gray-11 -mb-1'>
                                             <BiInfoCircle size={16} /></a>
                                     </Tooltip>
@@ -129,9 +129,9 @@ const AIFeaturesBotForm = (props: Props) => {
                                 </HStack>
                             </Text>
                             <HelperText>
-                                Enable this if you want the bot to be able to process files like Excel sheets or data from Insights.
+                                {__('Enable this if you want the bot to be able to process files like Excel sheets or data from Insights.')}
                                 <br /><br />
-                                OpenAI Assistants run code in a sandboxed environment (on OpenAI servers) to do this.
+                                {__('OpenAI Assistants run code in a sandboxed environment (on OpenAI servers) to do this.')}
                             </HelperText>
                         </Stack>
                     </HStack>
@@ -145,13 +145,14 @@ const AIFeaturesBotForm = (props: Props) => {
                         <BiInfoCircle />
                     </Callout.Icon>
                     <Callout.Text>
-                        Currently, code interpreter features are not available for Local LLM providers.
-                        These features require OpenAI's infrastructure.
+                        {__('Currently, code interpreter features are not available for Local LLM providers.')}
+                        {' '}
+                        {__('These features require OpenAI\'s infrastructure.')}
                     </Callout.Text>
                 </Callout.Root>
             )}
 
-            <Heading as='h5' size='3' className='not-cal' weight='bold'>Advanced</Heading>
+            <Heading as='h5' size='3' className='not-cal' weight='bold'>{__('Advanced')}</Heading>
             <Stack maxWidth={'560px'}>
                 <Text as="label" size="2">
                     <HStack align='center'>
@@ -164,20 +165,20 @@ const AIFeaturesBotForm = (props: Props) => {
                                     onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
                                 />
                             )} />
-                        <span>Enable Debug Mode</span>
+                        <span>{__('Enable Debug Mode')}</span>
                     </HStack>
                 </Text>
                 <HelperText>
-                    If enabled, stack traces of errors will be sent as messages by the bot during runs.
+                    {__('If enabled, stack traces of errors will be sent as messages by the bot during runs.')}
                     <br />
-                    This is helpful when you're testing your bots and want to know where things are going wrong.
+                    {__('This is helpful when you\'re testing your bots and want to know where things are going wrong.')}
                 </HelperText>
             </Stack>
 
             <HStack gap='8' align='start'>
                 <Stack maxWidth={'560px'}>
                     <HStack justify='between' align='center'>
-                        <Label htmlFor='temperature'>Temperature <Text as='span' color='gray' weight='regular'>(Default: 1)</Text></Label>
+                        <Label htmlFor='temperature'>{__('Temperature')} <Text as='span' color='gray' weight='regular'>{__('(Default: 1)')}</Text></Label>
                         <Code color='gray' size='2' variant='ghost' weight='regular'>{(temperature ?? 1).toFixed(2)}</Code>
                     </HStack>
                     <Controller control={control} name='temperature' render={({ field }) => (
@@ -195,12 +196,12 @@ const AIFeaturesBotForm = (props: Props) => {
                         />
                     )} />
                     <HelperText>
-                        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+                        {__('What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.')}
                     </HelperText>
                 </Stack>
                 <Stack maxWidth={'560px'}>
                     <HStack justify='between' align='center'>
-                        <Label htmlFor='top_p'>Top P <Text as='span' color='gray' weight='regular'>(Default: 1)</Text></Label>
+                        <Label htmlFor='top_p'>{__('Top P')} <Text as='span' color='gray' weight='regular'>{__('(Default: 1)')}</Text></Label>
                         <Code color='gray' size='2' variant='ghost' weight='regular'>{(top_p ?? 1).toFixed(2)}</Code>
                     </HStack>
                     <Controller control={control} name='top_p' render={({ field }) => (
@@ -218,9 +219,9 @@ const AIFeaturesBotForm = (props: Props) => {
                         />
                     )} />
                     <HelperText>
-                        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+                        {__('An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.')}
                         <br /><br />
-                        We generally recommend altering this or temperature but not both.
+                        {__('We generally recommend altering this or temperature but not both.')}
                     </HelperText>
                 </Stack>
             </HStack>
@@ -245,7 +246,7 @@ const ModelProviderSelector = () => {
                     <BiInfoCircle />
                 </Callout.Icon>
                 <Callout.Text>
-                    No AI providers are configured. Please configure OpenAI or Local LLM in AI Settings.
+                    {__('No AI providers are configured. Please configure OpenAI or Local LLM in AI Settings.')}
                 </Callout.Text>
             </Callout.Root>
         )
@@ -254,10 +255,10 @@ const ModelProviderSelector = () => {
     return (
         <Stack width={'480px'}>
             <Box>
-                <Label htmlFor='model_provider' isRequired>Model Provider</Label>
+                <Label htmlFor='model_provider' isRequired>{__('Model Provider')}</Label>
                 <Controller control={control} name='model_provider'
                     rules={{
-                        required: is_ai_bot ? "Please select a model provider" : false
+                        required: is_ai_bot ? __('Please select a model provider') : false
                     }}
                     defaultValue={hasOpenAI ? 'OpenAI' : hasLocalLLM ? 'Local LLM' : 'OpenAI'}
                     render={({ field }) => (
@@ -267,8 +268,8 @@ const ModelProviderSelector = () => {
                             onValueChange={(value) => field.onChange(value)}>
                             <Select.Trigger placeholder={__('Select Provider')} className='w-full' />
                             <Select.Content>
-                                {hasOpenAI ? <Select.Item value='OpenAI'>OpenAI</Select.Item> : null}
-                                {hasLocalLLM ? <Select.Item value='Local LLM'>Local LLM</Select.Item> : null}
+                                {hasOpenAI ? <Select.Item value='OpenAI'>{__('OpenAI')}</Select.Item> : null}
+                                {hasLocalLLM ? <Select.Item value='Local LLM'>{__('Local LLM')}</Select.Item> : null}
                             </Select.Content>
                         </Select.Root>
                     )} />
@@ -320,10 +321,10 @@ const ModelSelector = () => {
     return (
         <Stack maxWidth={'480px'}>
             <Box>
-                <Label htmlFor='model' isRequired>Model</Label>
+                <Label htmlFor='model' isRequired>{__('Model')}</Label>
                 <Controller control={control} name='model'
                     rules={{
-                        required: is_ai_bot ? "Please select a model" : false
+                        required: is_ai_bot ? __('Please select a model') : false
                     }}
                     defaultValue={defaultModel}
                     render={({ field }) => (
@@ -338,7 +339,7 @@ const ModelSelector = () => {
                                         <Select.Item key={model} value={model}>{model}</Select.Item>
                                     ))
                                 ) : modelProvider === 'Local LLM' ? (
-                                    <Select.Item value="no-models" disabled>No models available</Select.Item>
+                                    <Select.Item value="no-models" disabled>{__('No models available')}</Select.Item>
                                 ) : (
                                     <Select.Item value={defaultModel}>{defaultModel}</Select.Item>
                                 )}
@@ -349,8 +350,8 @@ const ModelSelector = () => {
             {errors.model && <ErrorText>{errors.model?.message}</ErrorText>}
             <HelperText>
                 {modelProvider === 'Local LLM'
-                    ? 'Select a model available on your local LLM server.'
-                    : 'The model should be compatible with the OpenAI Assistants API. We recommend using models in the GPT-4 family for best results.'}
+                    ? __('Select a model available on your local LLM server.')
+                    : __('The model should be compatible with the OpenAI Assistants API. We recommend using models in the GPT-4 family for best results.')}
             </HelperText>
         </Stack>
     )
@@ -366,7 +367,7 @@ const ReasoningEffortSelector = () => {
     if (model.startsWith("o")) {
         return <Stack maxWidth={'480px'}>
             <Box>
-                <Label htmlFor='reasoning_effort' isRequired>Reasoning Effort</Label>
+                <Label htmlFor='reasoning_effort' isRequired>{__('Reasoning Effort')}</Label>
                 <Controller control={control}
                     rules={{
                         required: model.startsWith("o") && is_ai_bot ? true : false
@@ -379,15 +380,15 @@ const ReasoningEffortSelector = () => {
                             onValueChange={(value) => field.onChange(value)}>
                             <Select.Trigger placeholder={__('Select Reasoning Effort')} className='w-full' />
                             <Select.Content>
-                                <Select.Item value='low'>Low</Select.Item>
-                                <Select.Item value='medium'>Medium</Select.Item>
-                                <Select.Item value='high'>High</Select.Item>
+                                <Select.Item value='low'>{__('Low')}</Select.Item>
+                                <Select.Item value='medium'>{__('Medium')}</Select.Item>
+                                <Select.Item value='high'>{__('High')}</Select.Item>
                             </Select.Content>
                         </Select.Root>
                     )} />
             </Box>
             <HelperText>
-                The reasoning effort will be used to determine the depth of the reasoning process. This is only applicable for OpenAI's o-series models.
+                {__('The reasoning effort will be used to determine the depth of the reasoning process. This is only applicable for OpenAI\'s o-series models.')}
             </HelperText>
         </Stack>
     }

@@ -1,6 +1,7 @@
 import AINotEnabledCallout from '@/components/feature/settings/ai/AINotEnabledCallout'
 import FileSourceUploadDialog from '@/components/feature/settings/ai/file-sources/FileSourceUploadDialog'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
+import { __ } from '@/utils/translations'
 import { EmptyState, EmptyStateDescription, EmptyStateIcon, EmptyStateTitle } from '@/components/layout/EmptyState/EmptyListViewState'
 import { TableLoader } from '@/components/layout/Loaders/TableLoader'
 import PageContainer from '@/components/layout/Settings/PageContainer'
@@ -36,8 +37,8 @@ const FileSourcesList = (props: Props) => {
         <PageContainer>
             <SettingsContentContainer>
                 <SettingsPageHeader
-                    title='File Sources'
-                    description='Add files that can be used by AI Agents.'
+                    title={__('File Sources')}
+                    description={__('Add files that can be used by AI Agents.')}
                     actions={isRavenAdmin ? <FileSourceUploadDialog onUpload={() => mutate()} /> : undefined}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
@@ -48,13 +49,12 @@ const FileSourcesList = (props: Props) => {
                     <EmptyStateIcon>
                         <BiFile />
                     </EmptyStateIcon>
-                    <EmptyStateTitle>File Sources</EmptyStateTitle>
+                    <EmptyStateTitle>{__('File Sources')}</EmptyStateTitle>
                     <EmptyStateDescription>
-                        AI Agents can use files as data sources to get more context, read instructions and execute tasks.
-                        You can upload files here and use them across multiple agents.
+                        {__('AI Agents can use files as data sources to get more context, read instructions and execute tasks. You can upload files here and use them across multiple agents.')}
                     </EmptyStateDescription>
                     {isRavenAdmin && <Button asChild className='not-cal'>
-                        Upload a file
+                        {__('Upload a file')}
                     </Button>}
                 </EmptyState>}
             </SettingsContentContainer>

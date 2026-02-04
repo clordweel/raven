@@ -1,6 +1,7 @@
 import { Label } from '@/components/common/Form'
 import { HStack, Stack } from '@/components/layout/Stack'
 import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { __ } from '@/utils/translations'
 import { Badge, Button, Checkbox, Dialog, IconButton, Link as RadixLink, Table, Text } from '@radix-ui/themes'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import FileSourceUploadDialog from '../file-sources/FileSourceUploadDialog'
@@ -36,7 +37,7 @@ const BotFileSources = (props: Props) => {
     return (
         <Stack>
             <HStack justify='between' align='center'>
-                <Text>Files like manuals, sheets etc can be added to the AI agent as instructions.</Text>
+                <Text>{__('Files like manuals, sheets etc can be added to the AI agent as instructions.')}</Text>
                 <HStack gap='2'>
                     <FileSourceUploadDialog
                         buttonProps={{ variant: "soft", className: "not-cal" }}
@@ -44,12 +45,12 @@ const BotFileSources = (props: Props) => {
 
                     <Dialog.Root>
                         <Dialog.Trigger>
-                            <Button className='not-cal' type='button'>Select Files</Button>
+                            <Button className='not-cal' type='button'>{__('Select Files')}</Button>
                         </Dialog.Trigger>
                         <Dialog.Content>
-                            <Dialog.Title>Select Files</Dialog.Title>
+                            <Dialog.Title>{__('Select Files')}</Dialog.Title>
                             <Dialog.Description size='2'>
-                                Select files from the list below.
+                                {__('Select files from the list below.')}
                             </Dialog.Description>
                             <div className='mt-4'>
                                 <SelectExistingFiles append={addNew} existingFiles={fields.map((d) => d.file)} />
@@ -62,8 +63,8 @@ const BotFileSources = (props: Props) => {
             <Table.Root variant="surface" className='rounded-sm animate-fadein'>
                 <Table.Header>
                     <Table.Row>
-                        <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -100,7 +101,7 @@ const FileSourceRow = ({ fileID, onDelete }: { fileID: string, onDelete: () => v
             <Badge color='gray' className='uppercase'>{file?.file_type}</Badge>
         </Table.Cell>
         <Table.Cell maxWidth={"80px"} align='right'>
-            <IconButton onClick={onDelete} type='button' color='red' variant='soft' size='1' className='not-cal' title='Delete' aria-label='Delete'>
+            <IconButton onClick={onDelete} type='button' color='red' variant='soft' size='1' className='not-cal' title={__('Delete')} aria-label={__('Delete')}>
                 <FiTrash2 />
             </IconButton>
         </Table.Cell>
@@ -138,8 +139,8 @@ const SelectExistingFiles = ({ append, existingFiles }: { append: (id: string) =
         <Table.Root variant="surface" className='rounded-sm animate-fadein'>
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Name')}</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>{__('Type')}</Table.ColumnHeaderCell>
 
                 </Table.Row>
             </Table.Header>
@@ -163,10 +164,10 @@ const SelectExistingFiles = ({ append, existingFiles }: { append: (id: string) =
 
         <HStack justify='end' gap='2' pt='4'>
             <Dialog.Close>
-                <Button variant='soft' color='gray' type='button' className='not-cal'>Close</Button>
+                <Button variant='soft' color='gray' type='button' className='not-cal'>{__('Close')}</Button>
             </Dialog.Close>
             <Dialog.Close onClick={onSubmit} disabled={selectedFiles.length === 0}>
-                <Button type='button' className='not-cal'>Add</Button>
+                <Button type='button' className='not-cal'>{__('Add')}</Button>
             </Dialog.Close>
         </HStack>
     </Stack>

@@ -1,5 +1,6 @@
 import { Loader } from '@/components/common/Loader'
 import FunctionForm from '@/components/feature/settings/ai/functions/FunctionForm'
+import { __ } from '@/utils/translations'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
@@ -54,12 +55,12 @@ const CreateFunction = () => {
                 <FormProvider {...methods}>
                     <SettingsContentContainer>
                         <SettingsPageHeader
-                            title='Create a Function'
+                            title={__('Create a Function')}
                             actions={<Button type='submit' disabled={loading}>
                                 {loading && <Loader className="text-white" />}
-                                {loading ? "Creating" : "Create"}
+                                {loading ? __('Creating') : __('Create')}
                             </Button>}
-                            breadcrumbs={[{ label: 'Functions', href: '../' }, { label: 'New Function', href: '' }]}
+                            breadcrumbs={[{ label: __('Functions'), href: '../' }, { label: __('New Function'), href: '' }]}
                         />
                         <ErrorBanner error={error} />
                         <FunctionForm />

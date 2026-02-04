@@ -9,6 +9,7 @@ import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
 import { RavenBot } from "@/types/RavenBot/RavenBot"
 import { lastWorkspaceAtom } from "@/utils/lastVisitedAtoms"
+import { __ } from '@/utils/translations'
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { useFrappeGetDoc, useFrappeUpdateDoc, SWRResponse, FrappeContext, FrappeConfig } from "frappe-react-sdk"
@@ -51,9 +52,9 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse[
 
 
     const onSubmit = (data: RavenBot) => {
-        updateDoc("Raven Bot", data.name, data)
+                updateDoc("Raven Bot", data.name, data)
             .then((doc) => {
-                toast.success("Saved")
+                toast.success(__("Saved"))
                 methods.reset(doc)
                 mutate(doc, { revalidate: false })
             })
@@ -79,16 +80,16 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse[
             <SettingsContentContainer>
                 <SettingsPageHeader
                     title={data.bot_name}
-                    headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
+                    headerBadges={isDirty ? [{ label: __("Not Saved"), color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Bot" docname={data.name} label={"Agent"} />
+                        <CommonSettingsMenu doctype="Raven Bot" docname={data.name} label={__("Agent")} />
                         <OpenChatButton bot={data} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
-                            {loading ? "Saving" : "Save"}
+                            {loading ? __("Saving") : __("Save")}
                         </Button>
                     </HStack>}
-                    breadcrumbs={[{ label: 'Agents', href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
+                    breadcrumbs={[{ label: __('Agents'), href: '../' }, { label: data.name, href: '', copyToClipboard: true }]}
                 />
                 <ErrorBanner error={error} />
                 <BotForm isEdit={true} />
@@ -129,7 +130,7 @@ const OpenChatButton = ({ bot }: { bot: RavenBot }) => {
     return <Button variant='surface' color='gray'
         type='button'
         className="not-cal" onClick={openChat}>
-        Open Chat
+        {__('Open Chat')}
         <FiExternalLink />
     </Button>
 }
