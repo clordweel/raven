@@ -157,6 +157,15 @@
 
 ---
 
+#### 4.3.2 路径 A 已实施（2025-02-04）
+
+- **FAC**：已新增 `frappe_assistant_core/api/in_process.py`，提供 `list_tools_for_session_user()` 与 `call_tool_in_process(name, arguments)`；入口处复用 `_check_assistant_enabled(frappe.session.user)`，不执行 HTTP 认证。
+- **Raven Settings**：已增加「FAC Integration」区块、`enable_fac_integration`（Check）、`fac_integration_mode`（Select: In-process / HTTP）；默认 In-process。
+- **Raven agents_integration**：当 `enable_fac_integration`、`fac_integration_mode == "In-process"`、已安装 `frappe_assistant_core`、且 `model_provider == "OpenAI"` 时，在 `_setup_tools` 中调用 FAC 的 `list_tools_for_session_user()`，并注入一个 `call_fac_tool(tool_name, arguments)` 的 function_tool；在 `create_agent` 的 instructions 中注入当前用户可用的 FAC 工具列表（name + description），引导模型通过 `call_fac_tool` 调用。
+- **验收**：启用 Raven AI、勾选 Enable FAC Integration、FAC 模式选 In-process，与 Bot 对话时可让模型通过 `call_fac_tool` 调用 FAC 工具（如 list_documents、create_document 等）；无需配置 FAC URL 或 Bearer/API Key。
+
+---
+
 ## 5. 推荐实施顺序
 
 1. **先做方案一（FAC 信任已有 session）**  
