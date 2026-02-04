@@ -129,9 +129,6 @@ const AISettings = () => {
                                         </Tabs.Content>
                                     </Box>
                                 </Tabs.Root>
-
-                                <Separator size='4' />
-                                <FACIntegrationSection />
                             </>
                         ) : null}
                     </SettingsContentContainer>
@@ -140,63 +137,6 @@ const AISettings = () => {
         </PageContainer>
     )
 }
-const FACIntegrationSection = () => {
-    const { watch, control } = useFormContext<RavenSettings>()
-    const enableFAC = watch('enable_fac_integration')
-
-    return (
-        <Flex direction="column" gap="4">
-            <Text size="3" weight="medium">{__('FAC Integration')}</Text>
-            <Flex direction={'column'} gap='2'>
-                <Text as="label" size="2">
-                    <Flex gap="2">
-                        <Controller
-                            control={control}
-                            name='enable_fac_integration'
-                            render={({ field }) => (
-                                <Checkbox
-                                    checked={field.value ? true : false}
-                                    name={field.name}
-                                    disabled={field.disabled}
-                                    onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
-                                />
-                            )} />
-                        {__('Enable FAC Integration')}
-                    </Flex>
-                </Text>
-                <HelperText>
-                    {__('Use Frappe Assistant Core (FAC) tools in Raven bots. Requires frappe_assistant_core app.')}
-                </HelperText>
-            </Flex>
-
-            {enableFAC ? (
-                <Stack gap='1'>
-                    <Label htmlFor='fac_integration_mode'>{__('FAC Integration Mode')}</Label>
-                    <Controller
-                        control={control}
-                        name='fac_integration_mode'
-                        render={({ field }) => (
-                            <Select.Root
-                                value={field.value ?? 'In-process'}
-                                onValueChange={field.onChange}
-                            >
-                                <Select.Trigger placeholder={__('Select mode')} className='w-48 sm:w-96' />
-                                <Select.Content>
-                                    <Select.Item value="In-process">{__('In-process')}</Select.Item>
-                                    <Select.Item value="HTTP">{__('HTTP')}</Select.Item>
-                                </Select.Content>
-                            </Select.Root>
-                        )}
-                    />
-                    <HelperText>
-                        {__('In-process: same site, no HTTP. HTTP: call FAC MCP endpoint (requires URL and auth).')}
-                    </HelperText>
-                </Stack>
-            ) : null}
-        </Flex>
-    )
-}
-
 const OpenAISection = () => {
 
     const { data: openaiVersion } = useFrappeGetCall<{ message: string }>('raven.api.ai_features.get_open_ai_version')
