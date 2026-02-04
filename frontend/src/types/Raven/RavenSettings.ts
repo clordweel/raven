@@ -27,6 +27,10 @@ export interface RavenSettings{
 	openai_api_key?: string
 	/**	OpenAI Project ID : Data - If not set, the integration will use the default project	*/
 	openai_project_id?: string
+	/**	Enable FAC Integration : Check - Use Frappe Assistant Core (FAC) tools in Raven bots	*/
+	enable_fac_integration?: 0 | 1
+	/**	FAC Integration Mode : Select	*/
+	fac_integration_mode?: "In-process" | "HTTP"
 	/**	Enable Local LLM : Check	*/
 	enable_local_llm?: 0 | 1
 	/**	Local LLM Provider : Select	*/
