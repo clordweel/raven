@@ -1,3 +1,4 @@
+import { hasRavenAdminRole } from '@/utils/roles'
 import { __ } from '@/utils/translations'
 import { Box, Flex, Separator, Text } from '@radix-ui/themes'
 import clsx from 'clsx'
@@ -13,19 +14,19 @@ export const SettingsSidebar = () => {
     return (
         <Box className="h-[calc(100vh-57px)] overflow-y-auto fixed w-64 border-r pt-2 border-gray-4 dark:border-gray-4">
             <Flex direction="column" gap='2' className='px-4'>
-                <SettingsGroup title="My Account" icon={LuCircleUserRound}>
+                <SettingsGroup title="My Account" icon={LuCircleUserRound} requireAdmin={false}>
                     <SettingsSidebarItem title="Profile" to='profile' />
                     <SettingsSidebarItem title="Appearance" to='appearance' />
                     <SettingsSidebarItem title="Preferences" to='preferences' />
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title="Workspace" icon={BiBuildings}>
+                <SettingsGroup title="Workspace" icon={BiBuildings} requireAdmin>
                     <SettingsSidebarItem title="Workspaces" to='workspaces' />
                     <SettingsSidebarItem title="Users" to='users' />
                     <SettingsSidebarItem title="Emojis" to='emojis' />
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title='Integrations' icon={BsBoxes}>
+                <SettingsGroup title='Integrations' icon={BsBoxes} requireAdmin>
                     {/* <SettingsSidebarItem title="ERPNext" to='erpnext' /> */}
                     <SettingsSidebarItem title="HR" to='hr' />
                     <SettingsSidebarItem title='Document Notifications' to='document-notifications' />
@@ -37,7 +38,7 @@ export const SettingsSidebar = () => {
                     {/* <SettingsSidebarItem title="Frappe CRM" to='frappe-crm' /> */}
                 </SettingsGroup>
                 <SettingsSeparator />
-                <SettingsGroup title="AI" icon={BiBot}>
+                <SettingsGroup title="AI" icon={BiBot} requireAdmin>
                     <SettingsSidebarItem title="Agents" to='bots' />
                     <SettingsSidebarItem title="Functions" to='functions' />
                     <SettingsSidebarItem title="File Sources" to='file-sources' />
@@ -57,9 +58,11 @@ export const SettingsSidebar = () => {
     )
 }
 
-const SettingsGroup = ({ title, icon, children }: PropsWithChildren<{ title: string, icon: IconType }>) => {
+const SettingsGroup = ({ title, icon, children, requireAdmin = false }: PropsWithChildren<{ title: string, icon: IconType, requireAdmin?: boolean }>) => {
+    const isRavenAdmin = hasRavenAdminRole()
+    const showAdminHint = requireAdmin && !isRavenAdmin
     return <Flex direction="column" className='gap-0.5'>
-        <SettingsSidebarGroupHeader title={title} icon={icon} />
+        <SettingsSidebarGroupHeader title={title} icon={icon} adminOnlyHint={showAdminHint} />
         {children}
     </Flex>
 }
@@ -67,11 +70,14 @@ const SettingsGroup = ({ title, icon, children }: PropsWithChildren<{ title: str
 const SettingsSeparator = () => {
     return <Separator className={'w-full'} />
 }
-const SettingsSidebarGroupHeader = ({ title, icon }: { title: string, icon: IconType }) => {
+const SettingsSidebarGroupHeader = ({ title, icon, adminOnlyHint }: { title: string, icon: IconType, adminOnlyHint?: boolean }) => {
     return (
         <Flex className="py-1.5 flex items-center gap-1.5 text-gray-11">
             {createElement(icon, { size: 15 })}
             <Text size='1'>{__(title)}</Text>
+            {adminOnlyHint && (
+                <Text size='1' color="gray">({__('Raven Admin')})</Text>
+            )}
         </Flex>
     )
 }
