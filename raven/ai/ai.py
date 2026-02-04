@@ -457,7 +457,7 @@ def process_message_with_agent(
 	# Get conversation history if this is an existing thread
 	conversation_history = []
 	if not is_new_conversation and channel:
-		# Fetch previous messages from the channel
+		# Fetch the last (most recent) 20 messages, then exclude the current one
 		messages = frappe.get_all(
 			"Raven Message",
 			filters={"channel_id": channel.name},
@@ -471,11 +471,14 @@ def process_message_with_agent(
 				"file",
 				"is_bot_message",
 			],
-			order_by="creation asc",
-			limit=20,  # Limit to last 20 messages for context
+			order_by="creation desc",
+			limit=20,  # Last 20 messages for context
 		)
+		# Chronological order (oldest first) and exclude current message (last in DB = first in list)
+		messages = list(reversed(messages))  # [oldest, ..., newest]
+		messages = messages[:-1]  # Exclude the current message (newest)
 
-		for msg in messages[:-1]:  # Exclude the current message
+		for msg in messages:
 			# Use text field which contains the actual message content
 			msg_text = msg.text or msg.content or ""
 
@@ -508,10 +511,11 @@ def process_message_with_agent(
 		)
 
 		if response["success"]:
-			# Only send a response if there is one
-			if response["response"] is not None:
-				bot.send_message(channel_id=channel_id, text=response["response"])
-			# If response is None (e.g., file-only upload), don't send anything
+			# Only send a response if there is one (non-empty)
+			resp = response.get("response")
+			if resp is not None and str(resp).strip():
+				bot.send_message(channel_id=channel_id, text=resp)
+			# If response is None or empty (e.g. file-only upload), don't send anything
 		else:
 			# Send error message
 			error_text = "Sorry, I encountered an error while processing your request."
