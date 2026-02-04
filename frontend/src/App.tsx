@@ -169,7 +169,7 @@ const router = createBrowserRouter(
 )
 function App() {
 
-  const [appearance, setAppearance] = useStickyState<'light' | 'dark' | 'inherit'>('dark', 'appearance');
+  const [appearance, setAppearance] = useStickyState<'light' | 'dark' | 'inherit'>('inherit', 'appearance');
 
   // We not need to pass sitename if the Frappe version is v14.
 

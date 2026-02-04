@@ -26,12 +26,12 @@ ul {
 }
 
 .radix-themes {
-    --heading-font-family: 'Cal Sans', var(--default-font-family);
-    ;
+    --default-font-family: "HarmonyOS Sans SC", "HarmonyOSHans-Regular", "HarmonyOSHans-fallback", "PingFangSC-Regular", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
+    --heading-font-family: "HarmonyOS Sans SC", "HarmonyOSHans-Regular", "HarmonyOSHans-fallback", "PingFangSC-Regular", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
 }
 
 .rt-Button {
-    font-family: 'Cal Sans', var(--default-font-family);
+    font-family: var(--default-font-family) !important;
 }
 
 .not-cal {
@@ -40,6 +40,7 @@ ul {
 
 :root {
     --sidebar-width: 20rem;
+    --default-font-family: "HarmonyOS Sans SC", "HarmonyOSHans-Regular", "HarmonyOSHans-fallback", "PingFangSC-Regular", "Microsoft YaHei", Arial, Helvetica, sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -53,6 +54,7 @@ html {
 }
 
 body {
+    font-family: "HarmonyOS Sans SC", "HarmonyOSHans-Regular", "HarmonyOSHans-fallback", "PingFangSC-Regular", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
     text-rendering: optimizeLegibility;
     margin: 0;
     -webkit-font-smoothing: antialiased;

@@ -13,12 +13,16 @@ import { SetCustomStatusModal } from '@/components/feature/userSettings/CustomSt
 import PushNotificationToggle from '@/components/feature/userSettings/PushNotifications/PushNotificationToggle'
 import { __ } from '@/utils/translations'
 import { Stack } from '../Stack'
-import { LuNavigation, LuSettings } from 'react-icons/lu'
+import { LuNavigation, LuSettings, LuMonitor } from 'react-icons/lu'
+import { BiSun, BiMoon } from 'react-icons/bi'
+import { useTheme } from '@/ThemeProvider'
+import { RxCheck } from 'react-icons/rx'
 
 export const SidebarFooter = () => {
 
     const userData = useUserData()
     const { logout } = useContext(UserContext)
+    const { appearance, setAppearance } = useTheme()
 
     const [isUserStatusModalOpen, setUserStatusModalOpen] = useState(false)
 
@@ -26,6 +30,12 @@ export const SidebarFooter = () => {
     const isActive = useIsUserActive(userData.name)
 
     const navigate = useNavigate()
+
+    const ThemeIcon = () => {
+        if (appearance === 'light') return <BiSun size='18' />
+        if (appearance === 'dark') return <BiMoon size='18' />
+        return <LuMonitor size='18' />
+    }
 
     return <Stack className='mx-auto py-0' align='center' gap='2'>
         <Box>
@@ -41,6 +51,43 @@ export const SidebarFooter = () => {
                     <LuSettings size='18' />
                 </IconButton>
             </Tooltip>
+        </Box>
+        <Box>
+            <DropdownMenu.Root>
+                <Tooltip content={__("Theme")} side='right'>
+                    <DropdownMenu.Trigger>
+                        <IconButton aria-label={__('Theme')} size='3' color='gray' variant='ghost'>
+                            <ThemeIcon />
+                        </IconButton>
+                    </DropdownMenu.Trigger>
+                </Tooltip>
+                <DropdownMenu.Content variant='soft' side='right' align='end'>
+                    <DropdownMenu.Item
+                        className='flex justify-normal gap-2'
+                        onClick={() => setAppearance('light')}
+                    >
+                        <BiSun size='14' />
+                        {__('Light')}
+                        {appearance === 'light' && <RxCheck className='ml-auto' size='16' />}
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item
+                        className='flex justify-normal gap-2'
+                        onClick={() => setAppearance('dark')}
+                    >
+                        <BiMoon size='14' />
+                        {__('Dark')}
+                        {appearance === 'dark' && <RxCheck className='ml-auto' size='16' />}
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item
+                        className='flex justify-normal gap-2'
+                        onClick={() => setAppearance('inherit')}
+                    >
+                        <LuMonitor size='14' />
+                        {__('System')}
+                        {appearance === 'inherit' && <RxCheck className='ml-auto' size='16' />}
+                    </DropdownMenu.Item>
+                </DropdownMenu.Content>
+            </DropdownMenu.Root>
         </Box>
         <Separator size='4' className={`bg-gray-4 dark:bg-gray-6`} />
         <Box className='pb-4 sm:pb-0 pt-2'>

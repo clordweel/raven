@@ -56,7 +56,7 @@ interface ThemeContextType {
     setAppearance: (appearance: 'light' | 'dark' | 'inherit') => void;
 }
 export const ThemeContext = React.createContext<ThemeContextType>({
-    appearance: 'dark',
+    appearance: 'inherit',
     setAppearance: (appearance: 'light' | 'dark' | 'inherit') => { },
 });
 
