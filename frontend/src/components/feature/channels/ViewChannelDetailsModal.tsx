@@ -13,6 +13,7 @@ import { useIsDesktop } from "@/hooks/useMediaQuery"
 import { Drawer, DrawerContent } from "@/components/layout/Drawer"
 import { hasRavenAdminRole } from "@/utils/roles"
 import { __ } from "@/utils/translations"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 
 interface ViewChannelDetailsModalContentProps {
     open: boolean,
@@ -80,7 +81,7 @@ const ViewChannelDetailsModalContent = ({ setOpen, channelData }: ViewChannelDet
             <Dialog.Title>
                 <Flex align='center' gap='2'>
                     <ChannelIcon className={'mt-1'} type={type} />
-                    <Text>{channelData.channel_name}</Text>
+                    <Text>{getDisplayChannelName(channelData.channel_name)}</Text>
                 </Flex>
             </Dialog.Title>
 

@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/Heading/PageHeader"
 import { ChannelIcon } from "@/utils/layout/channelIcon"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
 import { EditChannelNameButton } from "../channel-details/rename-channel/EditChannelNameButton"
 import { Flex, Heading } from "@radix-ui/themes"
@@ -35,7 +36,7 @@ export const ChannelHeader = ({ channelData }: ChannelHeaderProps) => {
                                 initial: '4',
                                 sm: '5'
                             }}
-                            className="mb-0.5 text-ellipsis line-clamp-1">{channelData.channel_name}</Heading>
+                            className="mb-0.5 text-ellipsis line-clamp-1">{getDisplayChannelName(channelData.channel_name)}</Heading>
                     </Flex>
                     <EditChannelNameButton channelID={channelData.name} channel_name={channelData.channel_name} channelType={channelData.type} disabled={channelData.is_archived == 1} buttonVisible={!!channelData.pinned_messages_string} />
                     <ViewPinnedMessagesButton pinnedMessagesString={channelData.pinned_messages_string ?? ''} />

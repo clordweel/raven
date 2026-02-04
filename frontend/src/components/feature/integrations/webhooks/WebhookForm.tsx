@@ -1,4 +1,5 @@
 import { __ } from '@/utils/translations';
+import { getDisplayChannelName } from '@/utils/channelDisplayName';
 import { useContext, useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, Checkbox, Flex, TextField, Select, TextArea, Text, Code, Badge, Tabs, } from '@radix-ui/themes';
@@ -395,7 +396,7 @@ export const ChannelItem = ({ channel }: { channel: ChannelListItem }) => {
         <Flex direction={'row'} gap={'1'} align={'center'}>
             <ChannelIcon type={channel.type} size='18' />
             <Flex justify='between' align={'center'} width='100%'>
-                <Text size='2' className="text-ellipsis line-clamp-1" as='span' >{channel.channel_name}</Text>
+                <Text size='2' className="text-ellipsis line-clamp-1" as='span' >{getDisplayChannelName(channel.channel_name)}</Text>
             </Flex>
         </Flex>
         <HStack gap='1' align='center'>

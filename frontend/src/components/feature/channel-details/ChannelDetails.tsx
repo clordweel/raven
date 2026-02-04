@@ -1,4 +1,5 @@
 import { __ } from "@/utils/translations"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 import { useContext, useMemo } from "react"
 import { UserContext } from "../../../utils/auth/UserProvider"
 import { ChannelListItem } from "@/utils/channel/ChannelListProvider"
@@ -41,7 +42,7 @@ export const ChannelDetails = ({ channelData, channelMembers, onClose }: Channel
                         <Text weight='medium' size='2'>{__('Channel name')}</Text>
                         <Flex gap='1' pt='1' align='center'>
                             <ChannelIcon type={channelData.type} size='14' />
-                            <Text size='2'>{channelData?.channel_name}</Text>
+                            <Text size='2'>{getDisplayChannelName(channelData?.channel_name)}</Text>
                         </Flex>
                     </Flex>
                     <EditChannelNameButton

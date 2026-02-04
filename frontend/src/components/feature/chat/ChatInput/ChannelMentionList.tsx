@@ -1,4 +1,5 @@
 import { __ } from '@/utils/translations'
+import { getDisplayChannelName } from '@/utils/channelDisplayName'
 import { ChannelListItem } from '@/utils/channel/ChannelListProvider'
 import { ChannelIcon } from '@/utils/layout/channelIcon'
 import { Flex, Theme, Text } from '@radix-ui/themes'
@@ -17,7 +18,7 @@ export default forwardRef((props: ReactRendererOptions['props'], ref) => {
     const selectItem = (index: number) => {
         const item = props?.items[index]
         if (item) {
-            props.command({ id: item.name, label: item.channel_name })
+            props.command({ id: item.name, label: getDisplayChannelName(item.channel_name) })
         }
     }
 
@@ -93,8 +94,8 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         role='button'
         align='center'
         ref={ref}
-        title={item.channel_name}
-        aria-label={__("Mention channel {0}", [item.channel_name])}
+        title={getDisplayChannelName(item.channel_name)}
+        aria-label={__("Mention channel {0}", [getDisplayChannelName(item.channel_name)])}
         className={clsx('px-3 py-2 gap-2 rounded-md',
             index === itemsLength - 1 ? 'rounded-b-md' : 'rounded-b-none',
             index === 0 ? 'rounded-t-md' : 'rounded-t-none',
@@ -104,6 +105,6 @@ const MentionItem = ({ item, index, selectItem, selectedIndex, itemsLength }: { 
         onClick={() => selectItem(index)}
     >
         <ChannelIcon type={item.type} size='18' />
-        <Text as='span' weight='medium' size='2'> {item.channel_name}</Text>
+        <Text as='span' weight='medium' size='2'> {getDisplayChannelName(item.channel_name)}</Text>
     </Flex>
 }

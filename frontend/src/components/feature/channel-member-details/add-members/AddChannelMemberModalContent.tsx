@@ -1,4 +1,5 @@
 import { __ } from '@/utils/translations'
+import { getDisplayChannelName } from '@/utils/channelDisplayName'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useFrappePostCall, useSWRConfig } from 'frappe-react-sdk'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
@@ -64,10 +65,10 @@ export const AddChannelMembersModalContent = ({ onClose }: AddChannelMemberModal
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Dialog.Title>
-              <Text as='span'>{__('Add members to')} <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{channel?.channelData.channel_name}</Text>
+              <Text as='span'>{__('Add members to')} <ChannelIcon type={channel?.channelData.type} size='18' className='inline-block -mb-0.5' />{getDisplayChannelName(channel?.channelData.channel_name)}</Text>
             </Dialog.Title>
             <Dialog.Description size='2'>
-              {__('New members will be able to see all of')} <strong>{channel?.channelData.channel_name}</strong> {__("'s history, including any files that have been shared in the channel.")}
+              {__('New members will be able to see all of')} <strong>{getDisplayChannelName(channel?.channelData.channel_name)}</strong> {__("'s history, including any files that have been shared in the channel.")}
             </Dialog.Description>
 
             <Flex gap='2' pt='2' direction='column' width='100%'>

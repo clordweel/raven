@@ -1,0 +1,64 @@
+---
+description: Raven 项目 (cos 分支) 原则性规则：硬编码策略、翻译约定、前端编译与本地化硬编码方案。供后续会话复用。
+globs: 
+alwaysApply: true
+---
+
+# Raven 项目 (cos) 原则性规则
+
+## 1. 硬编码与 cos-logs
+
+- **允许硬编码整改**：为加速原型开发，不再严格遵守“仅从源仓库同步”的限制；可对 Raven 项目内容做硬编码修改（翻译、文案、UI 等）。
+- **记录位置**：重要硬编码/策略性修改在 **项目根目录 `cos-logs/`** 下记录，便于与上游同步时排查差异。
+- **日志命名**：建议 `YYYY-MM-DD-简短描述.md` 或按类型如 `hardcode-翻译.md`；内容含：文件路径、修改说明、原因（原型/翻译/体验等）。
+
+## 2. 翻译约定
+
+### 2.1 前端 (frontend)
+
+- **翻译函数**：使用 **`__()`**，从 **`@/utils/translations`** 导入（不要用 `@frappe/i18n`，Raven 前端无此依赖）。
+- **占位符**：使用 `{0}`、`{1}` 等，与 `__("...", [arg0, arg1])` 对应；译文中保留 `{0}` 等占位符不翻译。
+- **文案范围**：按钮、标签、placeholder、toast、aria-label、title、空状态、弹窗标题等面向用户的英文字符串均应包在 `__("...")` 中，并在 `raven/translations/zh.csv` 中补充对应中文。
+
+### 2.2 后端 (Python)
+
+- **翻译函数**：使用 Frappe 的 **`_()`**，占位符用 **`{0}`** 配合 **`.format(...)`**，例如：`_("{0} joined.").format(member_name)`。
+- **zh.csv**：源文为英文、译列为中文；占位符句式如 `{0} joined.` 在 CSV 中**不要**给源文加外层双引号（避免解析成多列），译列保留 `{0}` 等。
+
+### 2.3 zh.csv 格式
+
+- 格式：`source,translation,context`（第三列可空）。
+- **源文含逗号时**：源列必须用双引号包裹，例如：`"When someone mentions you in a message, you'll see it here.",当有人在消息中提及你时，会显示在这里。,`
+- 新增/修改译文后，前端需重新编译并建议执行 `bench clear-cache` 或清除翻译缓存。
+
+### 2.4 前端编译
+
+- **修改前端源码后必须执行**：`bench build --app raven`，否则译文与前端改动不会生效。
+
+## 3. 本地化硬编码方案（已落地）
+
+### 3.1 默认频道名 "General"
+
+- **工具**：`frontend/src/utils/channelDisplayName.ts` 的 **`getDisplayChannelName(channelName)`**。
+- **逻辑**：对频道名做**不区分大小写**匹配（`channelName.toLowerCase() === 'general'`），若为默认频道则返回 `__('General')`（zh：常规），否则原样返回。
+- **使用处**：所有**展示频道名称**的 UI（侧栏列表、标题、空状态、频道详情、提及、搜索、Webhook 表单等）统一用 `getDisplayChannelName(channel_name)`，不要直接显示 `channel_name`。
+
+### 3.2 系统消息（如 "Administrator joined."）
+
+- **问题**：后端将英文句式写入 DB，前端直接 `__(message.text)` 无法命中带占位符的翻译 key。
+- **工具**：`frontend/src/utils/systemMessageDisplay.ts` 的 **`getDisplaySystemMessageText(text)`**。
+- **逻辑**：对系统消息文案做模式匹配（如 `X joined.`、`X added Y.`、`X is now an admin.`、`X is no longer an admin.`），提取人名后用 `__("{0} joined.", [name])` 等模板输出译文；未匹配则退回 `__(text)`。
+- **使用处**：**`SystemMessageBlock.tsx`** 中系统消息展示使用 `getDisplaySystemMessageText(message.text)`，不再直接 `__(message.text)`。历史英文消息在中文环境下也会显示为「xxx 已加入。」等。
+
+## 4. 移动端 (apps/mobile)
+
+- 当前**不**在前端使用 `__()` 或 `@lib/translations` 做运行时翻译；相关翻译曾加过又撤销，避免依赖不存在的模块。若后续要支持移动端翻译，需在 mobile 内单独实现或复用可用的 i18n 方案。
+
+## 5. 小结检查清单（后续会话可对照）
+
+- 新用户可见英文字符串 → 是否已用 `__()` 并写入 zh.csv？
+- 源文含逗号 → zh.csv 源列是否已用双引号？
+- 展示频道名 → 是否用 `getDisplayChannelName()`？
+- 展示系统消息 → 是否用 `getDisplaySystemMessageText()`？
+- 前端改动后 → 是否执行 `bench build --app raven`？
+- 硬编码/策略性修改 → 是否在 `cos-logs/` 留记录？

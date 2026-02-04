@@ -1,4 +1,5 @@
 import { __ } from "@/utils/translations"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 import { Label } from "@/components/common/Form"
 import { UserAvatar } from "@/components/common/UserAvatar"
 import { HStack } from "@/components/layout/Stack"
@@ -158,7 +159,7 @@ const UsersOrChannelsDropdown = ({ selectedOptions, setSelectedOptions, label = 
                                         })}>
                                         <ChannelIcon type={selectedItemForRender.type} size='14' />
                                         <Text size='2'>
-                                            {selectedItemForRender.channel_name}
+                                            {getDisplayChannelName(selectedItemForRender.channel_name)}
                                         </Text>
                                         <span
                                             className="cursor-pointer"
@@ -220,7 +221,7 @@ const UsersOrChannelsDropdown = ({ selectedOptions, setSelectedOptions, label = 
                                     <HStack justify='between' width='100%'>
                                         <HStack gap='1' align='center'>
                                             <ChannelIcon type={item.type} size='14' />
-                                            <Text as='span' weight='medium' size='2'>{item.channel_name}</Text>
+                                            <Text as='span' weight='medium' size='2'>{getDisplayChannelName(item.channel_name)}</Text>
                                         </HStack>
                                         <HStack gap='1' align='center'>
                                             <BiBuildings color='gray' />

@@ -1,6 +1,7 @@
 import { IconButton, Tooltip } from "@radix-ui/themes"
 import { __ } from "@/utils/translations"
 import { useChannelList } from "@/utils/channel/ChannelListProvider"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 import { ChannelIcon } from "@/utils/layout/channelIcon"
 import { Select, Text, TextField } from "@radix-ui/themes"
 import { BiFilter, BiSearch } from "react-icons/bi"
@@ -33,7 +34,7 @@ export const ChannelFilter = ({ channel, setChannel }: { channel: string, setCha
                             <ChannelIcon type={channel.type} />
                             <Text style={{
                                 maxWidth: '20ch'
-                            }} className='text-ellipsis whitespace-break-spaces line-clamp-1 pb-0.5'>{channel.channel_name}</Text>
+                            }} className='text-ellipsis whitespace-break-spaces line-clamp-1 pb-0.5'>{getDisplayChannelName(channel.channel_name)}</Text>
                         </div>
                     </Select.Item>)}
                 </Select.Content>

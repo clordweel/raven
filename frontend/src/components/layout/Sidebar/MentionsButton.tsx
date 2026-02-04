@@ -1,5 +1,6 @@
 import { RavenMessage } from '@/types/RavenMessaging/RavenMessage'
 import { __ } from '@/utils/translations'
+import { getDisplayChannelName } from '@/utils/channelDisplayName'
 import { Box, IconButton, Popover, Text, Flex } from '@radix-ui/themes'
 import { FrappeConfig, FrappeContext, useFrappeEventListener, useFrappeGetCall } from 'frappe-react-sdk'
 import { LuAtSign } from 'react-icons/lu'
@@ -224,7 +225,7 @@ const ChannelContext = ({ mention }: { mention: MentionObject }) => {
                             ) : (
                                 <>
                                     <HStack align="center" className="inline-flex gap-0.5">
-                                        in  <ChannelIcon type={mention.channel_type} size="14" className="mt-[0.5px]" /> {mention.channel_name}
+                                        in  <ChannelIcon type={mention.channel_type} size="14" className="mt-[0.5px]" /> {getDisplayChannelName(mention.channel_name)}
                                     </HStack>
                                 </>
                             )}

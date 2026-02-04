@@ -11,6 +11,7 @@ import { RiPushpinLine, RiUnpinLine } from "react-icons/ri"
 import { FrappeConfig, FrappeContext } from "frappe-react-sdk"
 import { RavenUser } from "@/types/Raven/RavenUser"
 import { __ } from "@/utils/translations"
+import { getDisplayChannelName } from "@/utils/channelDisplayName"
 import { ChannelWithUnreadCount } from "@/components/layout/Sidebar/useGetChannelUnreadCounts"
 import { useAtom } from "jotai"
 import { showOnlyMyChannelsAtom } from "@/components/layout/Sidebar/SidebarBody"
@@ -102,7 +103,7 @@ export const ChannelItemElement = ({ channel }: { channel: ChannelWithUnreadCoun
                         <Text size={{
                             initial: '3',
                             md: '2'
-                        }} className="text-ellipsis line-clamp-1" as='span' weight={showUnread ? 'bold' : 'medium'}>{channel.channel_name}</Text>
+                        }} className="text-ellipsis line-clamp-1" as='span' weight={showUnread ? 'bold' : 'medium'}>{getDisplayChannelName(channel.channel_name)}</Text>
                         {showUnread ? <SidebarBadge>{channel.unread_count}</SidebarBadge> : null}
                     </Flex>
                 </SidebarItem>

@@ -22,7 +22,7 @@ const DocumentLinkButton = ({ channelID }: { channelID: string }) => {
     const [open, { off }, setOpen] = useBoolean()
 
     return <Dialog.Root open={open} onOpenChange={setOpen}>
-        <Tooltip content={`Attach a document from the system`}>
+        <Tooltip content={__('Attach a document from the system')}>
             <Dialog.Trigger>
                 <IconButton
                     aria-label={__('Attach a document from the system')}

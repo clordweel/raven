@@ -12,6 +12,7 @@ import { UserFields } from '@/utils/users/UserListProvider'
 import { ChannelListContext, ChannelListContextType } from '@/utils/channel/ChannelListProvider'
 import { useGetUserRecords } from '@/hooks/useGetUserRecords'
 import { ChannelIcon } from '@/utils/layout/channelIcon'
+import { getDisplayChannelName } from '@/utils/channelDisplayName'
 import { DateMonthYear } from '@/utils/dateConversions'
 import { Box, Checkbox, Flex, Grid, Select, TextField, Text, ScrollArea, Link } from '@radix-ui/themes'
 import { Loader } from '@/components/common/Loader'
@@ -177,7 +178,7 @@ export const FileSearch = ({ onToggleMyChannels, isOnlyInMyChannels, onToggleSav
                                         <ChannelIcon type={option.type} />
                                         <Text style={{
                                             maxWidth: '20ch'
-                                        }} className='text-ellipsis whitespace-break-spaces line-clamp-1'>{option.channel_name}</Text>
+                                        }} className='text-ellipsis whitespace-break-spaces line-clamp-1'>{getDisplayChannelName(option.channel_name)}</Text>
                                     </Flex>
                                 </Select.Item>)}
                             </Select.Group>
