@@ -176,6 +176,38 @@ class RavenAgentManager:
 			if conversation_file_tool:
 				self.tools.append(conversation_file_tool)
 
+		# FAC in-process integration (path A): same process, no HTTP, uses frappe.session.user
+		self._fac_tools_list = []
+		if (
+			getattr(self.settings, "enable_fac_integration", False)
+		 and getattr(self.settings, "fac_integration_mode", "In-process") == "In-process"
+		 and self.bot_doc.model_provider == "OpenAI"
+		 and "frappe_assistant_core" in frappe.get_installed_apps()
+		):
+			try:
+				from frappe_assistant_core.api.in_process import list_tools_for_session_user, call_tool_in_process
+
+				fac_response = list_tools_for_session_user()
+				fac_tools = fac_response.get("tools") or []
+				if fac_tools:
+					self._fac_tools_list = fac_tools
+
+					@function_tool
+					def call_fac_tool(tool_name: str, arguments: str) -> str:
+						"""Call a Frappe Assistant Core (FAC) tool. tool_name: one of the FAC tool names (e.g. list_documents, create_document). arguments: JSON string of arguments for that tool (e.g. '{\"doctype\": \"Customer\", \"limit\": 10}')."""
+						args = json.loads(arguments) if isinstance(arguments, str) else (arguments or {})
+						result = call_tool_in_process(tool_name, args)
+						if isinstance(result, str):
+							return result
+						return json.dumps(result, default=str)
+
+					self.tools.append(call_fac_tool)
+			except Exception as e:
+				frappe.log_error(
+					title="FAC In-Process Integration Error",
+					message=f"Error loading FAC tools: {str(e)}\n{traceback.format_exc()}",
+				)
+
 	def _create_crud_tools(self) -> list[Tool]:
 		"""Wrap CRUD functions as OpenAI Agents Tools"""
 
@@ -409,12 +441,21 @@ class RavenAgentManager:
 				else:
 					tool_descriptions.append(f"- {tool.name}: {type(tool).__name__}")
 
+			fac_instruction = ""
+			if getattr(self, "_fac_tools_list", None):
+				fac_lines = [f"  - {t.get('name', '')}: {t.get('description', '')}" for t in self._fac_tools_list]
+				fac_instruction = """
+
+FAC (Frappe Assistant Core) tools available via call_fac_tool(tool_name, arguments):
+Use call_fac_tool with tool_name set to one of the names below and arguments as a JSON string.
+""" + "\n".join(fac_lines) + "\n"
+
 			tools_instruction = f"""
 
 You have access to the following tools/functions that you can use to help answer questions:
 
 {chr(10).join(tool_descriptions)}
-
+{fac_instruction}
 CRITICAL INSTRUCTIONS FOR TOOL USE:
 1. When a user asks for information that these tools can provide, use the appropriate tool IMMEDIATELY.
 2. When asked to "improve", "enhance", or "update" something, PROPOSE A SPECIFIC SOLUTION FIRST, then apply it when the user confirms.
