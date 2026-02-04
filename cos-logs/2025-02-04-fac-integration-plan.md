@@ -33,9 +33,10 @@
 **要点**:
 1. **配置**: 在 Raven Settings 或 Raven Bot 上增加“FAC 集成”开关及 MCP 端点 URL（可与站点 base URL 拼接为完整 `handle_mcp` 地址）。
 2. **工具注入**: 在 `agents_integration.RavenAgentManager._setup_tools()` 中，若启用 FAC，则追加一个 `HostedMCPTool`，指向 FAC 的 Streamable HTTP MCP 端点。
-3. **认证**: FAC 要求 OAuth Bearer。Raven 服务端代表**当前聊天用户**调用 FAC，需携带该用户的 access token。可选实现：
-   - **方案 A1**: 使用 Frappe 的 OAuth2 客户端 + 当前请求的 session/cookie，在 Raven 后端用“当前用户”完成 PKCE 或 token 交换，得到 Bearer 后传给 HostedMCPTool（或 SDK 支持的 HTTP 认证方式）。
-   - **方案 A2**: 若 FAC 支持 `token api_key:api_secret` 等非 OAuth 方式（见 FAC API_REFERENCE 的 API Key 说明），且站点允许“服务端密钥”，则可在 Raven Settings 中配置 api_key/api_secret，由 Raven 后端请求 FAC 时附带，无需每用户 OAuth 流程。
+3. **认证**: FAC 要求 OAuth Bearer 或 Frappe 标准认证。**首版采用单用户认证**，Raven 服务端用同一凭证调用 FAC。可选实现：
+   - **方案 A1（单用户 OAuth）**: 在 Raven Settings 中配置 **fac_bearer_token**（Password）：管理员从 MCP Inspector 等完成一次 OAuth 后粘贴 access_token，Raven 后端请求 FAC 时使用 `Authorization: Bearer <token>`。
+   - **方案 A2（Frappe 用户 API Key）**: **实测支持**：使用 Frappe User 的 api_key:api_secret 作为认证头可通过 FAC 认证（Frappe 标准格式 `Authorization: token api_key:api_secret`，见 `frappe.auth.validate_auth_via_api_keys`）。在 Raven Settings 中配置 **fac_api_key**（Data）与 **fac_api_secret**（Password），Raven 后端请求 FAC 时使用 `Authorization: token api_key:api_secret`。无需每用户 OAuth 流程。
+   - 后续可做“当前聊天用户”身份：每用户 OAuth 或按请求转发请求自带的 Bearer（见 [方案 A 落地问题分析](./2025-02-04-plan-a-issues-analysis.md) §5 Mobile 结合）。
 4. **依赖**: 同一 bench 先安装并启用 `frappe_assistant_core`，Raven 仅作为 MCP 客户端调用其端点；可选通过 `install_app` 或文档声明“使用 FAC 集成时需安装 FAC”。
 
 **实现步骤建议**:
@@ -51,8 +52,8 @@
 |------|------|------|-----------|
 | A1 | 查清 HostedMCPTool 签名 | 查阅 `agents` 包文档或源码，确认是否支持 Streamable HTTP、如何传 URL / Base URL、如何传 Authorization（Bearer 或 headers） | 文档或注释：构造函数参数与用法 |
 | A2 | Raven Settings 增加 FAC 配置项 | 新增 `enable_fac_integration`（Check）、`fac_mcp_endpoint_url`（Data，或 `fac_base_url` 由代码拼接 `handle_mcp` 路径） | Raven Settings 单页可配置并保存 |
-| A3 | （可选）认证字段 A2 路径 | 若采用服务端密钥：新增 `fac_api_key` / `fac_api_secret`（或 password 类型）并在调用 FAC 时带 Authorization | 配置项存在且可安全存储 |
-| A4 | 实现 FAC 认证逻辑 | 若 A1：实现“当前用户”取 Bearer（OAuth2 客户端 + session/token 交换）。若 A2：从 Settings 取 api_key/api_secret 构造 Authorization header | 后端可返回用于请求 FAC 的 headers/params |
+| A3 | 单用户认证字段 | 新增 **fac_bearer_token**（Password，OAuth 粘贴）与 **fac_api_key**（Data）+ **fac_api_secret**（Password，Frappe User API Key），二选一配置 | 配置项存在且可安全存储 |
+| A4 | 实现 FAC 认证逻辑 | 若配置 fac_bearer_token：`Authorization: Bearer <token>`。若配置 fac_api_key + fac_api_secret：`Authorization: token api_key:api_secret`。两者皆无则跳过注入 | 后端可返回用于请求 FAC 的 authorization/headers |
 | A5 | 在 _setup_tools 中注入 HostedMCPTool | 在 `agents_integration.RavenAgentManager._setup_tools()` 中：若 `enable_fac_integration` 且端点非空，则 `self.tools.append(HostedMCPTool(...))`，传入 FAC 端点与认证信息（与 A1 一致） | Bot 使用 OpenAI 时 tools 列表包含 FAC MCP 工具 |
 | A6 | 保持 Local LLM 过滤逻辑 | 确认 `_filter_tools_for_provider()` 在 Local LLM 下继续排除 HostedMCPTool，FAC 仅在 OpenAI（或支持 Hosted MCP 的 provider）下生效 | 本地模型下无 HostedMCPTool，无报错 |
 | A7 | 可选依赖与运行时判断 | 用 `frappe.get_installed_apps()` 或 try/except import 判断 FAC 是否安装；未安装时跳过 FAC 相关逻辑，不报错 | 未安装 FAC 时 Raven 正常启动、Bot 可用 |
