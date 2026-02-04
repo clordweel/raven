@@ -29,7 +29,12 @@ const AISettings = () => {
 
     useEffect(() => {
         if (ravenSettings) {
-            reset(ravenSettings)
+            reset({
+                ...ravenSettings,
+                // 确保迁移后新增的 FAC 字段在 API 未返回时也有默认值，Raven 设置页能显示
+                enable_fac_integration: ravenSettings.enable_fac_integration ?? 0,
+                fac_integration_mode: ravenSettings.fac_integration_mode ?? 'In-process',
+            })
         }
     }, [ravenSettings])
 
@@ -44,11 +49,11 @@ const AISettings = () => {
                 revalidate: false
             })
         }), {
-            loading: 'Updating...',
+            loading: __('Updating...'),
             success: () => {
-                return `Settings updated`;
+                return __('Settings updated');
             },
-            error: 'There was an error.',
+            error: __('There was an error.'),
         })
 
     }
@@ -100,29 +105,34 @@ const AISettings = () => {
                                             />
                                         )} />
 
-                                    Enable AI Integration
+                                    {__('Enable AI Integration')}
                                 </Flex>
                             </Text>
                         </Flex>
                         <Separator size='4' />
 
                         {isAIEnabled ? (
-                            <Tabs.Root defaultValue="openai">
-                                <Tabs.List>
-                                    <Tabs.Trigger value="openai">OpenAI</Tabs.Trigger>
-                                    <Tabs.Trigger value="local">Local LLM</Tabs.Trigger>
-                                </Tabs.List>
+                            <>
+                                <Tabs.Root defaultValue="openai">
+                                    <Tabs.List>
+                                        <Tabs.Trigger value="openai">{__('OpenAI')}</Tabs.Trigger>
+                                        <Tabs.Trigger value="local">{__('Local LLM')}</Tabs.Trigger>
+                                    </Tabs.List>
 
-                                <Box mt="4">
-                                    <Tabs.Content value="openai">
-                                        <OpenAISection />
-                                    </Tabs.Content>
+                                    <Box mt="4">
+                                        <Tabs.Content value="openai">
+                                            <OpenAISection />
+                                        </Tabs.Content>
 
-                                    <Tabs.Content value="local">
-                                        <LocalLLMSection />
-                                    </Tabs.Content>
-                                </Box>
-                            </Tabs.Root>
+                                        <Tabs.Content value="local">
+                                            <LocalLLMSection />
+                                        </Tabs.Content>
+                                    </Box>
+                                </Tabs.Root>
+
+                                <Separator size='4' />
+                                <FACIntegrationSection />
+                            </>
                         ) : null}
                     </SettingsContentContainer>
                 </form>
@@ -130,6 +140,63 @@ const AISettings = () => {
         </PageContainer>
     )
 }
+const FACIntegrationSection = () => {
+    const { watch, control } = useFormContext<RavenSettings>()
+    const enableFAC = watch('enable_fac_integration')
+
+    return (
+        <Flex direction="column" gap="4">
+            <Text size="3" weight="medium">{__('FAC Integration')}</Text>
+            <Flex direction={'column'} gap='2'>
+                <Text as="label" size="2">
+                    <Flex gap="2">
+                        <Controller
+                            control={control}
+                            name='enable_fac_integration'
+                            render={({ field }) => (
+                                <Checkbox
+                                    checked={field.value ? true : false}
+                                    name={field.name}
+                                    disabled={field.disabled}
+                                    onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
+                                />
+                            )} />
+                        {__('Enable FAC Integration')}
+                    </Flex>
+                </Text>
+                <HelperText>
+                    {__('Use Frappe Assistant Core (FAC) tools in Raven bots. Requires frappe_assistant_core app.')}
+                </HelperText>
+            </Flex>
+
+            {enableFAC ? (
+                <Stack gap='1'>
+                    <Label htmlFor='fac_integration_mode'>{__('FAC Integration Mode')}</Label>
+                    <Controller
+                        control={control}
+                        name='fac_integration_mode'
+                        render={({ field }) => (
+                            <Select.Root
+                                value={field.value ?? 'In-process'}
+                                onValueChange={field.onChange}
+                            >
+                                <Select.Trigger placeholder={__('Select mode')} className='w-48 sm:w-96' />
+                                <Select.Content>
+                                    <Select.Item value="In-process">{__('In-process')}</Select.Item>
+                                    <Select.Item value="HTTP">{__('HTTP')}</Select.Item>
+                                </Select.Content>
+                            </Select.Root>
+                        )}
+                    />
+                    <HelperText>
+                        {__('In-process: same site, no HTTP. HTTP: call FAC MCP endpoint (requires URL and auth).')}
+                    </HelperText>
+                </Stack>
+            ) : null}
+        </Flex>
+    )
+}
+
 const OpenAISection = () => {
 
     const { data: openaiVersion } = useFrappeGetCall<{ message: string }>('raven.api.ai_features.get_open_ai_version')
@@ -154,7 +221,7 @@ const OpenAISection = () => {
                                     onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
                                 />
                             )} />
-                        Enable OpenAI Services
+                        {__('Enable OpenAI Services')}
                     </Flex>
                 </Text>
             </Flex>
@@ -162,7 +229,7 @@ const OpenAISection = () => {
             {enableOpenAI ? (
                 <>
                     <Box>
-                        <Label htmlFor='openai_organisation_id' isRequired>OpenAI Organization ID</Label>
+                        <Label htmlFor='openai_organisation_id' isRequired>{__('OpenAI Organization ID')}</Label>
                         <TextField.Root
                             maxLength={140}
                             className={'w-48 sm:w-96'}
@@ -171,10 +238,10 @@ const OpenAISection = () => {
                             required
                             placeholder={__('org-************************')}
                             {...register('openai_organisation_id', {
-                                required: enableOpenAI ? "Please add your OpenAI Organization ID" : false,
+                                required: enableOpenAI ? __('Please add your OpenAI Organization ID') : false,
                                 maxLength: {
                                     value: 140,
-                                    message: "ID cannot be more than 140 characters."
+                                    message: __('ID cannot be more than 140 characters.')
                                 }
                             })}
                             aria-invalid={errors.openai_organisation_id ? 'true' : 'false'}
@@ -183,7 +250,7 @@ const OpenAISection = () => {
                     </Box>
 
                     <Box>
-                        <Label htmlFor='openai_api_key' isRequired>OpenAI API Key</Label>
+                        <Label htmlFor='openai_api_key' isRequired>{__('OpenAI API Key')}</Label>
                         <TextField.Root
                             className={'w-48 sm:w-96'}
                             id='openai_api_key'
@@ -192,7 +259,7 @@ const OpenAISection = () => {
                             autoComplete='off'
                             placeholder={__('Enter password')}
                             {...register('openai_api_key', {
-                                required: enableOpenAI ? "Please add your OpenAI API Key" : false,
+                                required: enableOpenAI ? __('Please add your OpenAI API Key') : false,
                             })}
                             aria-invalid={errors.openai_api_key ? 'true' : 'false'}
                         />
@@ -200,7 +267,7 @@ const OpenAISection = () => {
                     </Box>
 
                     <Box>
-                        <Label htmlFor='openai_project_id'>OpenAI Project ID</Label>
+                        <Label htmlFor='openai_project_id'>{__('OpenAI Project ID')}</Label>
                         <TextField.Root
                             maxLength={140}
                             className={'w-48 sm:w-96'}
@@ -210,20 +277,20 @@ const OpenAISection = () => {
                             {...register('openai_project_id', {
                                 maxLength: {
                                     value: 140,
-                                    message: "ID cannot be more than 140 characters."
+                                    message: __('ID cannot be more than 140 characters.')
                                 }
                             })}
                             aria-invalid={errors.openai_project_id ? 'true' : 'false'}
                         />
                         {errors?.openai_project_id && <ErrorText>{errors.openai_project_id?.message}</ErrorText>}
                         <HelperText>
-                            If not set, the integration will use the default project.
+                            {__('If not set, the integration will use the default project.')}
                         </HelperText>
                     </Box>
                 </>
             ) : null}
 
-            {openaiVersion && <Text color='gray' size='2'>OpenAI Python SDK Version: {openaiVersion.message}</Text>}
+            {openaiVersion && <Text color='gray' size='2'>{__('OpenAI Python SDK Version:')} {openaiVersion.message}</Text>}
         </Flex>
     )
 }
@@ -248,7 +315,7 @@ const LocalLLMSection = () => {
 
     const handleTestConnection = async () => {
         if (!localLLMUrl) {
-            toast.error('Please enter an API URL')
+            toast.error(__('Please enter an API URL'))
             return
         }
 
@@ -265,15 +332,15 @@ const LocalLLMSection = () => {
             })
 
             if (result.message.success) {
-                toast.success('Connection successful!')
+                toast.success(__('Connection successful!'))
             } else {
                 toast.error(result.message.message)
             }
         } catch (error) {
-            toast.error('Failed to test connection')
+            toast.error(__('Failed to test connection'))
             setTestResult({
                 success: false,
-                message: 'Failed to test connection'
+                message: __('Failed to test connection')
             })
         }
     }
@@ -294,7 +361,7 @@ const LocalLLMSection = () => {
                                     onCheckedChange={(v) => field.onChange(v ? 1 : 0)}
                                 />
                             )} />
-                        Enable Local LLM
+                        {__('Enable Local LLM')}
                     </Flex>
                 </Text>
             </Flex>
@@ -302,7 +369,7 @@ const LocalLLMSection = () => {
             {enableLocalLLM ? (
                 <>
                     <Stack gap='1'>
-                        <Label htmlFor='local_llm_provider'>Local LLM Provider</Label>
+                        <Label htmlFor='local_llm_provider'>{__('Local LLM Provider')}</Label>
                         <Controller
                             control={control}
                             name='local_llm_provider'
@@ -311,23 +378,23 @@ const LocalLLMSection = () => {
                                     value={field.value}
                                     onValueChange={field.onChange}
                                 >
-                                    <Select.Trigger placeholder={__("Select Provider")} className='w-48 sm:w-96' />
+                                    <Select.Trigger placeholder={__('Select your local LLM provider')} className='w-48 sm:w-96' />
                                     <Select.Content>
-                                        <Select.Item value="LM Studio">LM Studio</Select.Item>
-                                        <Select.Item value="Ollama">Ollama</Select.Item>
-                                        <Select.Item value="LocalAI">LocalAI</Select.Item>
-                                        <Select.Item value="OpenAI Compatible">OpenAI Compatible</Select.Item>
+                                        <Select.Item value="LM Studio">{__('LM Studio')}</Select.Item>
+                                        <Select.Item value="Ollama">{__('Ollama')}</Select.Item>
+                                        <Select.Item value="LocalAI">{__('LocalAI')}</Select.Item>
+                                        <Select.Item value="OpenAI Compatible">{__('OpenAI Compatible')}</Select.Item>
                                     </Select.Content>
                                 </Select.Root>
                             )}
                         />
                         <HelperText>
-                            Select your local LLM provider
+                            {__('Select your local LLM provider')}
                         </HelperText>
                     </Stack>
 
                     <Box>
-                        <Label htmlFor='local_llm_api_url' isRequired>Local LLM API URL</Label>
+                        <Label htmlFor='local_llm_api_url' isRequired>{__('Local LLM API URL')}</Label>
                         <Flex gap="2" align="end">
                             <TextField.Root
                                 className={'w-48 sm:w-96'}
@@ -336,7 +403,7 @@ const LocalLLMSection = () => {
                                 autoComplete='off'
                                 placeholder={__('http://localhost:11434/v1')}
                                 {...register('local_llm_api_url', {
-                                    required: enableLocalLLM ? "Please add your Local LLM API URL" : false,
+                                    required: enableLocalLLM ? __('Please add your Local LLM API URL') : false,
                                 })}
                                 aria-invalid={errors.local_llm_api_url ? 'true' : 'false'}
                             />
@@ -348,18 +415,18 @@ const LocalLLMSection = () => {
                                 disabled={testing || !localLLMUrl}
                             >
                                 {testing && <Loader className="text-gray-900" />}
-                                Test Connection
+                                {__('Test Connection')}
                             </Button>
                         </Flex>
                         {errors?.local_llm_api_url && <ErrorText>{errors.local_llm_api_url?.message}</ErrorText>}
                         <HelperText>
-                            Enter the API endpoint URL for your local LLM service
+                            {__('Enter the API endpoint URL for your local LLM service')}
                         </HelperText>
                     </Box>
 
                     {localLLMProvider === 'OpenAI Compatible' && (
                         <Box>
-                            <Label htmlFor='openai_compatible_api_key'>OpenAI Compatible API Key</Label>
+                            <Label htmlFor='openai_compatible_api_key'>{__('OpenAI Compatible API Key')}</Label>
                             <TextField.Root
                                 className={'w-48 sm:w-96'}
                                 id='openai_compatible_api_key'
@@ -371,7 +438,7 @@ const LocalLLMSection = () => {
                             />
                             {errors?.openai_compatible_api_key && <ErrorText>{errors.openai_compatible_api_key?.message}</ErrorText>}
                             <HelperText>
-                                Enter the API key for your OpenAI compatible service
+                                {__('Enter the API key for your OpenAI compatible service')}
                             </HelperText>
                         </Box>
                     )}
@@ -392,11 +459,11 @@ const LocalLLMSection = () => {
                             <BiInfoCircle />
                         </Callout.Icon>
                         <Callout.Text>
-                            {localLLMProvider === 'LM Studio' && 'Make sure LM Studio is running with the server enabled on the specified URL.'}
-                            {localLLMProvider === 'Ollama' && 'Make sure Ollama is running. Default URL is usually http://localhost:11434/v1'}
-                            {localLLMProvider === 'LocalAI' && 'Make sure LocalAI is running on the specified URL.'}
-                            {localLLMProvider === 'OpenAI Compatible' && 'Make sure your OpenAI compatible service is running on the specified URL and that you have provided a valid API key.'}
-                            {!localLLMProvider && 'Select a provider to see specific instructions.'}
+                            {localLLMProvider === 'LM Studio' && __('Make sure LM Studio is running with the server enabled on the specified URL.')}
+                            {localLLMProvider === 'Ollama' && __('Make sure Ollama is running. Default URL is usually http://localhost:11434/v1')}
+                            {localLLMProvider === 'LocalAI' && __('Make sure LocalAI is running on the specified URL.')}
+                            {localLLMProvider === 'OpenAI Compatible' && __('Make sure your OpenAI compatible service is running on the specified URL and that you have provided a valid API key.')}
+                            {!localLLMProvider && __('Select a provider to see specific instructions.')}
                         </Callout.Text>
                     </Callout.Root>
                 </>
