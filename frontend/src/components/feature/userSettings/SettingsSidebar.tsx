@@ -29,6 +29,7 @@ export const SettingsSidebar = () => {
                 <SettingsGroup title='Integrations' icon={BsBoxes} requireAdmin>
                     {/* <SettingsSidebarItem title="ERPNext" to='erpnext' /> */}
                     <SettingsSidebarItem title="HR" to='hr' />
+                    <SettingsSidebarItem title={__('MCP Management')} to='mcp-management' />
                     <SettingsSidebarItem title='Document Notifications' to='document-notifications' />
                     <SettingsSidebarItem title="Document Previews" to='document-previews' />
                     <SettingsSidebarItem title="Message Actions" to='message-actions' />

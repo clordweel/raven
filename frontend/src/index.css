@@ -147,3 +147,18 @@ html header button {
         opacity: 1;
     }
 }
+
+/* MCP Inspector detail column: markdown-like description */
+.mcp-detail-description code {
+    background: var(--gray-3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.mcp-detail-description a {
+    color: var(--accent-11);
+    text-decoration: underline;
+}
+.mcp-detail-description strong {
+    font-weight: 600;
+}

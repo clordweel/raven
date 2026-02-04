@@ -79,6 +79,7 @@ const router = createBrowserRouter(
             <Route path="appearance" lazy={() => import('./pages/settings/Appearance')} />
             <Route path="preferences" lazy={() => import('./pages/settings/Preferences')} />
             <Route path="hr" lazy={() => import('./pages/settings/Integrations/FrappeHR')} />
+            <Route path="mcp-management" lazy={() => import('./pages/settings/Integrations/MCPManagement')} />
             <Route path="document-previews" lazy={() => import('./pages/settings/Integrations/DocumentPreviewTool')} />
             <Route path="workspaces" >
               <Route index lazy={() => import('./pages/settings/Workspaces/WorkspaceList')} />
